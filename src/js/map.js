@@ -8,7 +8,7 @@ export default class Map {
   setupBoxes() {
     this.addClickListeners(document.querySelectorAll('[data-permalink]'));
 
-    const panel = document.querySelector('.panel');
+    const panel = document.querySelector('.panel-page');
     const closeButton = panel.querySelector('.close');
     const payload = panel.querySelector('.payload');
 
@@ -20,7 +20,7 @@ export default class Map {
   }
 
   addClickListeners(elements) {
-    const panel = document.querySelector('.panel');
+    const panel = document.querySelector('.panel-page');
     const payload = panel.querySelector('.payload');
 
     elements.forEach(element => {

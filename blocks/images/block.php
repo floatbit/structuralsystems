@@ -31,14 +31,16 @@ if ( ! empty( $block['align'] ) ) {
         <div class="flex gap-2 md:gap-8">
             <?php $images = get_field('images');?>
             <?php foreach($images as $image):?>
-            <div class="image" style="flex: <?php print $image['width'] / $image['height'];?>;">
+            <div class="image" style="flex: <?php print $image['width'] / $image['height'];?>;" data-image-enlarge>
                 <p>
                     <img src="<?php print $image['url'];?>" alt="">
                 </p>
                 <?php if ($image['caption']):?>
-                    <p class="caption">
-                        <?php print $image['caption'];?>
-                    </p>
+                    <div class="caption">
+                        <p>
+                            <?php print $image['caption'];?>
+                        </p>
+                    </div>
                 <?php endif;?>
             </div>
             <?php endforeach;?>

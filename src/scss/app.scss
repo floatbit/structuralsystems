@@ -22,6 +22,7 @@
   p {
     @apply mb-4;
   }
+  .caption p,
   p.caption {
     font-size: 14px;
   }
@@ -56,5 +57,22 @@
 .payload {
   .container {
     padding: 0;
+  }
+}
+
+[data-image-enlarge] {
+  img {
+    transition: all 0.2s;
+    transform: scale(1);
+    cursor: pointer;
+  }
+  img:hover {
+    transform: scale(1.01);
+  }
+}
+
+.panel-image {
+  img {
+    @apply object-fill;
   }
 }
