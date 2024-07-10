@@ -11,7 +11,7 @@
 <div class="panel panel-project fixed top-0 left-0 h-full w-full overflow-auto hidden">
     <button class="close absolute top-0 right-0 p-4 text-white bg-black">&times;</button>
     <div class="container py-12 project-payload">
-        <!---payload --->
+        <!--- payload --->
     </div>
 </div>
 
