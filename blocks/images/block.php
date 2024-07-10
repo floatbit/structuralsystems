@@ -28,7 +28,7 @@ if ( ! empty( $block['align'] ) ) {
 
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
-        <div class="flex gap-2 md:gap-4">
+        <div class="flex gap-2 md:gap-8">
             <?php $images = get_field('images');?>
             <?php foreach($images as $image):?>
             <div class="image" style="flex: <?php print $image['width'] / $image['height'];?>;">

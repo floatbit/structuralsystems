@@ -14,9 +14,10 @@
 
   h1 {
     @apply text-4xl;
+    @apply mb-8;
   }
   h2 {
-    @apply text-3xl
+    @apply text-2xl
   }
   p {
     @apply mb-4;
@@ -52,7 +53,7 @@
   background-color: rgba(#000, 0.85);
 }
 
-.project-payload {
+.payload {
   .container {
     padding: 0;
   }

@@ -1,4 +1,5 @@
 <div id="map" class="map">
+
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 999">
     <defs>
       <style>
@@ -264,7 +265,7 @@
         <rect class="cls-2" x="24.5" y="69.75" width="92" height="22.25"/>
         <path class="cls-1" d="M115.25,71v19.75H25.75v-19.75h89.5M117.75,68.5H23.25v24.75h94.5v-24.75h0Z"/>
       </g>
-      <g data-post="2">
+      <g data-post="31" data-permalink="<?php print get_the_permalink(31);?>">
         <rect class="cls-2" x="24.5" y="112.5" width="15.5" height="38"/>
         <path class="cls-1" d="M38.75,113.75v35.5h-13v-35.5h13M41.25,111.25h-18v40.5h18v-40.5h0Z"/>
       </g>
@@ -2178,4 +2179,5 @@
       </g>
     </g>
   </svg>
+  
 </div>
