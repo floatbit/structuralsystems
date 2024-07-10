@@ -4,7 +4,7 @@
     <div class="container container-fluid">
         <?php get_template_part('parts/map'); ?>
     </div>
-    <div class="payload-content">
+    <div class="payload-content hidden">
         <h1><?php the_title();?></h1>
         <?php the_content(); ?>
         <ul>
@@ -25,14 +25,14 @@
     </div>
 </div>
 
-<div class="panel panel-image fixed top-0 left-0 h-full w-full overflow-auto">
+<div class="panel panel-image fixed top-0 left-0 h-full w-full overflow-auto hidden">
     <button class="close absolute top-0 right-0 p-4 text-white bg-black">&times;</button>
     <div class="container container-fluid pt-12 pb-6 h-full payload">
         <div class="flex flex-col h-full">
-            <div class="grow image bg-no-repeat bg-center bg-contain" style="background-image: url(https://via.placeholder.com/800x600);">
+            <div class="grow image bg-no-repeat bg-center bg-contain">
             </div>
             <div class="shrink mt-6 caption text-center">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque optio eligendi doloremque. Quam in blanditiis deleniti modi quae tenetur, a porro, corrupti at asperiores commodi autem cupiditate quis illum! Enim!</p>
+                <!--caption-->
             </div>
         </div>
     </div>

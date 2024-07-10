@@ -65,6 +65,15 @@ module.exports = {
         black: '#000000'
       }
     },
+    screens: {
+      'sm': '640px',
+      'sm-down': {'max': '639px'},
+      'md': '768px',
+      'md-down': {'max': '767px'},
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px'
+    }
   },
   plugins: [
     require('@tailwindcss/typography'),

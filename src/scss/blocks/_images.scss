@@ -3,4 +3,9 @@
   img {
     width: 100%;
   }
+  .image {
+    @screen sm-down {
+      @apply mb-8;
+    }
+  }
 }
