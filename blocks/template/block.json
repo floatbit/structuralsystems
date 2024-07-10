@@ -1,0 +1,12 @@
+{
+  "name": "acf/<id>",
+  "title": "<name>",
+  "description": "",
+  "category": "<category>",
+  "keywords": ["<id>"],
+  "_viewScript": ["blocks/<id>"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block.php"
+  }
+}

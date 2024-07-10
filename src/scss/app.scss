@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply mb-2;
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+  h2 {
+    @apply text-3xl
+  }
+  p {
+    @apply mb-4;
+  }
+  p.caption {
+    font-size: 14px;
+  }
+}
+
+@import 'fonts';
+@import 'blocks/index';
+
+.antialiased {
+  -webkif-font-smoothing: antialiased;
+}
+
+.map {
+  g[data-post] {
+    cursor: pointer;
+    path {
+      transition: fill 0.3s;
+    }
+  }
+  g[data-post]:hover {
+    path {
+      fill: #f00;
+    }
+  }
+}
+
+.panel {
+  @apply text-white;
+  background-color: rgba(#000, 0.85);
+}
+
+.project-payload {
+  .container {
+    padding: 0;
+  }
+}
