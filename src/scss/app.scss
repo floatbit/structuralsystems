@@ -13,11 +13,15 @@
   }
 
   h1 {
-    @apply text-4xl;
+    @apply text-5xl;
     @apply mb-8;
   }
   h2 {
-    @apply text-2xl
+    @apply text-3xl;
+    @apply mb-4;
+  }
+  h3 {
+    @apply mb-4;
   }
   p {
     @apply mb-4;
@@ -36,21 +40,31 @@
 }
 
 .map {
+  @apply w-full;
+  padding-right: 20px;
+  //height: 100vh;
+  svg {
+    //@apply w-full h-full object-contain;
+  }
   g[data-permalink] {
     cursor: pointer;
-    path {
-      transition: fill 0.3s;
+    path,
+    rect {
+      transition: all 0.3s;
     }
   }
   g[data-permalink]:hover {
     path {
       fill: #f00;
     }
+    rect {
+      fill: #f00;
+    }
   }
 }
 
 .panel {
-  @apply text-white;
+  @apply text-white fixed top-0 left-0 h-full w-full overflow-auto ;
   background-color: rgba(#000, 0.85);
 }
 
@@ -81,6 +95,27 @@
   }
 }
 
+.panel-explore {
+  @apply pt-12 pb-8;
+  h2 {
+    @apply mb-10;
+  }
+  .container {
+    @apply mx-auto;
+    max-width: 1024px;
+  }
+  h3 {
+    @apply uppercase mb-2;
+  }
+  .checkboxes {
+    @apply mb-10;
+  }
+  .checkbox {
+    @apply flex items-center gap-2;
+    @apply mb-2;
+  }
+}
+
 button.close {
   @apply bg-black text-white top-[10px] right-[20px];
   background-color: #000;
@@ -92,4 +127,8 @@ button.close {
   &:hover {
     @apply bg-red;
   }
+}
+
+.btn {
+  @apply bg-white text-black px-4 py-2 uppercase;
 }
