@@ -713,7 +713,7 @@
         <rect class="cls-2" x="1205.75" y="20.25" width="94.25" height="29"/>
         <path class="cls-1" d="M1298.75,21.5v26.5h-91.75v-26.5h91.75M1301.25,19h-96.75v31.5h96.75v-31.5h0Z"/>
       </g>
-      <g>
+      <g data-post="32" data-permalink="<?php print get_the_permalink(32);?>">
         <rect class="cls-2" x="1354.25" y="20.25" width="94.25" height="29"/>
         <path class="cls-1" d="M1447.25,21.5v26.5h-91.75v-26.5h91.75M1449.75,19h-96.75v31.5h96.75v-31.5h0Z"/>
       </g>

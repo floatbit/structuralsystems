@@ -28,6 +28,8 @@ if ( ! empty( $block['align'] ) ) {
 
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
-        <?php the_field('text');?>
+        <div class="text">
+            <?php the_field('text');?>
+        </div>
     </div>
 </div>

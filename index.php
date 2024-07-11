@@ -19,14 +19,14 @@
 <?php endwhile; ?>
 
 <div class="panel panel-page fixed top-0 left-0 h-full w-full overflow-auto hidden">
-    <button class="close absolute top-0 right-0 p-4 text-white bg-black">&times;</button>
+    <button class="close absolute">&times;</button>
     <div class="container py-12 payload">
         <!--- payload --->
     </div>
 </div>
 
 <div class="panel panel-image fixed top-0 left-0 h-full w-full overflow-auto hidden">
-    <button class="close absolute top-0 right-0 p-4 text-white bg-black">&times;</button>
+    <button class="close absolute">&times;</button>
     <div class="container container-fluid pt-12 pb-6 h-full payload">
         <div class="flex flex-col h-full">
             <div class="grow image bg-no-repeat bg-center bg-contain">
