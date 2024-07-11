@@ -40,6 +40,7 @@
 </div>
 
 <div class="panel panel-explore hidden">
+    <button class="close absolute">&times;</button>
     <div class="container">
         <h2>Explore</h2>
         <form action="#">
@@ -85,8 +86,13 @@
                     </div>
                 </div>
             </div>
-            <div class="flex gap-4 cols-2">
-                <input type="submit" value="Filter" class="btn btn-primary">
+            <div class="">
+                <p class="small total-projects hidden">
+                    Total projects: <span class="total-projects-counter">0</span>
+                </p>
+                <p>
+                    <input type="submit" value="Filter" class="btn btn-primary">
+                </p>
             </div>
         </form>
     </div>

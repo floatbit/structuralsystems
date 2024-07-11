@@ -33,3 +33,22 @@ add_action('wp_enqueue_scripts', function () {
     // If needed, separate the script per block
     wp_register_script('blocks/text', assets_url('/dist/blocks/text.js'), ['jquery'], null, true);
 });
+
+/**
+ * Get term IDs for a given post and taxonomy.
+ *
+ * @param string $taxonomy The taxonomy name/slug.
+ * @param int $post_id The post ID.
+ * @return string A comma-separated string of term IDs.
+ */
+function structural_systems_get_term_ids($taxonomy, $post_id) {
+    $terms = get_the_terms($post_id, $taxonomy);
+    
+    if (is_wp_error($terms) || empty($terms)) {
+        return '';
+    }
+    
+    $term_ids = wp_list_pluck($terms, 'term_id');
+    
+    return implode(',', $term_ids);
+}

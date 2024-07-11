@@ -53,6 +53,7 @@
       transition: all 0.3s;
     }
   }
+  g[data-open-explore]:hover,
   g[data-permalink]:hover {
     path {
       fill: #f00;
@@ -60,6 +61,12 @@
     rect {
       fill: #f00;
     }
+  }
+  g[data-content-type="project"].explore-match {
+    path {
+      fill: #f00;
+    }
+  
   }
 }
 
