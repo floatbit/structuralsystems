@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="panel panel-image hidden">
+<div class="z-30 panel panel-image hidden">
     <button class="close absolute">&times;</button>
     <div class="container container-fluid pt-12 pb-6 h-full payload">
         <div class="flex flex-col h-full">

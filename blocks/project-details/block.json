@@ -1,0 +1,12 @@
+{
+  "name": "acf/project-details",
+  "title": "Project Details",
+  "description": "",
+  "category": "structuralintersections",
+  "keywords": ["project-details"],
+  "_viewScript": ["blocks/project-details"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block.php"
+  }
+}

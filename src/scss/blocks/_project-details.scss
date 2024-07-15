@@ -1,0 +1,16 @@
+.block-project-details {
+  .text {
+    @screen md {
+      max-width: 80%; 
+    }
+  }
+  .details {
+    @apply my-10;
+    @screen md {
+      max-width: 80%; 
+    }
+    h6 {
+      @apply mb-0;
+    }
+  }
+}

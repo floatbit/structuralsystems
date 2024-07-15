@@ -9,6 +9,7 @@ add_action('init', function () {
     register_block_type($dir . '/blocks/text');
     register_block_type($dir . '/blocks/images');
     register_block_type($dir . '/blocks/videos');
+    register_block_type($dir . '/blocks/project-details');
 }, 5);
 
 /**
@@ -22,6 +23,7 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
                 'acf/text',
                 'acf/images',
                 'acf/videos',
+                'acf/project-details',
             ];
             break;
     }
