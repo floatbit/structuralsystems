@@ -27,6 +27,7 @@ export default class Map {
       element.addEventListener('click', async (event) => {
         event.preventDefault(); // Prevent default action for <a> tags
         const permalink = element.getAttribute('data-permalink');
+        console.log(permalink)
         if (permalink) {
           panel.classList.remove('hidden');
           panel.scrollTo(0, 0); // Scroll to the top of the panel

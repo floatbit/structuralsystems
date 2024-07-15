@@ -7,7 +7,7 @@
     <div class="payload-content hidden">
         <h1><?php the_title();?></h1>
         <?php the_content(); ?>
-        <ul>
+        <ul class="hidden">
           <li>
             <a href="<?php print get_the_permalink(12);?>" data-permalink="<?php print get_the_permalink(12);?>">View 12</a>
           </li>
@@ -19,7 +19,7 @@
 
 <?php endwhile; ?>
 
-<div class="panel panel-page hidden">
+<div class="z-20 panel panel-page hidden">
     <button class="close absolute">&times;</button>
     <div class="container py-12 payload">
         <!--- payload --->
@@ -95,6 +95,24 @@
                 </p>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="panel panel-search hidden">
+    <button class="close absolute">&times;</button>
+    <div class="container">
+        <h2>Search</h2>
+        <form action="#">
+            <label for="keyword">Enter keyword</label>
+            <p>
+                <input type="text" name="keyword" value="" id="keyword">
+            </p>
+            <p>
+                <input type="submit" value="Search" class="btn btn-primary">
+            </p>
+        </form>
+        <div class="search-results">
+        </div>
     </div>
 </div>
 

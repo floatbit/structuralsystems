@@ -53,6 +53,12 @@
       transition: all 0.3s;
     }
   }
+  g[data-open-search],
+  g[data-open-explore],
+  g[data-permalink] {
+    cursor: pointer;
+  }
+  g[data-open-search]:hover,
   g[data-open-explore]:hover,
   g[data-permalink]:hover {
     path {
@@ -102,7 +108,8 @@
   }
 }
 
-.panel-explore {
+.panel-explore,
+.panel-search {
   @apply pt-12 pb-8;
   h2 {
     @apply mb-10;
@@ -120,6 +127,24 @@
   .checkbox {
     @apply flex items-center gap-2;
     @apply mb-2;
+  }
+}
+
+.panel-search {
+  label {
+    @apply mb-2 block;
+  }
+  input {
+    @apply text-black;
+  }
+  form {
+    @apply mb-10;
+  }
+  ol {
+    @apply list-decimal ml-4;
+    li {
+      @apply mb-10 pl-2;
+    }
   }
 }
 

@@ -52,3 +52,30 @@ function structural_systems_get_term_ids($taxonomy, $post_id) {
     
     return implode(',', $term_ids);
 }
+
+add_action('wp_ajax_search_action', 'handle_search_action');
+add_action('wp_ajax_nopriv_search_action', 'handle_search_action');
+
+function handle_search_action() {
+  // Your search logic here
+  // Example:
+  $keyword = sanitize_text_field($_POST['keyword']);
+  $args = array(
+    's' => $keyword,
+    'post_type' => 'project', // or any other post type
+  );
+  $query = new WP_Query($args);
+
+  if ($query->have_posts()) {
+    echo '<ol>';
+    while ($query->have_posts()) {
+      $query->the_post();
+      echo '<li><a href="' . get_the_permalink() . '" data-post-id="' . get_the_ID() . '">' . get_the_title() . '</a></li>'; // Customize the output as needed
+    }
+    echo '</ol>';
+  } else {
+    echo '<p>No results found.</p>';
+  }
+
+  wp_die();
+}

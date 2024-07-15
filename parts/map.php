@@ -261,11 +261,11 @@
       </g>
     </g>
     <g id="Thick">
-      <g data-post="12" data-permalink="<?php print get_the_permalink(12);?>" data-content-type="project" data-project-categories="<?php print structural_systems_get_term_ids('project-category', 12);?>" data-project-years="<?php print structural_systems_get_term_ids('project-year', 12);?>">
+      <g data-post-id="12" data-permalink="<?php print get_the_permalink(12);?>" data-content-type="project" data-project-categories="<?php print structural_systems_get_term_ids('project-category', 12);?>" data-project-years="<?php print structural_systems_get_term_ids('project-year', 12);?>">
         <rect class="cls-2" x="24.5" y="69.75" width="92" height="22.25"/>
         <path class="cls-1" d="M115.25,71v19.75H25.75v-19.75h89.5M117.75,68.5H23.25v24.75h94.5v-24.75h0Z"/>
       </g>
-      <g data-post="31" data-permalink="<?php print get_the_permalink(31);?>" data-content-type="project" data-project-categories="<?php print structural_systems_get_term_ids('project-category', 31);?>" data-project-years="<?php print structural_systems_get_term_ids('project-year', 31);?>">
+      <g data-post-id="31" data-permalink="<?php print get_the_permalink(31);?>" data-content-type="project" data-project-categories="<?php print structural_systems_get_term_ids('project-category', 31);?>" data-project-years="<?php print structural_systems_get_term_ids('project-year', 31);?>">
         <rect class="cls-2" x="24.5" y="112.5" width="15.5" height="38"/>
         <path class="cls-1" d="M38.75,113.75v35.5h-13v-35.5h13M41.25,111.25h-18v40.5h18v-40.5h0Z"/>
       </g>
@@ -501,7 +501,7 @@
         <rect class="cls-2" x="1165.25" y="580.5" width="176.53" height="417.25"/>
         <path class="cls-1" d="M1340.53,581.75v414.75h-174.03v-414.75h174.03M1343.03,579.25h-179.03v419.75h179.03v-419.75h0Z"/>
       </g>
-      <g data-post="32" data-permalink="<?php print get_the_permalink(37);?>" data-content-type="project" data-project-categories="<?php print structural_systems_get_term_ids('project-category', 37);?>" data-project-years="<?php print structural_systems_get_term_ids('project-year', 37);?>">
+      <g data-post-id="37" data-permalink="<?php print get_the_permalink(37);?>" data-content-type="project" data-project-categories="<?php print structural_systems_get_term_ids('project-category', 37);?>" data-project-years="<?php print structural_systems_get_term_ids('project-year', 37);?>">
         <rect class="cls-2" x="53.75" y="112.5" width="8.75" height="38"/>
         <path class="cls-1" d="M61.25,113.75v35.5h-6.25v-35.5h6.25M63.75,111.25h-11.25v40.5h11.25v-40.5h0Z"/>
       </g>
@@ -713,11 +713,11 @@
         <rect class="cls-2" x="1205.75" y="20.25" width="94.25" height="29"/>
         <path class="cls-1" d="M1298.75,21.5v26.5h-91.75v-26.5h91.75M1301.25,19h-96.75v31.5h96.75v-31.5h0Z"/>
       </g>
-      <g data-post="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">
+      <g data-post-id="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">
         <rect class="cls-2" x="1354.25" y="20.25" width="94.25" height="29"/>
         <path class="cls-1" d="M1447.25,21.5v26.5h-91.75v-26.5h91.75M1449.75,19h-96.75v31.5h96.75v-31.5h0Z"/>
       </g>
-      <g>
+      <g data-open-search>
         <rect class="cls-2" x="1498.25" y="20.25" width="94.25" height="29"/>
         <path class="cls-1" d="M1591.25,21.5v26.5h-91.75v-26.5h91.75M1593.75,19h-96.75v31.5h96.75v-31.5h0Z"/>
       </g>
