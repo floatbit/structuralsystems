@@ -40,13 +40,21 @@ if ( ! empty( $block['align'] ) ) {
                     <li>Builder Name 2</li>
                 </ul>
             </div>
+            <?php $terms = get_the_terms($post_id, 'project-category');?>
+            <?php if ($terms):?>
             <div>
                 <h6>Structural Types</h6>
                 <ul>
-                    <li>Columns and Beams</li>
-                    <li>Diagonal Bracing</li>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
+            <?php endif;?>
             <div>
                 <h6>Materials Used</h6>
                 <ul>
