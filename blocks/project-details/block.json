@@ -2,7 +2,7 @@
   "name": "acf/project-details",
   "title": "Project Details",
   "description": "",
-  "category": "structuralintersections",
+  "category": "structuralsystems",
   "keywords": ["project-details"],
   "_viewScript": ["blocks/project-details"],
   "acf": {

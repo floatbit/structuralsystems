@@ -88,6 +88,14 @@
 
 .panel-image {
   background-color: rgba(#000, 1);
+  img {
+    @apply object-fill;
+  }
+  .caption {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .payload {
@@ -104,12 +112,6 @@
   }
   img:hover {
     transform: scale(1.01);
-  }
-}
-
-.panel-image {
-  img {
-    @apply object-fill;
   }
 }
 

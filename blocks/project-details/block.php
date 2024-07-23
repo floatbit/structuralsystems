@@ -28,15 +28,11 @@ if ( ! empty( $block['align'] ) ) {
 
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
-        <div class="text">
+        <div class="text hidden">
             <h2>Lorem Ipsum</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit temporibus asperiores maiores soluta eligendi numquam totam, blanditiis amet cum possimus tempore sequi voluptates laboriosam, voluptate, beatae reiciendis nemo dolore!</p>
         </div>
         <div class="md:grid gap-2 md:gap-8 grid-cols-4 details">
-            <div>
-                <h6>Structural Type</h6>
-                <p>Featured structural type or aspects of interest here.</p>
-            </div>
             <div>
                 <h6>Model Builders</h6>
                 <ul>
@@ -45,8 +41,11 @@ if ( ! empty( $block['align'] ) ) {
                 </ul>
             </div>
             <div>
-                <h6>Year of Construction</h6>
-                <p>2024</p>
+                <h6>Structural Types</h6>
+                <ul>
+                    <li>Columns and Beams</li>
+                    <li>Diagonal Bracing</li>
+                </ul>
             </div>
             <div>
                 <h6>Materials Used</h6>
@@ -56,13 +55,17 @@ if ( ! empty( $block['align'] ) ) {
                 </ul>
             </div>
             <div>
+                <h6>Year of Construction</h6>
+                <p>2024</p>
+            </div>
+            <div>
                 <h6>Inspired By</h6>
                 <p>Statue of Liberty</p>
             </div>
             <div>
-                <h6>Architecture Firm</h6>
+                <h6>Architects</h6>
                 <ul>
-                    <li>Architect/Firm Name 1</li>
+                    <li>Firm Name 1</li>
                     <li>Architect/Firm Name 2</li>
                 </ul>
             </div>
@@ -77,8 +80,8 @@ if ( ! empty( $block['align'] ) ) {
             <div>
                 <h6>More Information</h6>
                 <ul>
-                    <li><a href="https://example.com/building-info-1">Link to building info 1</a></li>
-                    <li><a href="https://example.com/building-info-2">Link to building info 2</a></li>
+                    <li><a href="https://example.com/building-info-1">Link 1</a></li>
+                    <li><a href="https://example.com/building-info-2">Link info 2</a></li>
                 </ul>
             </div>
         </div>

@@ -8,4 +8,7 @@
       @apply mb-8;
     }
   }
+  .ellipses {
+    @apply absolute right-[20px] bottom-[20px] h-[30px] w-[30px] bg-black text-white rounded-full leading-none pt-[3px] text-center;
+  }
 }

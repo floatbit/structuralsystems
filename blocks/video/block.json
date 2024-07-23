@@ -1,10 +1,10 @@
 {
-  "name": "acf/images",
-  "title": "Images",
+  "name": "acf/video",
+  "title": "Video",
   "description": "",
   "category": "structuralsystems",
-  "keywords": ["images"],
-  "_viewScript": ["blocks/images"],
+  "keywords": ["video"],
+  "_viewScript": ["blocks/video"],
   "acf": {
     "mode": "preview",
     "renderTemplate": "block.php"
