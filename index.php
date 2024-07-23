@@ -27,6 +27,4 @@
 
 <?php get_template_part('parts/panel-search'); ?>
 
-
-
 <?php get_footer(); ?>
