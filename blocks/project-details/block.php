@@ -55,13 +55,21 @@ if ( ! empty( $block['align'] ) ) {
                 </ul>
             </div>
             <?php endif;?>
+            <?php $terms = get_the_terms($post_id, 'project-material');?>
+            <?php if ($terms):?>
             <div>
                 <h6>Materials Used</h6>
                 <ul>
-                    <li>Wood</li>
-                    <li>Metal</li>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
+            <?php endif;?>
             <div>
                 <h6>Year of Construction</h6>
                 <p>2024</p>

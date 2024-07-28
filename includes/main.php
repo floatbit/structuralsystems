@@ -70,7 +70,7 @@ function handle_search_action() {
     echo '<ol>';
     while ($query->have_posts()) {
       $query->the_post();
-      echo '<li><a href="' . get_the_permalink() . '" data-post-id="' . get_the_ID() . '">' . get_the_title() . '</a></li>'; // Customize the output as needed
+      echo '<li data-post-id="' . get_the_ID() . '"><a href="' . get_the_permalink() . '" data-post-id="' . get_the_ID() . '">' . get_the_title() . '</a></li>'; // Customize the output as needed
     }
     echo '</ol>';
   } else {

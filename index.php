@@ -5,6 +5,9 @@
     <?php get_template_part('parts/map'); ?>
 
     <div class="payload-content hidden">
+      <?php if (is_singular('project')):?>
+        <h5>Inspired By</h5>
+      <?php endif;?>
         <h1><?php the_title();?></h1>
         <?php the_content(); ?>
         <ul class="hidden">

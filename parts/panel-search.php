@@ -11,7 +11,6 @@
                 <input type="submit" value="Search" class="btn btn-primary">
             </p>
         </form>
-        <div class="search-results">
-        </div>
+        <div class="search-results"></div>
     </div>
 </div>

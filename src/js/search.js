@@ -59,7 +59,7 @@ export default class Search {
   performSearch(keyword, searchResults) {
     const ajaxUrl = '/wp-admin/admin-ajax.php';
     const data = new URLSearchParams();
-    data.append('action', 'search_action'); // Replace with your actual action name
+    data.append('action', 'search_action');
     data.append('keyword', keyword);
 
     fetch(ajaxUrl, {
@@ -71,7 +71,25 @@ export default class Search {
     })
     .then(response => response.text())
     .then(result => {
-      searchResults.innerHTML = result;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(result, 'text/html');
+      const liCount = doc.querySelectorAll('li').length;
+      //searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>${result}`;
+      searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>`;
+
+      // Remove 'explore-match' class from all projects
+      const allProjects = document.querySelectorAll('[data-content-type="project"]');
+      allProjects.forEach(project => project.classList.remove('explore-match'));
+
+      // Add 'explore-match' class to searched projects
+      const searchedPostIds = Array.from(doc.querySelectorAll('li[data-post-id]')).map(li => li.getAttribute('data-post-id'));
+
+      searchedPostIds.forEach(postId => {
+        const matchedProject = document.querySelector(`[data-content-type="project"][data-post-id="${postId}"]`);
+        if (matchedProject) {
+          matchedProject.classList.add('explore-match');
+        }
+      });
     })
     .catch(error => {
       console.error('Error:', error);
