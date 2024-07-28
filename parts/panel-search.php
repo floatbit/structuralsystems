@@ -1,4 +1,4 @@
-<div class="panel panel-search hidden">
+<div class="panel panel-search hidden" data-depth="1">
     <button class="close absolute">&times;</button>
     <div class="container">
         <h2>Search</h2>

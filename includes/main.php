@@ -79,3 +79,20 @@ function handle_search_action() {
 
   wp_die();
 }
+
+function structural_systems_get_project_term_filters($post_id) {
+    $filters = array(
+        'data-project-categories' => 'project-category',
+        'data-project-years' => 'project-year',
+        'data-project-materials' => 'project-material',
+    );
+
+    $output = '';
+
+    foreach ($filters as $data_attribute => $taxonomy) {
+        $term_ids = structural_systems_get_term_ids($taxonomy, $post_id);
+        $output .= $data_attribute . '="' . $term_ids . '" ';
+    }
+
+    return trim($output);
+}

@@ -21,10 +21,10 @@
 
 <?php get_template_part('parts/panel-page'); ?>
 
-<?php get_template_part('parts/panel-hidden'); ?>
-
 <?php get_template_part('parts/panel-explore'); ?>
 
 <?php get_template_part('parts/panel-search'); ?>
+
+<?php get_template_part('parts/panel-image'); ?>
 
 <?php get_footer(); ?>

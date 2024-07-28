@@ -35,11 +35,24 @@ export default class Explore {
 
     // Initial filter on page load
     this.filterProjects();
+
+    const clearFiltersButton = document.querySelector('.panel-explore .clear-filters');
+    if (clearFiltersButton) {
+      clearFiltersButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const checkboxes = document.querySelectorAll('.panel-explore input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        this.filterProjects();
+      });
+    }
   }
 
   filterProjects() {
     const selectedCategories = Array.from(document.querySelectorAll('.panel-explore input[name^="category"]:checked')).map(cb => cb.value);
     const selectedYears = Array.from(document.querySelectorAll('.panel-explore input[name^="year"]:checked')).map(cb => cb.value);
+    const selectedMaterials = Array.from(document.querySelectorAll('.panel-explore input[name^="material"]:checked')).map(cb => cb.value);
 
     const projects = document.querySelectorAll('[data-content-type="project"]');
     const totalProjectsElement = document.querySelector('.total-projects');
@@ -47,7 +60,7 @@ export default class Explore {
 
     let matchCount = 0;
 
-    if (selectedCategories.length === 0 && selectedYears.length === 0) {
+    if (selectedCategories.length === 0 && selectedYears.length === 0 && selectedMaterials.length === 0) {
       projects.forEach(project => {
         project.classList.remove('explore-match');
       });
@@ -59,11 +72,13 @@ export default class Explore {
     projects.forEach(project => {
       const projectCategories = project.getAttribute('data-project-categories').split(',');
       const projectYears = project.getAttribute('data-project-years').split(',');
+      const projectMaterials = project.getAttribute('data-project-materials').split(',');
 
       const categoryMatch = selectedCategories.length === 0 || selectedCategories.some(cat => projectCategories.includes(cat));
       const yearMatch = selectedYears.length === 0 || selectedYears.some(year => projectYears.includes(year));
+      const materialMatch = selectedMaterials.length === 0 || selectedMaterials.some(material => projectMaterials.includes(material));
 
-      if (categoryMatch && yearMatch) {
+      if (categoryMatch && yearMatch && materialMatch) {
         project.classList.add('explore-match');
         matchCount++;
       } else {
