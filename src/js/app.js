@@ -2,6 +2,7 @@ import $ from 'jquery'
 import Map from '@/map'
 import Explore from '@/Explore'
 import Search from '@/Search'
+import MobileMenu from '@/mobile-menu'
 import ImageEnlarge from '@/image-enlarge'
 
 (function ($) {
@@ -10,6 +11,7 @@ import ImageEnlarge from '@/image-enlarge'
   new Explore()
   new Search()
   new ImageEnlarge()
+  new MobileMenu()
 
   // Add event listener for the Escape key
   document.addEventListener('keydown', function(event) {

@@ -9,7 +9,7 @@ export default class Search {
   setupSearch() {
     const form = document.querySelector('.panel-search form');
     const searchResults = document.querySelector('.search-results');
-    const openSearchButton = document.querySelector('[data-open-search]');
+    const openSearchButtons = document.querySelectorAll('[data-open-search]');
     const closeSearchButton = document.querySelector('.panel-search .close');
     const searchPanel = document.querySelector('.panel-search');
 
@@ -21,9 +21,11 @@ export default class Search {
       });
     }
 
-    if (openSearchButton && searchPanel) {
-      openSearchButton.addEventListener('click', () => {
-        searchPanel.classList.remove('hidden');
+    if (openSearchButtons.length > 0 && searchPanel) {
+      openSearchButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          searchPanel.classList.remove('hidden');
+        });
       });
     }
 

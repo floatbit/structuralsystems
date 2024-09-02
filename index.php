@@ -4,6 +4,10 @@
     
     <?php get_template_part('parts/map'); ?>
 
+    <div class="block md:hidden">
+      <?php get_template_part('parts/mobile-projects'); ?>
+    </div>
+
     <div class="payload-content hidden">
       <?php if (is_singular('project')):?>
         <h5>Inspired By</h5>
@@ -29,5 +33,7 @@
 <?php get_template_part('parts/panel-search'); ?>
 
 <?php get_template_part('parts/panel-image'); ?>
+
+<?php get_template_part('parts/panel-mobile-menu'); ?>
 
 <?php get_footer(); ?>

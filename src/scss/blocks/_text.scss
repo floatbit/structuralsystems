@@ -1,6 +1,8 @@
 .block-text {
   @apply mb-8;
   .text {
-    max-width: 80%;
+    @screen md {
+      max-width: 80%;
+    }
   }
 }

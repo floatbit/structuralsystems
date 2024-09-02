@@ -92,7 +92,7 @@
 
 .panel {
   @apply text-white fixed top-0 left-0 h-full w-full overflow-auto ;
-  background-color: rgba(#000, 0.85);
+  background-color: rgba(#000, 0.90);
 }
 
 .panel-image {
@@ -138,7 +138,10 @@
     @apply uppercase mb-2;
   }
   .checkboxes {
-    @apply mb-10;
+    @apply mb-8;
+    @screen md {
+      @apply mb-10;
+    }
   }
   .checkbox {
     @apply flex items-center gap-2;
@@ -160,6 +163,16 @@
     @apply list-decimal ml-4;
     li {
       @apply mb-10 pl-2;
+    }
+  }
+}
+
+.panel-mobile-menu {
+  .links {
+    div {
+      @apply uppercase mb-3 pb-3 font-bold;
+      border-bottom: 1px solid #fff;
+      font-size: 20px;
     }
   }
 }
