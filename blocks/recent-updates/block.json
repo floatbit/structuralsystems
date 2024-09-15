@@ -1,0 +1,12 @@
+{
+  "name": "acf/recent-updates",
+  "title": "Recent Updates",
+  "description": "",
+  "category": "structuralsystems",
+  "keywords": ["recent-updates"],
+  "_viewScript": ["blocks/recent-updates"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block.php"
+  }
+}

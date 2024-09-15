@@ -2179,5 +2179,13 @@
       </g>
     </g>
   </svg>
+
+  <div data-post-id="83" data-permalink="<?php print get_the_permalink(83);?>" data-content-type="page">
+                Exhibitions
+            </div>
+            <div data-post-id="85" data-permalink="<?php print get_the_permalink(85);?>" data-content-type="page">
+                Recent Updates
+            </div>
+    
   
 </div>

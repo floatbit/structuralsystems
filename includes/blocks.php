@@ -10,6 +10,8 @@ add_action('init', function () {
     register_block_type($dir . '/blocks/images');
     register_block_type($dir . '/blocks/video');
     register_block_type($dir . '/blocks/project-details');
+    register_block_type($dir . '/blocks/recent-updates');
+    register_block_type($dir . '/blocks/exhibitions');
 }, 5);
 
 /**
@@ -24,6 +26,8 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
                 'acf/images',
                 'acf/video',
                 'acf/project-details',
+                'acf/recent-updates',
+                'acf/exhibitions',
             ];
             break;
     }

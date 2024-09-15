@@ -54,22 +54,44 @@ export default class Explore {
     const selectedYears = Array.from(document.querySelectorAll('.panel-explore input[name^="year"]:checked')).map(cb => cb.value);
     const selectedMaterials = Array.from(document.querySelectorAll('.panel-explore input[name^="material"]:checked')).map(cb => cb.value);
 
-    const projects = document.querySelectorAll('[data-content-type="project"]');
+    const mapProjects = document.querySelectorAll('.map [data-content-type="project"]');
+    const mobileProjects = document.querySelectorAll('.mobile-projects [data-content-type="project"]');
     const totalProjectsElement = document.querySelector('.total-projects');
     const totalProjectsCounter = document.querySelector('.total-projects-counter');
 
     let matchCount = 0;
 
     if (selectedCategories.length === 0 && selectedYears.length === 0 && selectedMaterials.length === 0) {
-      projects.forEach(project => {
+      mapProjects.forEach(project => {
         project.classList.remove('explore-match');
+      });
+      mobileProjects.forEach(project => {
+        project.classList.remove('hidden');
       });
       totalProjectsElement.classList.add('hidden');
       totalProjectsCounter.textContent = matchCount;
       return;
     }
 
-    projects.forEach(project => {
+    // toggle mobile projects
+    mobileProjects.forEach(project => {
+      const projectCategories = project.getAttribute('data-project-categories').split(',');
+      const projectYears = project.getAttribute('data-project-years').split(',');
+      const projectMaterials = project.getAttribute('data-project-materials').split(',');
+
+      const categoryMatch = selectedCategories.length === 0 || selectedCategories.some(cat => projectCategories.includes(cat));
+      const yearMatch = selectedYears.length === 0 || selectedYears.some(year => projectYears.includes(year));
+      const materialMatch = selectedMaterials.length === 0 || selectedMaterials.some(material => projectMaterials.includes(material));
+
+      project.classList.add('hidden');
+
+      if (categoryMatch && yearMatch && materialMatch) {
+        project.classList.remove('hidden');
+      }
+    });
+
+    // toggle map projects
+    mapProjects.forEach(project => {
       const projectCategories = project.getAttribute('data-project-categories').split(',');
       const projectYears = project.getAttribute('data-project-years').split(',');
       const projectMaterials = project.getAttribute('data-project-materials').split(',');

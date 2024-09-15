@@ -1,0 +1,12 @@
+{
+  "name": "acf/exhibitions",
+  "title": "Exhibitions",
+  "description": "",
+  "category": "structuralsystems",
+  "keywords": ["exhibitions"],
+  "_viewScript": ["blocks/exhibitions"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block.php"
+  }
+}
