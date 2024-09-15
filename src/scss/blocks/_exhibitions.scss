@@ -1,5 +1,11 @@
 .block-exhibitions {
+    .container {
+
+    }
     .exhibition {
         @apply mb-20 mt-10;
+        @screen md {
+            max-width: 1024px;
+        }
     }
 }

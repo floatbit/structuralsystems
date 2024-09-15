@@ -1,2 +1,7 @@
 .block-recent-updates {
+    .grid {
+        @screen md {
+            max-width: 1024px;
+        }
+    }
 }
