@@ -64,6 +64,26 @@
   svg {
     //@apply w-full h-full object-contain;
   }
+  g#Small {
+    rect {
+      stroke-dasharray: 4;
+    }
+    g[data-content-type] {
+      rect {
+        stroke-dasharray: 0;
+      }
+    }
+    g.explore-match {
+      rect {
+        fill: #f00;
+      }
+    }  
+    g.explore-match:hover {
+      rect {
+        fill: rgba(#f00, 0.5);
+      }
+    }
+  }
   g[data-permalink] {
     cursor: pointer;
     path,
@@ -79,18 +99,22 @@
   g[data-open-search]:hover,
   g[data-open-explore]:hover,
   g[data-permalink]:hover {
-    path {
-      fill: #f00;
-    }
     rect {
       fill: #f00;
     }
   }
-  g[data-content-type="project"].explore-match {
-    path {
-      fill: #f00;
+  g#Buttons {
+    g[data-permalink] {
+      cursor: pointer;
     }
-  
+    g[data-permalink]:hover {
+      > rect:first-of-type {
+        fill: #f00;
+      }
+      > g rect {
+        fill: inherit;
+      }
+    }
   }
 }
 

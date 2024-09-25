@@ -81,6 +81,7 @@ function handle_search_action() {
 }
 
 function structural_systems_get_project_term_filters($post_id) {
+    $attributes = array();
     $filters = array(
         'data-project-categories' => 'project-category',
         'data-project-years' => 'project-year',
@@ -92,7 +93,76 @@ function structural_systems_get_project_term_filters($post_id) {
     foreach ($filters as $data_attribute => $taxonomy) {
         $term_ids = structural_systems_get_term_ids($taxonomy, $post_id);
         $output .= $data_attribute . '="' . $term_ids . '" ';
+        $attributes[$data_attribute] = $term_ids;
     }
 
-    return trim($output);
+    return $attributes;
+}
+
+function structural_systems_get_project_box_info($box_id = 1) {
+  $attributes = array();
+  if ($box_id == 1) {
+    $post_id = 12;
+  }
+  if ($box_id == 2) {
+    $post_id = 31;
+  }
+  if ($box_id == 3) {
+    $post_id = 37;
+  }
+  if ($box_id == 'A') {
+    $post_id = 12;
+  }
+  if ($box_id == 'C') {
+    $post_id = 31;
+  }
+  if ($box_id == 'D') {
+    $post_id = 37;
+  }
+  if ($box_id == 'E') {
+    $post_id = 12;
+  }
+  if ($box_id == 'F') {
+    $post_id = 31;
+  }
+  $output = '';
+  if ($post_id) {
+    $attributes['data-post-id'] = $post_id;
+    $attributes['data-permalink'] = get_the_permalink($post_id);
+    $attributes['data-content-type'] = 'project';
+    $term_attributes = structural_systems_get_project_term_filters($post_id);
+    $attributes = array_merge($attributes, $term_attributes);
+    
+    foreach ($attributes as $attribute => $value) {
+      $output .= $attribute . '="' . $value . '" ';
+    }
+  }
+  return $output;
+}
+
+function structural_systems_get_big_box_image($box_id = 'A') {
+  if ($box_id == 'A') {
+    $post_id = 12;
+  }
+  if ($box_id == 'C') {
+    $post_id = 31;
+  }
+  if ($box_id == 'D') {
+    $post_id = 37;
+  }
+  if ($box_id == 'E') {
+    $post_id = 12;
+  }
+  if ($box_id == 'F') {
+    $post_id = 31;
+  }
+  $image_url = get_the_post_thumbnail_url($post_id, 'full');
+  return $image_url;
+}
+
+function pd($data) {
+  echo '<pre>';
+  print_r($data);
+  echo '</pre>';
+  die;
 }
