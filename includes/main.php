@@ -166,3 +166,9 @@ function pd($data) {
   echo '</pre>';
   die;
 }
+
+function pr($data) {
+  echo '<pre>';
+  print_r($data);
+  echo '</pre>';
+}
