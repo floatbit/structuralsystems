@@ -2,6 +2,7 @@
 
     <?php wp_footer(); ?>
 
+    <?php if ($_GET['box']) : ?>
     <div id="allybox-embed">
         <h3>Strucutral Systems Search</h3>
         <div id="allybox-chat-container"></div>
@@ -14,7 +15,7 @@
             });
         });
     </script>
-
+    <?php endif; ?>
 </body>
 
 </html>
