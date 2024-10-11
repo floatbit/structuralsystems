@@ -11,7 +11,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             allybox({
-                assistantEmbedId: '67029839eaaf8',
+                assistantEmbedId: '67088f05493f4',
                 placeholderText: 'e.g. show me projects from 2022'
             });
         });
