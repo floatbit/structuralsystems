@@ -127,6 +127,8 @@ function structural_systems_get_project_box_info($box_id = 1) {
   }
   $output = '';
   if ($post_id) {
+    $post = get_post($post_id);
+    $attributes['class'] = get_field('box_style', $post_id);
     $attributes['data-post-id'] = $post_id;
     $attributes['data-permalink'] = get_the_permalink($post_id);
     $attributes['data-content-type'] = 'project';

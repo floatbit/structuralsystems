@@ -1,7 +1,55 @@
 {
     "key": "group_668ec0b3399b4",
-    "title": "Content: Projects",
+    "title": "Project Images",
     "fields": [
+        {
+            "key": "field_67537b21a1fe2",
+            "label": "Box Number",
+            "name": "box_number",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 0,
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_67537b4a6afa0",
+            "label": "Box Style",
+            "name": "box_style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "solid-black": "Solid Black",
+                "solid-gray": "Solid Gray"
+            },
+            "default_value": "solid-black",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
         {
             "key": "field_668ec0b3737ac",
             "label": "Image Sets",
@@ -111,13 +159,13 @@
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
-    "style": "default",
+    "position": "side",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1720631918
+    "modified": 1733524461
 }

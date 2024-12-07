@@ -115,6 +115,23 @@
       }
     }
   }
+
+  g.solid-gray {
+    rect {
+      stroke: #ccc;
+    }
+  }
+
+  g#A {
+    position: relative;
+    rect {
+      background-image: url(../img/a.svg);
+    }
+    span {
+      @apply absolute top-0 left-0 w-full h-full;
+      background-color: #f00;
+    }
+  }
 }
 
 .panel {
