@@ -105,10 +105,10 @@ function structural_systems_get_project_box_info($box_id = 1) {
     $post_id = 12;
   }
   if ($box_id == 2) {
-    $post_id = 31;
+    $post_id = 37;
   }
   if ($box_id == 3) {
-    $post_id = 37;
+    $post_id = 31;
   }
   if ($box_id == 'A') {
     $post_id = 12;
@@ -125,20 +125,40 @@ function structural_systems_get_project_box_info($box_id = 1) {
   if ($box_id == 'F') {
     $post_id = 31;
   }
+
+  if ($box_id) {
+    $post_id = null; // Initialize the variable to hold the post ID
+    $args = array(
+        'posts_per_page' => 1,
+        'post_type' => 'project',
+        'meta_key' => 'box_number',
+        'meta_value' => $box_id,
+    );
+    $posts = get_posts($args);
+
+    if ($posts) {
+        $post_id = $posts[0]->ID; // Get the ID of the first post found
+    }
+
+  }
+
   $output = '';
+
   if ($post_id) {
     $post = get_post($post_id);
-    $attributes['class'] = get_field('box_style', $post_id);
-    $attributes['data-post-id'] = $post_id;
-    $attributes['data-permalink'] = get_the_permalink($post_id);
-    $attributes['data-content-type'] = 'project';
-    $term_attributes = structural_systems_get_project_term_filters($post_id);
-    $attributes = array_merge($attributes, $term_attributes);
-    
-    foreach ($attributes as $attribute => $value) {
-      $output .= $attribute . '="' . $value . '" ';
+    if ($post->post_type == 'project') {
+      $attributes['class'] = get_field('box_style', $post_id);
+      $attributes['data-post-id'] = $post_id;
+      $attributes['data-permalink'] = get_the_permalink($post_id);
+      $attributes['data-content-type'] = 'project';
+      $term_attributes = structural_systems_get_project_term_filters($post_id);
+      $attributes = array_merge($attributes, $term_attributes);
+      foreach ($attributes as $attribute => $value) {
+        $output .= $attribute . '="' . $value . '" ';
+      }
     }
   }
+
   return $output;
 }
 
