@@ -7,7 +7,10 @@ export default class Map {
 
   setupBoxes() {
     this.addClickListeners(document.querySelectorAll('[data-permalink]'));
-    this.addMouseEnterListeners(document.querySelectorAll('[data-box-id]'));
+
+    if (document.body.classList.contains('debug-map')) {
+      this.addMouseEnterListeners(document.querySelectorAll('[data-box-id]'));
+    }
 
     const panel = document.querySelector('.panel-page');
     const closeButton = panel.querySelector('.close');

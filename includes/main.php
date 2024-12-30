@@ -34,6 +34,14 @@ add_action('wp_enqueue_scripts', function () {
     wp_register_script('blocks/text', assets_url('/dist/blocks/text.js'), ['jquery'], null, true);
 });
 
+add_filter('body_class', function($classes) {
+  if (isset($_GET['debug-map'])) {
+    $classes[] = 'debug-map';
+  }
+  return $classes;
+});
+
+
 /**
  * Get term IDs for a given post and taxonomy.
  *
