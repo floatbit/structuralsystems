@@ -7,6 +7,7 @@ export default class Map {
 
   setupBoxes() {
     this.addClickListeners(document.querySelectorAll('[data-permalink]'));
+    this.addMouseEnterListeners(document.querySelectorAll('[data-box-id]'));
 
     const panel = document.querySelector('.panel-page');
     const closeButton = panel.querySelector('.close');
@@ -54,6 +55,16 @@ export default class Map {
           console.error('No permalink found for this element');
           panel.classList.add('hidden');
         }
+      });
+    });
+  }
+
+  addMouseEnterListeners(elements) {
+    elements.forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        const boxId = element.getAttribute('data-box-id');
+        console.log(boxId);
+        window.location.hash = boxId;
       });
     });
   }

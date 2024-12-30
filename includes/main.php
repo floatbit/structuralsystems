@@ -101,6 +101,7 @@ function structural_systems_get_project_term_filters($post_id) {
 
 function structural_systems_get_project_box_info($box_id = 1) {
   $attributes = array();
+  $attributes['data-box-id'] = $box_id;
   if ($box_id == 1) {
     $post_id = 12;
   }
@@ -153,10 +154,11 @@ function structural_systems_get_project_box_info($box_id = 1) {
       $attributes['data-content-type'] = 'project';
       $term_attributes = structural_systems_get_project_term_filters($post_id);
       $attributes = array_merge($attributes, $term_attributes);
-      foreach ($attributes as $attribute => $value) {
-        $output .= $attribute . '="' . $value . '" ';
-      }
     }
+  }
+
+  foreach ($attributes as $attribute => $value) {
+    $output .= $attribute . '="' . $value . '" ';
   }
 
   return $output;
