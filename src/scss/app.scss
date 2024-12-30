@@ -83,6 +83,16 @@
       }
     }
   }
+  g#Big {
+    rect {
+      stroke-dasharray: 4;
+    }
+    g[data-content-type] {
+      rect {
+        stroke-dasharray: 0;
+      }
+    }
+  }
   g[data-permalink] {
     cursor: pointer;
     path,

@@ -64,9 +64,8 @@ export default class Map {
 
   addMouseEnterListeners(elements) {
     elements.forEach(element => {
-      element.addEventListener('mouseenter', () => {
+      element.addEventListener('mouseenter', (e) => {
         const boxId = element.getAttribute('data-box-id');
-        console.log(boxId);
         window.location.hash = boxId;
       });
     });

@@ -110,31 +110,7 @@ function structural_systems_get_project_term_filters($post_id) {
 function structural_systems_get_project_box_info($box_id = 1) {
   $attributes = array();
   $attributes['data-box-id'] = $box_id;
-  if ($box_id == 1) {
-    $post_id = 12;
-  }
-  if ($box_id == 2) {
-    $post_id = 37;
-  }
-  if ($box_id == 3) {
-    $post_id = 31;
-  }
-  if ($box_id == 'A') {
-    $post_id = 12;
-  }
-  if ($box_id == 'C') {
-    $post_id = 31;
-  }
-  if ($box_id == 'D') {
-    $post_id = 37;
-  }
-  if ($box_id == 'E') {
-    $post_id = 12;
-  }
-  if ($box_id == 'F') {
-    $post_id = 31;
-  }
-
+  
   if ($box_id) {
     $post_id = null; // Initialize the variable to hold the post ID
     $args = array(
