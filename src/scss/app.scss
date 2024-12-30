@@ -90,6 +90,9 @@
       transition: all 0.3s;
     }
   }
+  g[data-box-id]:not([data-permalink]) {
+    opacity: 0.2;
+  }
   g[data-open-search],
   g[data-open-explore],
   g[data-permalink] {
