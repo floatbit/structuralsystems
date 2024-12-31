@@ -3,8 +3,8 @@
     <div class="container">
         <h2>Explore</h2>
         <form action="#">
-            <div class="md:flex gap-4 cols-3">
-                <div class="shrink mr-[60px]">
+            <div class="md:flex gap-16 cols-3">
+                <div class="shrink">
                     <h3>Category</h3>
                     <div class="checkboxes">
                         <?php
