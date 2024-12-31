@@ -12,7 +12,19 @@
       <?php if (is_singular('project')):?>
         <h5>Inspired By</h5>
       <?php endif;?>
-        <h1><?php the_title();?></h1>
+        <h1>
+          <?php the_title();?>
+          <?php if (is_singular('project')):?>
+          <span class="add-favorite">
+            <span class="starred">
+              <i class="fa-solid fa-star"></i>
+            </span>
+            <span class="unstarred">
+              <i class="fa-regular fa-star"></i>
+            </span>
+          </span>
+          <?php endif;?>
+        </h1>
         <?php the_content(); ?>
         <ul class="hidden">
           <li>

@@ -133,7 +133,19 @@
 
   g.solid-gray {
     rect {
-      stroke: #ccc;
+      stroke: #8e8e8e;
+    }
+  }
+
+  g.viewed {
+    rect {
+      fill: #eee;
+    }
+  }
+
+  g.favorited {
+    rect {
+      fill: yellow;
     }
   }
 
@@ -163,6 +175,31 @@
     max-width: 1024px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+.add-favorite {
+  font-size: 20px;
+  position: relative;
+  top: -6px;
+
+  span {
+    cursor: pointer;
+  }
+  span.starred,
+  span:hover {
+    color: yellow;
+  }
+  .starred {
+    display: none;
+  }
+  &.is-favorited {
+    .unstarred {
+      display: none;
+    }
+    .starred {
+      display: inline-block;
+    } 
   }
 }
 
@@ -253,8 +290,8 @@ button.close {
   @apply bg-white text-black px-4 py-2 uppercase;
 }
 
-.debug-map {
-  g[data-box-id]:not([data-permalink]) {
+.debug {
+  g[data-box-id]:not([data-permalink]):not([data-post-id]) {
     opacity: 0.2;
   }
   g[data-box-id] {

@@ -4,6 +4,7 @@ import Explore from '@/Explore'
 import Search from '@/Search'
 import MobileMenu from '@/mobile-menu'
 import ImageEnlarge from '@/image-enlarge'
+import Tracker from '@/tracker'
 
 (function ($) {
   
@@ -12,7 +13,8 @@ import ImageEnlarge from '@/image-enlarge'
   new Search()
   new ImageEnlarge()
   new MobileMenu()
-
+  new Tracker()
+  
   // Add event listener for the Escape key
   document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {

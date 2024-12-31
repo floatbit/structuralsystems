@@ -8,7 +8,7 @@ export default class Map {
   setupBoxes() {
     this.addClickListeners(document.querySelectorAll('[data-permalink]'));
 
-    if (document.body.classList.contains('debug-map')) {
+    if (document.body.classList.contains('debug')) {
       this.addMouseEnterListeners(document.querySelectorAll('[data-box-id]'));
     }
 
@@ -49,6 +49,11 @@ export default class Map {
             payload.innerHTML = mainContent;
             // Add click listeners to any new [data-permalink] elements in the loaded content
             this.addClickListeners(payload.querySelectorAll('[data-permalink]'));
+            // add data-post-id - for tracker.js
+            const postId = doc.body.getAttribute('data-post-id');
+            if (postId) {
+              document.body.setAttribute('data-post-id', postId);
+            }
           } catch (error) {
             console.error('Error fetching or parsing HTML:', error);
             panel.classList.add('hidden');

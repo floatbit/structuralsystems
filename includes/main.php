@@ -32,11 +32,14 @@ add_action('wp_enqueue_scripts', function () {
     // Register script for blocks
     // If needed, separate the script per block
     wp_register_script('blocks/text', assets_url('/dist/blocks/text.js'), ['jquery'], null, true);
+
+    // font awesome
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', [], null);
 });
 
 add_filter('body_class', function($classes) {
-  if (isset($_GET['debug-map'])) {
-    $classes[] = 'debug-map';
+  if (isset($_GET['debug'])) {
+    $classes[] = 'debug';
   }
   return $classes;
 });
@@ -149,22 +152,22 @@ function structural_systems_get_project_box_info($box_id = 1) {
 }
 
 function structural_systems_get_big_box_image($box_id = 'A') {
-  if ($box_id == 'A') {
-    $post_id = 12;
+  $image_url = null;
+  if ($box_id) {
+    $post_id = null; // Initialize the variable to hold the post ID
+    $args = array(
+        'posts_per_page' => 1,
+        'post_type' => 'project',
+        'meta_key' => 'box_number',
+        'meta_value' => $box_id,
+    );
+    $posts = get_posts($args);
+
+    if ($posts) {
+        $post_id = $posts[0]->ID; // Get the ID of the first post found
+    }
+    $image_url = get_the_post_thumbnail_url($post_id, 'full');
   }
-  if ($box_id == 'C') {
-    $post_id = 31;
-  }
-  if ($box_id == 'D') {
-    $post_id = 37;
-  }
-  if ($box_id == 'E') {
-    $post_id = 12;
-  }
-  if ($box_id == 'F') {
-    $post_id = 31;
-  }
-  $image_url = get_the_post_thumbnail_url($post_id, 'full');
   return $image_url;
 }
 
