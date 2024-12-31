@@ -145,7 +145,7 @@
 
   g.favorited {
     rect {
-      fill: yellow;
+      fill: #f2e456;
     }
   }
 
@@ -188,7 +188,7 @@
   }
   span.starred,
   span:hover {
-    color: yellow;
+    color: #f2e456;
   }
   .starred {
     display: none;
@@ -292,11 +292,16 @@ button.close {
 
 .debug {
   g[data-box-id]:not([data-permalink]):not([data-post-id]) {
+    cursor: pointer;
     opacity: 0.2;
   }
   g[data-box-id] {
     path {
       opacity: 1;
     }
+  }
+
+  g[data-box-id]:hover {
+    opacity: 1 !important;
   }
 }

@@ -154,6 +154,7 @@ function structural_systems_get_project_box_info($box_id = 1) {
 function structural_systems_get_big_box_image($box_id = 'A') {
   $image_url = null;
   if ($box_id) {
+    $box_id = strtoupper($box_id);
     $post_id = null; // Initialize the variable to hold the post ID
     $args = array(
         'posts_per_page' => 1,
