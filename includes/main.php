@@ -16,8 +16,8 @@ add_action('after_setup_theme', function () {
     // Add ACF options page
     if (function_exists('acf_add_options_page')) {
         acf_add_options_page([
-            'page_title' => 'Global Options',
-            'menu_slug' => 'global-options',
+            'page_title' => 'Big Boxes',
+            'menu_slug' => 'big-boxes',
         ]);
     }
 });
@@ -110,10 +110,10 @@ function structural_systems_get_project_term_filters($post_id) {
     return $attributes;
 }
 
-function structural_systems_get_project_box_info($box_id = 1) {
+function structural_systems_get_project_box_info($box_id = 1, $return_array = false) {
   $attributes = array();
   $attributes['data-box-id'] = $box_id;
-  
+
   if ($box_id) {
     $post_id = null; // Initialize the variable to hold the post ID
     $args = array(
@@ -127,11 +127,25 @@ function structural_systems_get_project_box_info($box_id = 1) {
     if ($posts) {
         $post_id = $posts[0]->ID; // Get the ID of the first post found
     }
+  }
 
+  if ($box_id == 'A' || $box_id == 'C' || $box_id == 'D' || $box_id == 'E') {
+    $post_id = null;
+    $big_boxes_settings = get_field('big_boxes_settings', 'option');
+    foreach ($big_boxes_settings as $big_box_setting) {
+      if ($big_box_setting['box_number'] == $box_id) {
+        $big_box_projects = $big_box_setting['projects'];
+        if (is_array($big_box_projects)) {
+          shuffle($big_box_projects);
+          $post_id = $big_box_projects[0]->ID;
+        }
+      }
+    }
   }
 
   $output = '';
-
+  $image_url = '';
+  
   if ($post_id) {
     $post = get_post($post_id);
     if ($post->post_type == 'project') {
@@ -141,11 +155,19 @@ function structural_systems_get_project_box_info($box_id = 1) {
       $attributes['data-content-type'] = 'project';
       $term_attributes = structural_systems_get_project_term_filters($post_id);
       $attributes = array_merge($attributes, $term_attributes);
+      $image_url = get_the_post_thumbnail_url($post_id, 'full');
     }
   }
 
   foreach ($attributes as $attribute => $value) {
     $output .= $attribute . '="' . $value . '" ';
+  }
+
+  if ($return_array) {
+    return array(
+      'output' => $output,
+      'image_url' => $image_url,
+    );
   }
 
   return $output;
