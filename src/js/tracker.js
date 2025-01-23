@@ -13,11 +13,11 @@ export default class Tracker {
   initCookies() {
     if (!Cookies.get('viewed-posts')) {
       var viewedPosts = [];
-      Cookies.set('viewed-posts', JSON.stringify(viewedPosts), { expires: 365000 });
+      Cookies.set('viewed-posts', JSON.stringify(viewedPosts), { sameSite: 'strict',expires: 365000 });
     }
     if (!Cookies.get('favorited-posts')) {
       var favoritedPosts = [];
-      Cookies.set('favorited-posts', JSON.stringify(favoritedPosts), { expires: 365000 });
+      Cookies.set('favorited-posts', JSON.stringify(favoritedPosts), { sameSite: 'strict', expires: 365000 });
     }
   }
 
@@ -36,7 +36,7 @@ export default class Tracker {
           if (!Cookies.get('viewed-posts').includes(postId)) {
             var viewedPosts = JSON.parse(Cookies.get('viewed-posts'));
             viewedPosts.push(postId);
-            Cookies.set('viewed-posts', JSON.stringify(viewedPosts), { expires: 365000 });
+            Cookies.set('viewed-posts', JSON.stringify(viewedPosts), { sameSite: 'strict', expires: 365000 });
             this.updateMap()
           }
           // mark favorited
@@ -67,13 +67,13 @@ export default class Tracker {
         if (favorite.classList.contains('is-favorited')) {
             if (!favoritedPosts.includes(postId)) {
                 favoritedPosts.push(postId);
-                Cookies.set('favorited-posts', JSON.stringify(favoritedPosts), { expires: 365000 });
+                Cookies.set('favorited-posts', JSON.stringify(favoritedPosts), { sameSite: 'strict', expires: 365000 });
                 console.log('add to favorites', postId);
             }
         } else {
           if (favoritedPosts.includes(postId)) {
             favoritedPosts = favoritedPosts.filter(id => id !== postId);
-            Cookies.set('favorited-posts', JSON.stringify(favoritedPosts), { expires: 365000 });
+            Cookies.set('favorited-posts', JSON.stringify(favoritedPosts), { sameSite: 'strict', expires: 365000 });
             console.log('remove from favorites', postId);
           }
         }

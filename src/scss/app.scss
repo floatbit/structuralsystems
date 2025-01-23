@@ -114,7 +114,7 @@
   g[data-open-explore]:hover,
   g[data-permalink]:hover {
     rect {
-      fill: #f00;
+      fill: theme('colors.red');
     }
   }
   g#Buttons {
@@ -123,7 +123,7 @@
     }
     g[data-permalink]:hover {
       > rect:first-of-type {
-        fill: #f00;
+        fill: theme('colors.red');
       }
       > g rect {
         fill: inherit;
@@ -145,18 +145,15 @@
 
   g.favorited {
     rect {
-      fill: #f2e456;
+      fill: theme('colors.yellow');
     }
   }
 
   g#A {
     position: relative;
-    rect {
-      background-image: url(../img/a.svg);
-    }
     span {
       @apply absolute top-0 left-0 w-full h-full;
-      background-color: #f00;
+      background-color: theme('colors.red');
     }
   }
 }
@@ -188,7 +185,7 @@
   }
   span.starred,
   span:hover {
-    color: #f2e456;
+    color: theme('colors.yellow');
   }
   .starred {
     display: none;
