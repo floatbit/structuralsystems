@@ -48,4 +48,6 @@
 
 <?php get_template_part('parts/panel-mobile-menu'); ?>
 
+<?php get_template_part('parts/map-tooltip'); ?>
+
 <?php get_footer(); ?>

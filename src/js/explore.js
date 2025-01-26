@@ -54,7 +54,7 @@ export default class Explore {
     const selectedYears = Array.from(document.querySelectorAll('.panel-explore input[name^="year"]:checked')).map(cb => cb.value);
     const selectedMaterials = Array.from(document.querySelectorAll('.panel-explore input[name^="material"]:checked')).map(cb => cb.value);
 
-    const mapProjects = document.querySelectorAll('.map [data-content-type="project"]');
+    const mapProjects = document.querySelectorAll('.map [data-content-type="project"]:not(.big-box)');
     const mobileProjects = document.querySelectorAll('.mobile-projects [data-content-type="project"]');
     const totalProjectsElement = document.querySelector('.total-projects');
     const totalProjectsCounter = document.querySelector('.total-projects-counter');

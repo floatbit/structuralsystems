@@ -129,6 +129,8 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
     }
   }
 
+  $classes = array();
+
   if ($box_id == 'A' || $box_id == 'C' || $box_id == 'D' || $box_id == 'E') {
     $post_id = null;
     $big_boxes_settings = get_field('big_boxes_settings', 'option');
@@ -138,6 +140,7 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
         if (is_array($big_box_projects)) {
           shuffle($big_box_projects);
           $post_id = $big_box_projects[0]->ID;
+          $classes[] = 'big-box';
         }
       }
     }
@@ -149,10 +152,12 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
   if ($post_id) {
     $post = get_post($post_id);
     if ($post->post_type == 'project') {
-      $attributes['class'] = get_field('box_style', $post_id);
+      $classes[] = get_field('box_style', $post_id);
+      $attributes['class'] = implode(' ', $classes);
       $attributes['data-post-id'] = $post_id;
       $attributes['data-permalink'] = get_the_permalink($post_id);
       $attributes['data-content-type'] = 'project';
+      $attributes['data-title'] = get_the_title($post_id);
       $term_attributes = structural_systems_get_project_term_filters($post_id);
       $attributes = array_merge($attributes, $term_attributes);
       $image_url = get_the_post_thumbnail_url($post_id, 'full');
@@ -194,6 +199,8 @@ function structural_systems_get_big_box_image($box_id = 'A') {
   return $image_url;
 }
 
+
+
 function pd($data) {
   echo '<pre>';
   print_r($data);
@@ -206,3 +213,36 @@ function pr($data) {
   print_r($data);
   echo '</pre>';
 }
+
+function update_project_terms_field($post_id) {
+    // Check if the post type is 'project'
+    $post = get_post($post_id);
+    if ($post->post_type !== 'project') {
+        return;
+    }
+
+    // Define the taxonomies you want to retrieve terms from
+    $taxonomies = ['project-category', 'project-year', 'project-material'];
+
+    // Initialize an array to hold all terms
+    $all_terms = [];
+
+    // Loop through each taxonomy and get terms
+    foreach ($taxonomies as $taxonomy) {
+        $terms = get_the_terms($post_id, $taxonomy);
+        if (!is_wp_error($terms) && !empty($terms)) {
+            foreach ($terms as $term) {
+                $all_terms[] = $term->name; // Add term name to the array
+            }
+        }
+    }
+
+    // Implode the array into a string with a space
+    $terms_string = implode(' ', $all_terms);
+
+    // Update the field with the merged terms
+    update_field('field_67965bba94958', $terms_string, $post_id);
+}
+
+// Hook into ACF save post action
+add_action('acf/save_post', 'update_project_terms_field');

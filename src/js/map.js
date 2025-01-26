@@ -8,13 +8,15 @@ export default class Map {
   setupBoxes() {
     this.addClickListeners(document.querySelectorAll('[data-permalink]'));
 
-    if (document.body.classList.contains('debug')) {
-      this.addMouseEnterListeners(document.querySelectorAll('[data-box-id]'));
-    }
+    const mapElements = document.querySelectorAll('#map [data-box-id]');
+    this.addMouseEnterListeners(mapElements);
+    this.addMouseLeaveListeners(mapElements);
+    this.addMouseMoveListeners(mapElements);
 
     const panel = document.querySelector('.panel-page');
     const closeButton = panel.querySelector('.close');
     const payload = panel.querySelector('.payload');
+    const mapTooltip = document.querySelector('.map-tooltip');
 
     closeButton.addEventListener('click', () => {
       panel.classList.add('hidden');
@@ -71,7 +73,70 @@ export default class Map {
     elements.forEach(element => {
       element.addEventListener('mouseenter', (e) => {
         const boxId = element.getAttribute('data-box-id');
-        window.location.hash = boxId;
+        // debug mode
+        if (document.body.classList.contains('debug')) {
+          window.location.hash = boxId;
+        }
+        // tooltip
+        const tooltip = document.querySelector('.map-tooltip');
+        if (element.getAttribute('data-content-type') === 'project') {
+          tooltip.classList.remove('hidden');
+          tooltip.textContent = element.getAttribute('data-title');
+        }
+      });
+    });
+  }
+
+  addMouseLeaveListeners(elements) {
+    elements.forEach(element => {
+      element.addEventListener('mouseleave', (e) => {
+        const tooltip = document.querySelector('.map-tooltip');
+        tooltip.classList.add('hidden');
+      });
+    });
+  }
+
+  addMouseMoveListeners(elements) {
+    const projectElements = Array.from(elements).filter(element => 
+      element.getAttribute('data-content-type') === 'project'
+    );
+
+    projectElements.forEach(element => {
+      element.addEventListener('mousemove', (e) => {
+        const tooltip = document.querySelector('.map-tooltip');
+        const tooltipWidth = 200; // Set tooltip width
+        const tooltipHeight = tooltip.offsetHeight; // Get tooltip height
+        const mouseX = e.pageX;
+        const mouseY = e.pageY;
+        const map = document.querySelector('#map');
+        const mapRect = map.getBoundingClientRect();
+        const mapWidth = mapRect.width;
+        const mapHeight = mapRect.height;
+
+        // Determine the position of the tooltip based on mouse position
+        let left, top;
+
+        if (mouseX < mapWidth / 2) { // Left half of the map
+          if (mouseY < mapHeight / 2) { // Top half
+            left = mouseX + 10; // Tooltip to the right
+            top = mouseY + 10; // Tooltip below
+          } else { // Bottom half
+            left = mouseX + 10; // Tooltip to the right
+            top = mouseY - tooltipHeight - 10; // Tooltip above
+          }
+        } else { // Right half of the map
+          if (mouseY < mapHeight / 2) { // Top half
+            left = mouseX - tooltipWidth - 10; // Tooltip to the left
+            top = mouseY + 10; // Tooltip below
+          } else { // Bottom half
+            left = mouseX - tooltipWidth - 10; // Tooltip to the left
+            top = mouseY - tooltipHeight - 10; // Tooltip above
+          }
+        }
+
+        // Set the tooltip position
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
       });
     });
   }
