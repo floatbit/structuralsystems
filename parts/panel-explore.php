@@ -8,16 +8,16 @@
                     <h3>Category</h3>
                     <div class="checkboxes">
                         <?php
-                        $project_categories = get_terms(array(
+                        $terms = get_terms(array(
                             'taxonomy' => 'project-category',
                             'hide_empty' => true, // Only get terms that have posts associated with them
                         ));
 
-                        if (!empty($project_categories) && !is_wp_error($project_categories)) {
-                            foreach ($project_categories as $category) {
-                                echo '<div class="checkbox">';
-                                echo '<input type="checkbox" value="' . esc_attr($category->term_id) . '" id="project-category-' . esc_attr($category->term_id) . '" name="category-' . esc_attr($category->term_id) . '">';
-                                echo '<label for="project-category-' . esc_attr($category->term_id) . '">' . esc_html($category->name) . '</label>';
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<div class="checkbox ' . ($term->parent > 0 ? 'ml-6' : '') . '">';
+                                echo '<input type="checkbox" value="' . esc_attr($term->term_id) . '" id="project-category-' . esc_attr($term->term_id) . '" name="category-' . esc_attr($term->term_id) . '">';
+                                echo '<label for="project-category-' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</label>';
                                 echo '</div>';
                             }
                         }
@@ -25,7 +25,47 @@
                     </div>
                 </div>
                 <div class="shrink">
-                    <h3>Year</h3>
+                    <h3>Material</h3>
+                    <div class="checkboxes">
+                        <?php
+                        $terms = get_terms(array(
+                            'taxonomy' => 'project-material',
+                            'hide_empty' => true, // Only get terms that have posts associated with them
+                        ));
+
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) { 
+                                echo '<div class="checkbox">';
+                                echo '<input type="checkbox" value="' . esc_attr($term->term_id) . '" id="project-material-' . esc_attr($term->term_id) . '" name="material-' . esc_attr($term->term_id) . '">';
+                                echo '<label for="project-material-' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</label>';
+                                echo '</div>';
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="shrink">
+                    <h3>Year of Model <br>Construction</h3>
+                    <div class="checkboxes">
+                        <?php
+                        $terms = get_terms(array(
+                            'taxonomy' => 'project-construction',
+                            'hide_empty' => true, // Only get terms that have posts associated with them
+                        ));
+
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                echo '<div class="checkbox">';
+                                echo '<input type="checkbox" value="' . esc_attr($term->term_id) . '" id="project-construction-' . esc_attr($term->term_id) . '" name="construction-' . esc_attr($term->term_id) . '">';
+                                echo '<label for="project-construction-' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</label>';
+                                echo '</div>';
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="shrink">
+                    <h3>Year Built</h3>
                     <div class="checkboxes">
                         <?php
                         $project_years = get_terms(array(
@@ -38,26 +78,6 @@
                                 echo '<div class="checkbox">';
                                 echo '<input type="checkbox" value="' . esc_attr($year->term_id) . '" id="project-year-' . esc_attr($year->term_id) . '" name="year-' . esc_attr($year->term_id) . '">';
                                 echo '<label for="project-year-' . esc_attr($year->term_id) . '">' . esc_html($year->name) . '</label>';
-                                echo '</div>';
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="shrink">
-                    <h3>Material</h3>
-                    <div class="checkboxes">
-                        <?php
-                        $project_materials = get_terms(array(
-                            'taxonomy' => 'project-material',
-                            'hide_empty' => true, // Only get terms that have posts associated with them
-                        ));
-
-                        if (!empty($project_materials) && !is_wp_error($project_materials)) {
-                            foreach ($project_materials as $material) {
-                                echo '<div class="checkbox">';
-                                echo '<input type="checkbox" value="' . esc_attr($material->term_id) . '" id="project-material-' . esc_attr($material->term_id) . '" name="material-' . esc_attr($material->term_id) . '">';
-                                echo '<label for="project-material-' . esc_attr($material->term_id) . '">' . esc_html($material->name) . '</label>';
                                 echo '</div>';
                             }
                         }

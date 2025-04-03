@@ -33,13 +33,21 @@ if ( ! empty( $block['align'] ) ) {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit temporibus asperiores maiores soluta eligendi numquam totam, blanditiis amet cum possimus tempore sequi voluptates laboriosam, voluptate, beatae reiciendis nemo dolore!</p>
         </div>
         <div class="md:grid gap-2 md:gap-8 grid-cols-4 details">
+            <?php $terms = get_the_terms($post_id, 'project-builder');?>
+            <?php if ($terms):?>
             <div>
                 <h6>Model Builders</h6>
                 <ul>
-                    <li>Builder Name 1</li>
-                    <li>Builder Name 2</li>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
+            <?php endif;?>
             <?php $terms = get_the_terms($post_id, 'project-category');?>
             <?php if ($terms):?>
             <div>
@@ -70,36 +78,92 @@ if ( ! empty( $block['align'] ) ) {
                 </ul>
             </div>
             <?php endif;?>
+            <?php $terms = get_the_terms($post_id, 'project-construction');?>
+            <?php if ($terms):?>
             <div>
-                <h6>Year of Construction</h6>
-                <p>2024</p>
+                <h6>Year of Model Construction</h6>
+                <ul>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
+                </ul>
             </div>
+            <?php endif;?>
+            <?php $terms = get_the_terms($post_id, 'project-inspired');?>   
+            <?php if ($terms):?>
             <div>
                 <h6>Inspired By</h6>
-                <p>Statue of Liberty</p>
+                <ul>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
+                </ul>
             </div>
+            <?php endif;?>
+            <?php $terms = get_the_terms($post_id, 'project-architect');?>
+            <?php if ($terms):?>
             <div>
                 <h6>Architects</h6>
                 <ul>
-                    <li>Firm Name 1</li>
-                    <li>Architect/Firm Name 2</li>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
+            <?php endif;?>
+            <?php $terms = get_the_terms($post_id, 'project-year');?>
+            <?php if ($terms):?>
             <div>
                 <h6>Year Built</h6>
-                <p>2022</p>
+                <ul>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
+                </ul>
             </div>
+            <?php endif;?>
+            <?php $terms = get_the_terms($post_id, 'project-location');?>
+            <?php if ($terms):?>
             <div>
-                <h6>Building Program Type</h6>
-                <p>Museum</p>
+                <h6>Location</h6>
+                <ul>
+                    <?php
+                    if ($terms && ! is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            echo '<li>' . esc_html($term->name) . '</li>';
+                        }
+                    }
+                    ?>
+                </ul>
             </div>
+            <?php endif;?>
+            <?php $more_information_links = get_field('more_information_links', $post_id);?>
+            <?php if ($more_information_links):?>
             <div>
                 <h6>More Information</h6>
                 <ul>
-                    <li><a href="https://example.com/building-info-1">Link 1</a></li>
-                    <li><a href="https://example.com/building-info-2">Link info 2</a></li>
+                    <?php foreach ($more_information_links as $link):?>
+                    <li><a href="<?php echo esc_url($link['link']['url']);?>" target="<?php echo esc_attr($link['link']['target']);?>"><?php echo esc_html($link['link']['title']);?></a></li>
+                    <?php endforeach;?>
                 </ul>
             </div>
+            <?php endif;?>
         </div>
     </div>
 </div>

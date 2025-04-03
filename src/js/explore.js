@@ -53,6 +53,7 @@ export default class Explore {
     const selectedCategories = Array.from(document.querySelectorAll('.panel-explore input[name^="category"]:checked')).map(cb => cb.value);
     const selectedYears = Array.from(document.querySelectorAll('.panel-explore input[name^="year"]:checked')).map(cb => cb.value);
     const selectedMaterials = Array.from(document.querySelectorAll('.panel-explore input[name^="material"]:checked')).map(cb => cb.value);
+    const selectedConstructions = Array.from(document.querySelectorAll('.panel-explore input[name^="construction"]:checked')).map(cb => cb.value);
 
     const mapProjects = document.querySelectorAll('.map [data-content-type="project"]:not(.big-box)');
     const mobileProjects = document.querySelectorAll('.mobile-projects [data-content-type="project"]');
@@ -61,7 +62,7 @@ export default class Explore {
 
     let matchCount = 0;
 
-    if (selectedCategories.length === 0 && selectedYears.length === 0 && selectedMaterials.length === 0) {
+    if (selectedCategories.length === 0 && selectedYears.length === 0 && selectedMaterials.length === 0 && selectedConstructions.length === 0) {
       mapProjects.forEach(project => {
         project.classList.remove('explore-match');
       });
@@ -78,14 +79,16 @@ export default class Explore {
       const projectCategories = project.getAttribute('data-project-categories').split(',');
       const projectYears = project.getAttribute('data-project-years').split(',');
       const projectMaterials = project.getAttribute('data-project-materials').split(',');
+      const projectConstructions = project.getAttribute('data-project-constructions').split(',');
 
       const categoryMatch = selectedCategories.length === 0 || selectedCategories.some(cat => projectCategories.includes(cat));
       const yearMatch = selectedYears.length === 0 || selectedYears.some(year => projectYears.includes(year));
       const materialMatch = selectedMaterials.length === 0 || selectedMaterials.some(material => projectMaterials.includes(material));
+      const constructionMatch = selectedConstructions.length === 0 || selectedConstructions.some(construction => projectConstructions.includes(construction));
 
       project.classList.add('hidden');
 
-      if (categoryMatch && yearMatch && materialMatch) {
+      if (categoryMatch && yearMatch && materialMatch && constructionMatch) {
         project.classList.remove('hidden');
       }
     });
@@ -95,12 +98,14 @@ export default class Explore {
       const projectCategories = project.getAttribute('data-project-categories').split(',');
       const projectYears = project.getAttribute('data-project-years').split(',');
       const projectMaterials = project.getAttribute('data-project-materials').split(',');
-
+      const projectConstructions = project.getAttribute('data-project-constructions').split(',');
+      
       const categoryMatch = selectedCategories.length === 0 || selectedCategories.some(cat => projectCategories.includes(cat));
       const yearMatch = selectedYears.length === 0 || selectedYears.some(year => projectYears.includes(year));
       const materialMatch = selectedMaterials.length === 0 || selectedMaterials.some(material => projectMaterials.includes(material));
+      const constructionMatch = selectedConstructions.length === 0 || selectedConstructions.some(construction => projectConstructions.includes(construction));
 
-      if (categoryMatch && yearMatch && materialMatch) {
+      if (categoryMatch && yearMatch && materialMatch && constructionMatch) {
         project.classList.add('explore-match');
         matchCount++;
       } else {

@@ -97,6 +97,7 @@ function structural_systems_get_project_term_filters($post_id) {
         'data-project-categories' => 'project-category',
         'data-project-years' => 'project-year',
         'data-project-materials' => 'project-material',
+        'data-project-constructions' => 'project-construction',
     );
 
     $output = '';
@@ -222,7 +223,7 @@ function update_project_terms_field($post_id) {
     }
 
     // Define the taxonomies you want to retrieve terms from
-    $taxonomies = ['project-category', 'project-year', 'project-material'];
+    $taxonomies = ['project-category', 'project-year', 'project-material', 'project-construction'];
 
     // Initialize an array to hold all terms
     $all_terms = [];
