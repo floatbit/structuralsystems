@@ -8,7 +8,7 @@
             "name": "big_boxes_settings",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "A = Vertical<br>\r\nC = Square<br>\r\nD = Horizontal<br>\r\nE = Vertical",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -34,7 +34,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "20",
                         "class": "",
                         "id": ""
                     },
@@ -47,11 +47,11 @@
                     "parent_repeater": "field_67923ec48fba5"
                 },
                 {
-                    "key": "field_67923f398fba7",
-                    "label": "Projects",
-                    "name": "projects",
+                    "key": "field_67f0199171944",
+                    "label": "Project Sets",
+                    "name": "project_sets",
                     "aria-label": "",
-                    "type": "relationship",
+                    "type": "repeater",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -60,23 +60,70 @@
                         "class": "",
                         "id": ""
                     },
-                    "post_type": [
-                        "project"
+                    "layout": "table",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add Row",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_67f019aa71945",
+                            "label": "Project",
+                            "name": "project",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "project"
+                            ],
+                            "post_status": "",
+                            "taxonomy": "",
+                            "return_format": "object",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": [],
+                            "parent_repeater": "field_67f0199171944"
+                        },
+                        {
+                            "key": "field_67f019be71946",
+                            "label": "Image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium",
+                            "parent_repeater": "field_67f0199171944"
+                        }
                     ],
-                    "post_status": [
-                        "publish"
-                    ],
-                    "taxonomy": "",
-                    "filters": [
-                        "search"
-                    ],
-                    "return_format": "object",
-                    "min": "",
-                    "max": "",
-                    "allow_in_bindings": 0,
-                    "elements": "",
-                    "bidirectional": 0,
-                    "bidirectional_target": [],
                     "parent_repeater": "field_67923ec48fba5"
                 }
             ]
@@ -100,5 +147,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1737639125
+    "modified": 1743789446
 }

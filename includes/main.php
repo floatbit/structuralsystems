@@ -137,14 +137,25 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
     $big_boxes_settings = get_field('big_boxes_settings', 'option');
     foreach ($big_boxes_settings as $big_box_setting) {
       if ($big_box_setting['box_number'] == $box_id) {
-        $big_box_projects = $big_box_setting['projects'];
-        if (is_array($big_box_projects)) {
-          shuffle($big_box_projects);
-          $post_id = $big_box_projects[0]->ID;
-          $classes[] = 'big-box';
+        $project_sets = $big_box_setting['project_sets'];
+        if (is_array($project_sets)) {
+          shuffle($project_sets);
+          $big_box_project_set = $project_sets[0];
+          $post_id = $big_box_project_set['project']->ID;
         }
       }
     }
+
+    // foreach ($big_boxes_settings as $big_box_setting) {
+    //   if ($big_box_setting['box_number'] == $box_id) {
+    //     $big_box_projects = $big_box_setting['projects'];
+    //     if (is_array($big_box_projects)) {
+    //       shuffle($big_box_projects);
+    //       $post_id = $big_box_projects[0]->ID;
+    //       $classes[] = 'big-box';
+    //     }
+    //   }
+    // }
   }
 
   $output = '';
@@ -161,7 +172,12 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
       $attributes['data-title'] = get_the_title($post_id);
       $term_attributes = structural_systems_get_project_term_filters($post_id);
       $attributes = array_merge($attributes, $term_attributes);
-      $image_url = get_the_post_thumbnail_url($post_id, 'full');
+
+      if (($box_id == 'A' || $box_id == 'C' || $box_id == 'D' || $box_id == 'E') && $big_box_project_set) {
+        $image_url = $big_box_project_set['image']['url'];
+      } else {
+        $image_url = get_the_post_thumbnail_url($post_id, 'full');
+      }
     }
   }
 
