@@ -13,7 +13,7 @@
     "labels": {
         "name": "Years Built",
         "singular_name": "Year Built",
-        "menu_name": "Years Built",
+        "menu_name": "Year Model Built",
         "all_items": "All Years Built",
         "edit_item": "Edit Year Built",
         "view_item": "View Year Built",
@@ -71,5 +71,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1743721410
+    "modified": 1744930526
 }

@@ -30,7 +30,11 @@ export default class ImageEnlarge {
         const panelImageDiv = panelImage.querySelector('.image');
         
         if (panelImageDiv) {
+          panelImageDiv.classList.add('image-shrunken');
           panelImageDiv.style.backgroundImage = `url(${imageSrc})`;
+          setTimeout(() => {
+            panelImageDiv.classList.remove('image-shrunken');
+          }, 100);
         }
       }
 

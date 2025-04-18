@@ -42,7 +42,7 @@
   }
   .caption p,
   p.caption {
-    font-size: 14px;
+    //font-size: 17px;
   }
 
   a {
@@ -58,10 +58,10 @@
 }
 
 .map {
-  @apply w-full;
-  //height: 100vh;
+  @apply w-full h-full;
+  height: 100vh;
   svg {
-    //@apply w-full h-full object-contain;
+    @apply w-full h-full object-contain;
   }
   g#Small {
     rect {
@@ -173,6 +173,12 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .image {
+    transition: all 750ms;
+  }
+  .image-shrunken {
+    transform: scale(0);
+  }
 }
 
 .add-favorite {
@@ -221,7 +227,7 @@
 .panel-search {
   @apply pt-12 pb-8;
   h2 {
-    @apply mb-10;
+    @apply mb-10 uppercase;
   }
   .container {
     @apply mx-auto;
