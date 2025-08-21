@@ -187,27 +187,30 @@
   font-size: 20px;
   position: relative;
   top: -6px;
-
   span {
     cursor: pointer;
   }
   span.starred,
   span.unstarred {
     position: relative;
+    height: 25px;
   }
   span.starred,
   span:hover {
     color: theme('colors.yellow');
   }
+  .unstarred {
+    @apply inline-block;
+  }
   .starred {
-    display: none;
+    @apply hidden;
   }
   &.is-favorited {
     .unstarred {
-      display: none;
+      @apply hidden;
     }
     .starred {
-      display: inline-block;
+      @apply inline-block;
     } 
   }
   .tooltip {
