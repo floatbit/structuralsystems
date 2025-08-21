@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="shrink">
-                    <h3>Year of Model <br>Construction</h3>
+                    <h3>Year Model Built</h3>
                     <div class="checkboxes">
                         <?php
                         $terms = get_terms(array(

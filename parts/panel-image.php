@@ -4,7 +4,7 @@
         <div class="flex flex-col h-full">
             <div class="grow image bg-no-repeat bg-center bg-contain">
             </div>
-            <div class="shrink mt-6 caption text-center">
+            <div class="shrink mt-6 caption text-center text-xl">
                 <!--caption-->
             </div>
         </div>

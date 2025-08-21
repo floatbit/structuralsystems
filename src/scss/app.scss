@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased  bg-black text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -66,6 +66,8 @@
   g#Small {
     rect {
       stroke-dasharray: 4;
+      fill: theme('colors.black');
+      stroke: theme('colors.white');
     }
     g[data-content-type] {
       rect {
@@ -139,7 +141,7 @@
 
   g.viewed {
     rect {
-      fill: #eee;
+      fill: #eee !important;
     }
   }
 
@@ -190,6 +192,10 @@
     cursor: pointer;
   }
   span.starred,
+  span.unstarred {
+    position: relative;
+  }
+  span.starred,
   span:hover {
     color: theme('colors.yellow');
   }
@@ -203,6 +209,15 @@
     .starred {
       display: inline-block;
     } 
+  }
+  .tooltip {
+    @apply absolute top-[5px] left-[30px] text-yellow text-xs whitespace-nowrap;
+    display: none;
+  }
+  &:hover {
+    .tooltip {
+      @apply block;
+    }
   }
 }
 
@@ -310,7 +325,7 @@ button.close {
 }
 
 .map-tooltip {
-  @apply fixed top-0 left-0 bg-black text-white py-2 px-3 text-xs;
+  @apply fixed top-0 left-0 bg-gray-600 text-white py-2 px-3 text-xs;
   width: 200px;
   p {
     @apply mb-0;

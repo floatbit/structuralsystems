@@ -81,7 +81,7 @@ if ( ! empty( $block['align'] ) ) {
             <?php $terms = get_the_terms($post_id, 'project-construction');?>
             <?php if ($terms):?>
             <div>
-                <h6>Year of Model Construction</h6>
+                <h6>Year Model Built</h6>
                 <ul>
                     <?php
                     if ($terms && ! is_wp_error($terms)) {

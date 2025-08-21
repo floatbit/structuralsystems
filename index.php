@@ -18,9 +18,11 @@
           <span class="add-favorite">
             <span class="starred">
               <i class="fa-solid fa-star"></i>
+              <span class="tooltip text-sm">Remove from Favorites</span>
             </span>
             <span class="unstarred">
               <i class="fa-regular fa-star"></i>
+              <span class="tooltip text-sm">Add to Favorites</span>
             </span>
           </span>
           <?php endif;?>
