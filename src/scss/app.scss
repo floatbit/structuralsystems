@@ -13,11 +13,11 @@
   }
 
   h1 {
-    @apply text-5xl;
+    @apply text-4xl;
     @apply mb-8;
   }
   h2 {
-    @apply text-4xl;
+    @apply text-3xl;
     @apply mb-4;
   }
   h3 {
@@ -40,11 +40,6 @@
   p, ul, ol {
     @apply mb-4;
   }
-  .caption p,
-  p.caption {
-    //font-size: 17px;
-  }
-
   a {
     @apply underline;
   }
@@ -67,7 +62,7 @@
     rect {
       stroke-dasharray: 4;
       fill: theme('colors.black');
-      stroke: theme('colors.white');
+      stroke: theme('colors.lightgray');
     }
     g[data-content-type] {
       rect {
@@ -76,14 +71,36 @@
     }
     g.explore-match {
       rect {
-        fill: #f00;
+        fill: theme('colors.yellow');
+        stroke: theme('colors.yellow');
       }
     }  
     g.explore-match:hover {
       rect {
-        fill: rgba(#f00, 0.5);
+        opacity: 0.75;
       }
     }
+
+    g.solid-gray {
+      rect {
+        stroke: theme('colors.lightgray');
+      }
+    }
+  
+    g.viewed {
+      rect {
+        fill: #eee;
+      }
+    }
+  
+    g.favorited {
+      rect {
+        fill: theme('colors.yellow');
+      }
+    }
+  
+  
+
   }
   g#Big {
     rect {
@@ -93,6 +110,12 @@
       rect {
         stroke-dasharray: 0;
       }
+    }
+  }
+  g[data-box-id] {
+    rect {
+      stroke: theme('colors.lightgray');
+      fill: theme('colors.black');
     }
   }
   g[data-permalink] {
@@ -116,7 +139,7 @@
   g[data-open-explore]:hover,
   g[data-permalink]:hover {
     rect {
-      fill: theme('colors.red');
+      fill: theme('colors.yellow');
     }
   }
   g#Buttons {
@@ -125,7 +148,7 @@
     }
     g[data-permalink]:hover {
       > rect:first-of-type {
-        fill: theme('colors.red');
+        fill: theme('colors.yellow');
       }
       > g rect {
         fill: inherit;
@@ -133,29 +156,11 @@
     }
   }
 
-  g.solid-gray {
-    rect {
-      stroke: #8e8e8e;
-    }
-  }
-
-  g.viewed {
-    rect {
-      fill: #eee !important;
-    }
-  }
-
-  g.favorited {
-    rect {
-      fill: theme('colors.yellow');
-    }
-  }
-
   g#A {
     position: relative;
     span {
       @apply absolute top-0 left-0 w-full h-full;
-      background-color: theme('colors.red');
+      background-color: theme('colors.yellow');
     }
   }
 }
@@ -180,6 +185,10 @@
   }
   .image-shrunken {
     transform: scale(0);
+  }
+  .caption p,
+  p.caption {
+    @apply font-serif;
   }
 }
 
@@ -214,7 +223,7 @@
     } 
   }
   .tooltip {
-    @apply absolute top-[5px] left-[30px] text-yellow text-xs whitespace-nowrap;
+    @apply absolute top-[12px] left-[30px] text-yellow text-xs whitespace-nowrap;
     display: none;
   }
   &:hover {
@@ -279,7 +288,7 @@
   ol {
     @apply list-decimal ml-4;
     li {
-      @apply mb-10 pl-2;
+      @apply mb-2 pl-2;
     }
   }
 }
@@ -303,7 +312,7 @@ button.close {
   padding-bottom: 5px;
   z-index: 2;
   &:hover {
-    @apply bg-red;
+    @apply bg-yellow text-black;
   }
 }
 
@@ -328,9 +337,13 @@ button.close {
 }
 
 .map-tooltip {
-  @apply fixed top-0 left-0 bg-gray-600 text-white py-2 px-3 text-xs;
+  @apply fixed top-0 left-0 bg-gray-600 text-white py-0 text-xs;
   width: 200px;
   p {
     @apply mb-0;
   }
+}
+
+a:hover {
+  @apply text-yellow;
 }

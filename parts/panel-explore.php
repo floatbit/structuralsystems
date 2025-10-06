@@ -64,26 +64,6 @@
                         ?>
                     </div>
                 </div>
-                <div class="shrink">
-                    <h3>Year Built</h3>
-                    <div class="checkboxes">
-                        <?php
-                        $project_years = get_terms(array(
-                            'taxonomy' => 'project-year',
-                            'hide_empty' => true, // Only get terms that have posts associated with them
-                        ));
-
-                        if (!empty($project_years) && !is_wp_error($project_years)) {
-                            foreach ($project_years as $year) {
-                                echo '<div class="checkbox">';
-                                echo '<input type="checkbox" value="' . esc_attr($year->term_id) . '" id="project-year-' . esc_attr($year->term_id) . '" name="year-' . esc_attr($year->term_id) . '">';
-                                echo '<label for="project-year-' . esc_attr($year->term_id) . '">' . esc_html($year->name) . '</label>';
-                                echo '</div>';
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
             </div>
             <div class="">
                 <p class="small total-projects hidden">

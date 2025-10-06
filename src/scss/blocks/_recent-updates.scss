@@ -4,4 +4,12 @@
             max-width: 1024px;
         }
     }
+    img {
+        transition: all 0.2s;
+        transform: scale(1);
+    }
+    img:hover {
+        transform: scale(1.01);
+    }
+
 }

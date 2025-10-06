@@ -3,12 +3,33 @@
     "title": "System Fields",
     "fields": [
         {
+            "key": "field_68e3ddb603309",
+            "label": "Custom Search Data",
+            "name": "custom_search_data",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Add your additional search terms in this field.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
             "key": "field_67965bba94958",
-            "label": "Search Data",
+            "label": "Automated Search Data",
             "name": "search_data",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Do not edit - automatically filled with data.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -42,5 +63,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1737907182
+    "modified": 1759763929
 }

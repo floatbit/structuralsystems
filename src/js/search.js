@@ -76,8 +76,8 @@ export default class Search {
       const parser = new DOMParser();
       const doc = parser.parseFromString(result, 'text/html');
       const liCount = doc.querySelectorAll('li').length;
-      //searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>${result}`;
-      searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>`;
+      searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>${result}`;
+      //searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>`;
 
       // Remove 'explore-match' class from all projects
       const allProjects = document.querySelectorAll('[data-content-type="project"]');

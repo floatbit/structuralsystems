@@ -3,6 +3,27 @@
     "title": "Additional Project Content",
     "fields": [
         {
+            "key": "field_68e3d6c542145",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional; appears above \"Inspired By\" text",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_67ef16128c5ce",
             "label": "More Information Links",
             "name": "more_information_links",
@@ -63,5 +84,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743722040
+    "modified": 1759762144
 }

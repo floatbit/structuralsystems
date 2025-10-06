@@ -10,6 +10,12 @@
 
     <div class="payload-content hidden">
       <?php if (is_singular('project')):?>
+        <?php 
+          $eyebrow = get_field('eyebrow', get_the_ID());
+        ?>
+        <?php if ($eyebrow):?>
+          <h5><?php echo $eyebrow;?></h5>
+        <?php endif;?>
         <h5>Inspired By</h5>
       <?php endif;?>
         <h1>

@@ -81,7 +81,7 @@ export default class Map {
         const tooltip = document.querySelector('.map-tooltip');
         if (element.getAttribute('data-content-type') === 'project') {
           tooltip.classList.remove('hidden');
-          tooltip.textContent = element.getAttribute('data-title');
+          tooltip.innerHTML = `<img src="${element.getAttribute('data-image-url')}" alt="${element.getAttribute('data-title')}">`;
         }
       });
     });

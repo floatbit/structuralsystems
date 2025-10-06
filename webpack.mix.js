@@ -9,10 +9,7 @@ mix.webpackConfig({
   },
 });
 mix.options({
-  postCss: [require("autoprefixer")],
-  fileLoaderDirs: {
-    fonts: "../fonts",
-  },
+  postCss: [require("autoprefixer")]
 });
 
 mix.babelConfig({
@@ -20,7 +17,6 @@ mix.babelConfig({
 });
 
 mix.copy("src/images", "dist/images");
-mix.copy("src/fonts", "dist/fonts");
 
 mix
   .js("src/js/app.js", "dist")
