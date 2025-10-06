@@ -81,7 +81,11 @@ export default class Map {
         const tooltip = document.querySelector('.map-tooltip');
         if (element.getAttribute('data-content-type') === 'project') {
           tooltip.classList.remove('hidden');
-          tooltip.innerHTML = `<img src="${element.getAttribute('data-image-url')}" alt="${element.getAttribute('data-title')}">`;
+          if (element.getAttribute('data-hover-image-url')) {
+            tooltip.innerHTML = `<img src="${element.getAttribute('data-hover-image-url')}" alt="${element.getAttribute('data-title')}">`;
+          } else {
+            tooltip.innerHTML = `<span>${element.getAttribute('data-title')}</span>`;
+          }
         }
       });
     });

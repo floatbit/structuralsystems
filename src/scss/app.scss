@@ -342,6 +342,9 @@ button.close {
   p {
     @apply mb-0;
   }
+  span {
+    @apply inline-block px-3 py-2;
+  }
 }
 
 a:hover {

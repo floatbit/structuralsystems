@@ -171,12 +171,15 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
       $attributes['data-content-type'] = 'project';
       $attributes['data-title'] = get_the_title($post_id);
 
+      $hover_image_url = null;
       if (($box_id == 'A' || $box_id == 'C' || $box_id == 'D' || $box_id == 'E') && $big_box_project_set) {
         $image_url = $big_box_project_set['image']['url'];
       } else {
         $image_url = get_the_post_thumbnail_url($post_id, 'full');
+        $hover_image_url = $image_url;
       }
       $attributes['data-image-url'] = $image_url;
+      $attributes['data-hover-image-url'] = $hover_image_url;
 
       $term_attributes = structural_systems_get_project_term_filters($post_id);
       $attributes = array_merge($attributes, $term_attributes);
