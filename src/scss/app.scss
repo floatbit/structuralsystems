@@ -69,18 +69,17 @@
         stroke-dasharray: 0;
       }
     }
+    g[data-content-type]:hover {
+      rect {
+        opacity: 0.6;
+      }
+    }
     g.explore-match {
       rect {
         fill: theme('colors.yellow');
         stroke: theme('colors.yellow');
       }
     }  
-    g.explore-match:hover {
-      rect {
-        opacity: 0.75;
-      }
-    }
-
     g.solid-gray {
       rect {
         stroke: theme('colors.lightgray');
@@ -99,6 +98,7 @@
         stroke: theme('colors.yellow');
       }
     }
+    
   
   
 
