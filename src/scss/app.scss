@@ -4,12 +4,12 @@
 
 @layer base {
   body {
-    @apply font-sans antialiased  bg-black text-white;
+    @apply font-serif antialiased  bg-black text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply mb-2;
-    @apply font-bold;
+    @apply font-normal font-sans;
   }
 
   h1 {
@@ -62,7 +62,7 @@
     rect {
       stroke-dasharray: 4;
       fill: theme('colors.black');
-      stroke: theme('colors.lightgray');
+      stroke: theme('colors.white');
     }
     g[data-content-type] {
       rect {
@@ -71,7 +71,8 @@
     }
     g[data-content-type]:hover {
       rect {
-        opacity: 0.6;
+        stroke: theme('colors.yellow');
+        fill: theme('colors.yellow');
       }
     }
     g.explore-match {
@@ -82,13 +83,13 @@
     }  
     g.solid-gray {
       rect {
-        stroke: theme('colors.lightgray');
+        stroke: theme('colors.white');
       }
     }
   
     g.viewed {
       rect {
-        fill: #eee;
+        stroke: theme('colors.lightgray');
       }
     }
   
@@ -138,7 +139,7 @@
   }
   g[data-open-search]:hover,
   g[data-open-explore]:hover,
-  g[data-permalink]:hover {
+  g[data-permalink]:not(#B):hover {
     rect {
       fill: theme('colors.yellow');
     }
@@ -190,6 +191,7 @@
   .caption p,
   p.caption {
     @apply font-serif;
+    font-size: 16px;
   }
 }
 
@@ -318,7 +320,7 @@ button.close {
 }
 
 .btn {
-  @apply bg-white text-black px-4 py-2 uppercase;
+  @apply bg-white text-black px-4 py-2 uppercase font-sans;
 }
 
 .debug {

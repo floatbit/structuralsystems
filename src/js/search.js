@@ -17,7 +17,7 @@ export default class Search {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const keyword = document.querySelector('#keyword').value;
-        this.performSearch(keyword, searchResults);
+        this.performSearch(keyword, searchResults, searchPanel);
       });
     }
 
@@ -58,7 +58,7 @@ export default class Search {
     }
   }
 
-  performSearch(keyword, searchResults) {
+  performSearch(keyword, searchResults, searchPanel) {
     const ajaxUrl = '/wp-admin/admin-ajax.php';
     const data = new URLSearchParams();
     data.append('action', 'search_action');
@@ -92,6 +92,11 @@ export default class Search {
           matchedProject.classList.add('explore-match');
         }
       });
+
+      // Close the search panel if there are search results
+      if (liCount > 0 && searchPanel) {
+        searchPanel.classList.add('hidden');
+      }
     })
     .catch(error => {
       console.error('Error:', error);

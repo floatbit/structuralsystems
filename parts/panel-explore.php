@@ -25,26 +25,6 @@
                     </div>
                 </div>
                 <div class="shrink">
-                    <h3>Material</h3>
-                    <div class="checkboxes">
-                        <?php
-                        $terms = get_terms(array(
-                            'taxonomy' => 'project-material',
-                            'hide_empty' => true, // Only get terms that have posts associated with them
-                        ));
-
-                        if (!empty($terms) && !is_wp_error($terms)) {
-                            foreach ($terms as $term) { 
-                                echo '<div class="checkbox">';
-                                echo '<input type="checkbox" value="' . esc_attr($term->term_id) . '" id="project-material-' . esc_attr($term->term_id) . '" name="material-' . esc_attr($term->term_id) . '">';
-                                echo '<label for="project-material-' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</label>';
-                                echo '</div>';
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="shrink">
                     <h3>Year Model Built</h3>
                     <div class="checkboxes">
                         <?php

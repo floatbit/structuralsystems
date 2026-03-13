@@ -3984,7 +3984,7 @@
         <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php print $box_info['image_url'];?>'); background-size: cover; background-position: center;"></div>
       </foreignObject>
     </g>
-    <g id="B">
+    <g id="B" data-post-id="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">
       <rect class="cls-6" x="138.51" y="725.76" width="618.75" height="193.5"/>
       <path class="cls-2 opacity-0" d="M734.64,741.65c.51-.13,1.14-.2,1.84-.2.92,0,1.74.17,2.32.7.47.42.69,1.05.69,1.76,0,.99-.54,1.83-1.53,2.23v.04c1.17.32,1.85,1.27,1.85,2.53,0,.83-.27,1.5-.73,2-.58.65-1.54.95-2.86.95-.74,0-1.25-.04-1.6-.1v-9.92ZM736.02,745.75h.5c.88,0,1.61-.69,1.61-1.68,0-.88-.41-1.56-1.52-1.56-.25,0-.45.02-.59.07v3.17ZM736.02,750.53c.14.03.32.05.54.05,1.08,0,1.83-.64,1.83-1.87s-.89-1.91-1.89-1.92h-.48v3.74Z"/>
       <g>
@@ -4173,7 +4173,7 @@
       </g>
     </g>
     <g id="RECENT_UPDATES" data-post-id="85" data-permalink="<?php print get_the_permalink(85);?>" data-content-type="page">
-      <rect class="cls-5" x="513.01" y="343.26" width="524.5" height="31.5"/>
+      <rect class="cls-5" x="645.26" y="343.26" width="260" height="31.5"/>
       <g id="RECENT_UPDATES-2" data-name="RECENT UPDATES">
         <g id="UPDATES">
           <polygon id="S-2" data-name="S" points="828.96 359.24 834.3 359.24 834.3 363.61 828.96 363.61 828.96 366.04 836.73 366.04 836.73 356.81 831.39 356.81 831.39 352.44 836.73 352.44 836.73 350.01 828.96 350.01 828.96 359.24"/>

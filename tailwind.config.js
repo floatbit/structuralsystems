@@ -59,14 +59,15 @@ module.exports = {
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
-      serif: ['Lora', 'serif'],
+      serif: ['EB Garamond', 'serif'],
     },
     extend: {
       colors: {
         black: '#000000',
         red: '#ea443b',
         yellow: '#f5e32b',
-        lightgray: '#999999'
+        lightgray: '#999999',
+        white: '#ffffff'
       }
     },
     screens: {
