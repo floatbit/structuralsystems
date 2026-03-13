@@ -263,9 +263,60 @@ function update_project_terms_field($post_id) {
     // Implode the array into a string with a space
     $terms_string = implode(' ', $all_terms);
 
-    // Update the field with the merged terms
-    update_field('field_67965bba94958', $terms_string, $post_id);
+    // image descriptions
+    $block_descriptions = [];
+
+    // Collect image descriptions from ACF Images blocks in post content
+    if (function_exists('parse_blocks')) {
+        $post_content = get_post_field('post_content', $post_id);
+        
+        if ($post_content) {
+            $blocks = parse_blocks($post_content);
+            if (is_array($blocks)) {
+              foreach ($blocks as $block) {
+                // Text block
+                if ($block['blockName'] == 'acf/text' && isset($block['attrs']['data']['text'])) {
+                  $text = $block['attrs']['data']['text'];
+                  if ($text) {
+                    $text = strip_tags($text);
+                    $text = preg_replace('/\s+/', ' ', $text);
+                    $text = trim($text);
+                    $block_descriptions[] = $text;
+                  }
+                }
+                // Images block
+                if ($block['blockName'] == 'acf/images' && isset($block['attrs']['data']['images'])) {
+                  foreach ($block['attrs']['data']['images'] as $image_id) {
+                    if ($image_id) {
+                      $image_description = get_field('image_description', $image_id);
+                      if ($image_description) {
+                        // Strip tags and collapse all whitespace/newlines into single spaces
+                        $clean_description = preg_replace('/\s+/', ' ', strip_tags($image_description));
+                        $block_descriptions[] = trim($clean_description);
+                      }
+                    }
+                  }
+                }
+                // video
+                if ($block['blockName'] == 'acf/video' && isset($block['attrs']['data']['caption'])) {
+                  $caption = $block['attrs']['data']['caption'];
+                  if ($caption) {
+                    $caption = strip_tags($caption);
+                    $caption = preg_replace('/\s+/', ' ', $caption);
+                    $caption = trim($caption);
+                    $block_descriptions[] = $caption;
+                  }
+                }
+              }
+            }
+        }
+    }
+
+    $custom_search_string = $terms_string . ' ' . implode(' ', $block_descriptions);
+
+    // Update the field with the merged terms and image descriptions
+    update_field('field_67965bba94958', $custom_search_string, $post_id);
 }
 
 // Hook into ACF save post action
-add_action('acf/save_post', 'update_project_terms_field');
+add_action('acf/save_post', 'update_project_terms_field', 20);
