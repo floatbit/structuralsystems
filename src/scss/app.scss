@@ -295,6 +295,16 @@
     }
   }
 }
+.project-cover-image {
+  opacity: 1;
+  transition: opacity 500ms ease;
+  pointer-events: auto;
+
+  &.project-cover-image-fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
 
 .panel-mobile-menu {
   .links {

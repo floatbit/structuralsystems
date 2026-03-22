@@ -32,7 +32,7 @@ if ( ! empty( $block['align'] ) ) {
             <h2>Lorem Ipsum</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum sit temporibus asperiores maiores soluta eligendi numquam totam, blanditiis amet cum possimus tempore sequi voluptates laboriosam, voluptate, beatae reiciendis nemo dolore!</p>
         </div>
-        <div class="md:grid gap-2 md:gap-8 grid-cols-4 details">
+        <div class="md:grid gap-2 md:gap-8 md:grid-cols-3 lg:grid-cols-4 details">
             <?php $terms = get_the_terms($post_id, 'project-builder');?>
             <?php if ($terms):?>
             <div>
@@ -52,21 +52,6 @@ if ( ! empty( $block['align'] ) ) {
             <?php if ($terms):?>
             <div>
                 <h6>Structural Types</h6>
-                <ul>
-                    <?php
-                    if ($terms && ! is_wp_error($terms)) {
-                        foreach ($terms as $term) {
-                            echo '<li>' . esc_html($term->name) . '</li>';
-                        }
-                    }
-                    ?>
-                </ul>
-            </div>
-            <?php endif;?>
-            <?php $terms = get_the_terms($post_id, 'project-material');?>
-            <?php if ($terms):?>
-            <div>
-                <h6>Materials Used</h6>
                 <ul>
                     <?php
                     if ($terms && ! is_wp_error($terms)) {

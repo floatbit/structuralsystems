@@ -56,6 +56,13 @@ export default class Map {
             if (postId) {
               document.body.setAttribute('data-post-id', postId);
             }
+            // Fade out cover image (keep faded — removing the class after 1s made it pop back in)
+            const coverImage = payload.querySelector('.project-cover-image');
+            if (coverImage) {
+              setTimeout(() => {
+                coverImage.classList.add('project-cover-image-fade-out');
+              }, 2000);
+            }
           } catch (error) {
             console.error('Error fetching or parsing HTML:', error);
             panel.classList.add('hidden');
