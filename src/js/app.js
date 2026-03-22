@@ -5,6 +5,7 @@ import Search from '@/Search'
 import MobileMenu from '@/mobile-menu'
 import ImageEnlarge from '@/image-enlarge'
 import Tracker from '@/tracker'
+import SwitchLightMode from '@/switch-light-mode'
 
 (function ($) {
   
@@ -14,6 +15,7 @@ import Tracker from '@/tracker'
   new ImageEnlarge()
   new MobileMenu()
   new Tracker()
+  new SwitchLightMode()
   
   // Add event listener for the Escape key
   document.addEventListener('keydown', function(event) {

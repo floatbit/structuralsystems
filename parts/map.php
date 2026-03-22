@@ -4081,7 +4081,7 @@
     </g>
   </g>
   <g id="Buttons">
-    <g id="ABOUT" data-post-id="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">
+    <g id="ABOUT" transform="translate(-56.75, 0)" data-post-id="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">
       <rect class="cls-5" x="1488.49" y="14.76" width="96.75" height="31.5"/>
       <g>
         <g id="T">
@@ -4101,7 +4101,12 @@
         </g>
       </g>
     </g>
-    <g id="SEARCH" data-open-search>
+    <g id="split-circle" transform="translate(-15.75, 0)" data-switch-light-mode>
+      <path fill="#000" d="M1584.24,14.76A15.75,15.75,0,0,0,1568.49,30.51A15.75,15.75,0,0,0,1584.24,46.26Z" class="half-left"/>
+      <path fill="#fff" d="M1584.24,14.76A15.75,15.75,0,0,1,1599.99,30.51A15.75,15.75,0,0,1,1584.24,46.26Z" class="half-right"/>
+      <circle cx="1584.24" cy="30.51" r="15.75" fill="none" stroke="#fff" stroke-width="1.25" stroke-miterlimit="10"/>
+    </g>
+    <g id="SEARCH" transform="translate(-42.75, 0)" data-open-search>
       <rect class="cls-5" x="1343.53" y="14.76" width="96.75" height="31.5"/>
       <g>
         <polygon points="1416.95 21.51 1416.95 28.31 1413.55 28.31 1413.55 21.51 1411.12 21.51 1411.12 37.54 1413.55 37.54 1413.55 30.74 1416.95 30.74 1416.95 37.54 1419.38 37.54 1419.38 21.51 1416.95 21.51"/>
@@ -4112,7 +4117,7 @@
         <polygon points="1364.43 30.74 1369.78 30.74 1369.78 35.11 1364.43 35.11 1364.43 37.54 1372.2 37.54 1372.2 28.31 1366.86 28.31 1366.86 23.94 1372.2 23.94 1372.2 21.51 1364.43 21.51 1364.43 30.74"/>
       </g>
     </g>
-    <g id="EXPLORE" data-open-explore>
+    <g id="EXPLORE" transform="translate(-26.75, 0)" data-open-explore>
       <rect class="cls-5" x="1196.01" y="14.76" width="96.75" height="31.5"/>
       <g>
         <g id="E-2" data-name="E">

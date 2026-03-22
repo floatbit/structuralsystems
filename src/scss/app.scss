@@ -134,6 +134,7 @@
   }
   g[data-open-search],
   g[data-open-explore],
+  g[data-switch-light-mode],
   g[data-permalink] {
     cursor: pointer;
   }
@@ -362,4 +363,55 @@ button.close {
 
 a:hover {
   @apply text-yellow;
+}
+
+
+html.light-mode {
+  g[data-switch-light-mode] {
+    path.half-left {
+      fill: theme('colors.white');
+    }
+    path.half-right {
+      fill: theme('colors.black');
+    }
+    circle {
+      stroke: theme('colors.black');
+    }
+  }
+  body {
+    background-color: theme('colors.white');
+    color: theme('colors.black');
+  }
+  a[data-open-mobile-menu] {
+    svg {
+      path {
+        stroke: theme('colors.black');
+      }
+    }
+  }
+  a[data-open-mobile-menu]:hover {
+    svg {
+      stroke: theme('colors.yellow');
+    }
+  }
+  .map {
+    g#Small {
+      rect {
+        stroke: theme('colors.black');
+        fill: theme('colors.white');
+      }
+    }
+    g#Small g.favorited {
+      rect {
+        fill: theme('colors.yellow');
+        stroke: theme('colors.yellow');
+      }
+    }
+    g#Small g.viewed {
+      rect {
+        stroke: theme('colors.lightergray');
+      }
+    }
+  }
+  
 }
