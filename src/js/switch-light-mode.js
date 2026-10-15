@@ -6,6 +6,7 @@ export default class SwitchLightMode {
     this.root = document.documentElement;
     this.elements = document.querySelectorAll('[data-switch-light-mode]');
     this.applyStored();
+    this.updateControls();
     this.bind();
   }
 
@@ -25,6 +26,7 @@ export default class SwitchLightMode {
 
   set(on) {
     this.root.classList.toggle('light-mode', on);
+    this.updateControls();
     try {
       localStorage.setItem(STORAGE_KEY, on ? '1' : '0');
     } catch (_) {
@@ -43,6 +45,15 @@ export default class SwitchLightMode {
     } catch (_) {
       // ignore
     }
+  }
+
+  updateControls() {
+    const light = this.root.classList.contains('light-mode');
+    this.elements.forEach(element => {
+      if (element.tagName === 'BUTTON') element.setAttribute('aria-pressed', String(light));
+      const label = element.querySelector('[data-mode-label]');
+      if (label) label.textContent = light ? 'Dark mode' : 'Light mode';
+    });
   }
 
 }

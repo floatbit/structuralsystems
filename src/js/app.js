@@ -2,6 +2,7 @@ import $ from 'jquery'
 import Map from '@/map'
 import Explore from '@/explore'
 import Search from '@/search'
+import MobileProjects from '@/mobile-projects'
 import MobileMenu from '@/mobile-menu'
 import ImageEnlarge from '@/image-enlarge'
 import Tracker from '@/tracker'
@@ -13,6 +14,7 @@ import { initImageCarousels } from '@/image-carousel'
   new Map()
   new Explore()
   new Search()
+  new MobileProjects()
   new ImageEnlarge()
   new MobileMenu()
   new Tracker()

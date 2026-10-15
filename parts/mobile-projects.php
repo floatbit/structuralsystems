@@ -6,25 +6,44 @@ $mobile_projects = get_posts([
     'orderby' => ['date' => 'DESC', 'ID' => 'DESC'],
 ]);
 ?>
-<div class="pt-5 mobile-projects">
+<div class="pt-5 mobile-projects" data-view="grid">
     <div class="container">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="mobile-project-toolbar">
+            <form class="mobile-project-search" role="search" data-search-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
+                <button type="button" class="mobile-search-toggle" aria-expanded="false" aria-controls="mobile-project-keyword">Search</button>
+                <input type="search" id="mobile-project-keyword" name="keyword" autocomplete="off" aria-label="Search projects" hidden>
+            </form>
+            <div class="mobile-project-views" role="group" aria-label="Project view">
+                <button type="button" data-project-view="grid" aria-pressed="true">Grid</button>
+                <button type="button" data-project-view="list" aria-pressed="false">List</button>
+                <button type="button" data-project-view="detail" aria-pressed="false">Detail</button>
+            </div>
+        </div>
+        <p class="mobile-project-status" role="status" aria-live="polite"></p>
+        <div class="mobile-project-loading" hidden>
+            <img class="loading-dark" src="<?php echo esc_url(assets_url('/dist/images/loading.gif')); ?>" alt="Searching…" width="48" height="48">
+            <img class="loading-light" src="<?php echo esc_url(assets_url('/dist/images/loading-light.gif')); ?>" alt="Searching…" width="48" height="48">
+        </div>
+        <div class="mobile-project-grid">
             <?php foreach ($mobile_projects as $mobile_project):
                 $project_id = $mobile_project->ID;
                 $permalink = get_permalink($project_id);
                 $filters = structural_systems_get_project_term_filters($project_id);
             ?>
-            <a class="block no-underline" href="<?php echo esc_url($permalink); ?>" data-post-id="<?php echo esc_attr($project_id); ?>" data-permalink="<?php echo esc_url($permalink); ?>" data-content-type="project"
+            <a class="mobile-project-card" aria-label="<?php echo esc_attr(get_the_title($project_id)); ?>" href="<?php echo esc_url($permalink); ?>" data-post-id="<?php echo esc_attr($project_id); ?>" data-permalink="<?php echo esc_url($permalink); ?>" data-content-type="project"
                 <?php foreach ($filters as $attribute => $value): ?>
                     <?php echo esc_attr($attribute); ?>="<?php echo esc_attr($value); ?>"
                 <?php endforeach; ?>
             >
-                <?php if (has_post_thumbnail($project_id)): ?>
-                <div class="mb-2">
-                    <?php echo get_the_post_thumbnail($project_id, 'medium_large', ['loading' => 'lazy', 'sizes' => '50vw', 'style' => 'width:100%;height:auto;']); ?>
-                </div>
-                <?php endif; ?>
-                <h3><?php echo esc_html(get_the_title($project_id)); ?></h3>
+                <span class="mobile-project-thumbnail">
+                    <?php echo get_the_post_thumbnail($project_id, 'large', ['alt' => '', 'loading' => 'lazy', 'sizes' => '(max-width: 767px) 100vw, 1px']); ?>
+                </span>
+                <span class="mobile-project-text">
+                    <span>PROJECT <?php echo esc_html(get_field('box_number', $project_id)); ?></span>
+                    <?php $eyebrow = get_field('eyebrow', $project_id); ?>
+                    <?php if ($eyebrow): ?><span><?php echo esc_html(strtoupper($eyebrow)); ?></span><?php endif; ?>
+                    <span>Inspired By <?php echo esc_html(get_the_title($project_id)); ?></span>
+                </span>
             </a>
             <?php endforeach; ?>
         </div>

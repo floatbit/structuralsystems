@@ -1,3 +1,5 @@
+import { fetchProjectSearch, publishProjectSearch } from './project-search';
+
 export default class Search {
 
   constructor() {
@@ -81,42 +83,16 @@ export default class Search {
     this.searchController = controller;
     const loadingTemplate = document.querySelector('.search-loading-template');
     searchResults.innerHTML = loadingTemplate ? loadingTemplate.innerHTML : '<p role="status">Searching…</p>';
-    const ajaxUrl = '/wp-admin/admin-ajax.php';
-    const data = new URLSearchParams();
-    data.append('action', 'search_action');
-    data.append('keyword', keyword);
-
-    fetch(ajaxUrl, {
-      method: 'POST',
-      signal: controller.signal,
-      body: data,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Search request failed');
-      return response.text();
-    })
-    .then(result => {
+    fetchProjectSearch(keyword, controller.signal)
+    .then(({ html: result, postIds }) => {
       if (controller.signal.aborted) return;
       const parser = new DOMParser();
       const doc = parser.parseFromString(result, 'text/html');
       const liCount = doc.querySelectorAll('li').length;
-      searchResults.innerHTML = `<p class="search-summary">Total projects found: ${liCount} <a href="#map" data-view-on-map>View on Map</a></p>${result}`;
+      const viewOnMap = liCount > 0 ? ' <a href="#map" data-view-on-map>View on Map</a>' : '';
+      searchResults.innerHTML = `<p class="search-summary">Total projects found: ${liCount}${viewOnMap}</p>${result}`;
 
-      // Remove 'explore-match' class from all projects
-      const allProjects = document.querySelectorAll('[data-content-type="project"]');
-      allProjects.forEach(project => project.classList.remove('explore-match'));
-
-      // Add 'explore-match' class to searched projects
-      const searchedPostIds = Array.from(doc.querySelectorAll('li[data-post-id]')).map(li => li.getAttribute('data-post-id'));
-
-      searchedPostIds.forEach(postId => {
-        document.querySelectorAll(`[data-content-type="project"][data-post-id="${postId}"]`).forEach(project => {
-          project.classList.add('explore-match');
-        });
-      });
+      publishProjectSearch(keyword, postIds);
 
     })
     .catch(error => {

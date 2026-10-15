@@ -46,7 +46,21 @@
 }
 
 @import 'fonts';
+@import 'mobile-projects';
 @import 'blocks/index';
+
+html:not(.light-mode) .loading-light,
+html.light-mode .loading-dark {
+  display: none;
+}
+
+html:not(.light-mode) .loading-dark,
+html.light-mode .loading-light {
+  display: block;
+}
+
+html.light-mode .panel-search .loading-dark { display: block; }
+html.light-mode .panel-search .loading-light { display: none; }
 
 .antialiased {
   -webkif-font-smoothing: antialiased;

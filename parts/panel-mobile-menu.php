@@ -17,6 +17,9 @@
             <div data-post-id="85" data-permalink="<?php print get_the_permalink(85);?>" data-content-type="page">
                 Recent Updates
             </div>
+            <button type="button" class="mobile-mode-switch" data-switch-light-mode aria-pressed="false">
+                <span data-mode-label>Light mode</span>
+            </button>
         </div>
     </div>
 </div>
