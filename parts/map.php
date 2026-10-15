@@ -3957,6 +3957,24 @@
     $box_info = structural_systems_get_project_box_info('E', TRUE);
   ?>  
   <g id="Big">
+    <?php
+      $new_big_boxes = [
+        'F' => ['x' => 791.01, 'y' => 163.26, 'width' => 63.75, 'height' => 168.75],
+        'G' => ['x' => 173.76, 'y' => 533.76, 'width' => 74.25, 'height' => 93],
+      ];
+      foreach ($new_big_boxes as $box_id => $bounds):
+        $new_box_info = structural_systems_get_project_box_info($box_id, true);
+    ?>
+    <g id="<?php echo esc_attr($box_id); ?>" <?php echo $new_box_info['output']; ?>>
+      <rect class="cls-5" x="<?php echo $bounds['x']; ?>" y="<?php echo $bounds['y']; ?>" width="<?php echo $bounds['width']; ?>" height="<?php echo $bounds['height']; ?>"/>
+      <text class="cls-2" x="<?php echo $bounds['x'] + $bounds['width'] / 2; ?>" y="<?php echo $bounds['y'] + $bounds['height'] / 2; ?>" text-anchor="middle" dominant-baseline="middle" font-size="10"><?php echo esc_html($box_id); ?></text>
+      <?php if ($new_box_info['image_url']): ?>
+      <foreignObject x="<?php echo $bounds['x']; ?>" y="<?php echo $bounds['y']; ?>" width="<?php echo $bounds['width']; ?>" height="<?php echo $bounds['height']; ?>">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php echo esc_url($new_box_info['image_url']); ?>'); background-size: cover; background-position: center;"></div>
+      </foreignObject>
+      <?php endif; ?>
+    </g>
+    <?php endforeach; ?>
     <g id="E" <?php print $box_info['output'];?>>
       <rect class="cls-5" x="1155.51" y="572.76" width="179.03" height="411.48"/>
       <path class="cls-2" d="M1247.03,779.56h-2.46v3.5h2.8v1.2h-4.19v-10.11h4.01v1.2h-2.62v3.04h2.46v1.17Z"/>
