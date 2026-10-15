@@ -1,0 +1,12 @@
+{
+  "name": "acf/image-carousel",
+  "title": "Image Carousel",
+  "description": "A carousel of images with equal heights, original proportions, and click-to-zoom.",
+  "category": "structuralsystems",
+  "keywords": ["images", "carousel", "gallery", "slider"],
+  "supports": { "anchor": true },
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block.php"
+  }
+}

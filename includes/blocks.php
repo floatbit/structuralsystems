@@ -8,6 +8,7 @@ add_action('init', function () {
 
     register_block_type($dir . '/blocks/text');
     register_block_type($dir . '/blocks/images');
+    register_block_type($dir . '/blocks/image-carousel');
     register_block_type($dir . '/blocks/video');
     register_block_type($dir . '/blocks/project-details');
     register_block_type($dir . '/blocks/recent-updates');
@@ -24,6 +25,7 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
             $allowed_blocks = [
                 'acf/text',
                 'acf/images',
+                'acf/image-carousel',
                 'acf/video',
                 'acf/project-details',
                 'acf/recent-updates',
@@ -34,3 +36,7 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
 
     return $allowed_blocks;
 }, 10, 2);
+
+add_action('enqueue_block_editor_assets', function () {
+    wp_enqueue_script('image-carousel-editor', assets_url('/dist/blocks/image-carousel.js'), ['acf-input'], null, true);
+});

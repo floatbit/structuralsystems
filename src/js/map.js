@@ -1,3 +1,5 @@
+import { initImageCarousels, destroyImageCarousels } from './image-carousel';
+
 export default class Map {
 
   constructor() {
@@ -20,6 +22,7 @@ export default class Map {
 
     closeButton.addEventListener('click', () => {
       panel.classList.add('hidden');
+      destroyImageCarousels(payload);
       payload.innerHTML = '';
       history.pushState({}, '', '/'); // Reset URL to root
     });
@@ -37,6 +40,7 @@ export default class Map {
         if (permalink) {
           panel.classList.remove('hidden');
           panel.scrollTo(0, 0); // Scroll to the top of the panel
+          destroyImageCarousels(payload);
           payload.innerHTML = ''; // Empty payload content
           history.pushState({}, '', permalink); // Change the URL in the browser bar
           try {
@@ -48,7 +52,9 @@ export default class Map {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const mainContent = doc.querySelector('.payload-content').innerHTML;
+            destroyImageCarousels(payload);
             payload.innerHTML = mainContent;
+            initImageCarousels(payload);
             // Add click listeners to any new [data-permalink] elements in the loaded content
             this.addClickListeners(payload.querySelectorAll('[data-permalink]'));
             // add data-post-id - for tracker.js

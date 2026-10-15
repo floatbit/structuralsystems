@@ -296,7 +296,7 @@ function update_project_terms_field($post_id) {
                   }
                 }
                 // Images block
-                if ($block['blockName'] == 'acf/images' && isset($block['attrs']['data']['images'])) {
+                if (in_array($block['blockName'], ['acf/images', 'acf/image-carousel'], true) && isset($block['attrs']['data']['images'])) {
                   foreach ($block['attrs']['data']['images'] as $image_id) {
                     if ($image_id) {
                       $image_description = get_field('image_description', $image_id);

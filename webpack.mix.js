@@ -21,11 +21,12 @@ mix.copy("src/images", "dist/images");
 mix
   .js("src/js/app.js", "dist")
   .js("src/js/blocks/text.js", "dist/blocks")
+  .js("src/js/blocks/image-carousel.js", "dist/blocks")
   .sass("src/scss/app.scss", "dist")
   .sass("src/scss/editor.scss", "dist")
   .options({
     processCssUrls: false,
-    postCss: [require("tailwindcss")],
+    postCss: [require("tailwindcss/nesting"), require("tailwindcss")],
   });
 
 const proxyServer = process.env.BASE_URL ? process.env.BASE_URL : "localhost";
