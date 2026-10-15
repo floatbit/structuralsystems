@@ -397,6 +397,10 @@ a:hover {
 }
 
 
+html:not(.light-mode) .map [data-post-id="32"] > rect.cls-6 {
+  fill: theme('colors.black');
+}
+
 html.light-mode {
   g[data-switch-light-mode] {
     path.half-left {
