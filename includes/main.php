@@ -1,4 +1,8 @@
 <?php
+add_filter('use_block_editor_for_post_type', function ($use_block_editor, $post_type) {
+    return $post_type === 'exhibition' ? false : $use_block_editor;
+}, 10, 2);
+
 /**
  * Add theme support
  */

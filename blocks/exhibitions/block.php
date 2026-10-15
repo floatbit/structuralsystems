@@ -24,32 +24,50 @@ if ( ! empty( $block['className'] ) ) {
 if ( ! empty( $block['align'] ) ) {
     $classes .= ' align' . $block['align'];
 }
+$title = get_field('title');
+$exhibitions = get_field('exhibitions') ?: [];
 ?>
 
-<div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
-	<div class="container">
-		<h2>Upcoming & Ongoing Exhibitions</h2>
-        <?php for($i = 0; $i < 4; $i++):?>
-            <div class="exhibition">
-                <h3>Green Exhibition</h3>
-                <h4>August 22 - September 22, 2024</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, natus? Excepturi inventore saepe enim in culpa obcaecati exercitationem libero aut eos, doloremque officia necessitatibus dignissimos nulla laboriosam molestias quasi dolore ullam dolores eligendi repellat harum corporis accusantium dolorem quia! Quasi.</p>
-                <p>
-                    <img src="/wp-content/uploads/2024/07/1-IMAGE01-COVERIMAGE.jpg" alt="">
-                </p>
+<div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($classes); ?>">
+    <div class="container">
+        <?php if ($title): ?>
+            <h2><?php echo esc_html($title); ?></h2>
+        <?php endif; ?>
+        <?php foreach ($exhibitions as $exhibition):
+            $exhibition_id = $exhibition->ID;
+            $date = get_field('date', $exhibition_id);
+            $external_link = get_field('external_link', $exhibition_id);
+            $link_url = is_array($external_link) ? esc_url($external_link['url'] ?? '') : '';
+            $link_target = !empty($external_link['target']) ? $external_link['target'] : '_self';
+            $link_title = !empty($external_link['title']) ? $external_link['title'] : $link_url;
+            $link_attributes = 'href="' . $link_url . '" target="' . esc_attr($link_target) . '"';
+            if ($link_target === '_blank') {
+                $link_attributes .= ' rel="noopener noreferrer"';
+            }
+        ?>
+        <div class="exhibition">
+            <h3>
+                <?php if ($link_url): ?><a <?php echo $link_attributes; ?>><?php endif; ?>
+                    <?php echo esc_html(get_the_title($exhibition_id)); ?>
+                <?php if ($link_url): ?></a><?php endif; ?>
+            </h3>
+            <?php if (has_post_thumbnail($exhibition_id)): ?>
+            <p>
+                <?php if ($link_url): ?><a <?php echo $link_attributes; ?>><?php endif; ?>
+                    <?php echo get_the_post_thumbnail($exhibition_id, 'large'); ?>
+                <?php if ($link_url): ?></a><?php endif; ?>
+            </p>
+            <?php endif; ?>
+            <?php if ($date): ?>
+                <h4><?php echo esc_html($date); ?></h4>
+            <?php endif; ?>
+            <div class="exhibition-text">
+                <?php echo apply_filters('the_content', get_the_content(null, false, $exhibition)); ?>
             </div>
-            <?php endfor;?>
-		<hr class="my-10">
-		<h2>Past Exhibitions</h2>
-        <?php for($i = 0; $i < 4; $i++):?>
-		<div class="exhibition">
-			<h3>Lorem Exhibition</h3>
-			<h4>August 22 - September 22, 2023</h4>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, natus? Excepturi inventore saepe enim in culpa obcaecati exercitationem libero aut eos, doloremque officia necessitatibus dignissimos nulla laboriosam molestias quasi dolore ullam dolores eligendi repellat harum corporis accusantium dolorem quia! Quasi.</p>
-			<p>
-				<img src="/wp-content/uploads/2024/07/1-IMAGE01-COVERIMAGE.jpg" alt="">
-			</p>
-		</div>
-        <?php endfor;?>
-	</div>
+            <?php if ($link_url): ?>
+                <p><a <?php echo $link_attributes; ?>><?php echo esc_html($link_title); ?></a></p>
+            <?php endif; ?>
+        </div>
+        <?php endforeach; ?>
+    </div>
 </div>
