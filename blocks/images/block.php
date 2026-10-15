@@ -29,10 +29,15 @@ if ( ! empty( $block['align'] ) ) {
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
     <div class="container">
         <div class="md:flex gap-2 md:gap-8">
-            <?php $images = get_field('images');?>
+            <?php $images = get_field('images') ?: [];?>
             <?php foreach($images as $image):?>
                 <?php $image_description = get_field('image_description', $image['ID']);?>
-            <div class="image" style="flex: <?php print $image['width'] / $image['height'];?>;" data-image-enlarge>
+                <?php
+                    $width = (int) ($image['width'] ?? 0);
+                    $height = (int) ($image['height'] ?? 0);
+                    $ratio = $width > 0 && $height > 0 ? $width / $height : 1;
+                ?>
+            <div class="image" style="flex: <?php echo esc_attr($ratio);?>;" data-image-enlarge>
                 <p class="relative">
                     <img src="<?php print $image['url'];?>" alt="">
                     <?php if ($image_description):?>

@@ -11,7 +11,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('antialiased'); ?> data-post-id="<?php the_ID(); ?>">
+<body <?php body_class('antialiased'); ?> data-post-id="<?php the_ID(); ?>" data-home-url="<?php echo esc_url(home_url('/')); ?>">
 
     <?php get_template_part('parts/section-header'); ?>
 

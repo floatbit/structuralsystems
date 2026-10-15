@@ -22,14 +22,9 @@ import { initImageCarousels } from '@/image-carousel'
   // Add event listener for the Escape key
   document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
-      const panelsDepth2 = document.querySelectorAll('.panel[data-depth="2"]:not(.hidden)');
-      const panelsDepth1 = document.querySelectorAll('.panel[data-depth="1"]:not(.hidden)');
-
-      if (panelsDepth2.length > 0) {
-        panelsDepth2.forEach(panel => panel.classList.add('hidden'));
-      } else if (panelsDepth1.length > 0) {
-        panelsDepth1.forEach(panel => panel.classList.add('hidden'));
-      }
+      const panels = Array.from(document.querySelectorAll('.panel[data-depth]:not(.hidden)'));
+      const topPanel = panels.sort((a, b) => Number(b.dataset.depth) - Number(a.dataset.depth))[0];
+      topPanel?.querySelector('.close')?.click();
     }
   });
 

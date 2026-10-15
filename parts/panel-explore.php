@@ -29,15 +29,15 @@
                     <div class="checkboxes">
                         <?php
                         $terms = get_terms(array(
-                            'taxonomy' => 'project-construction',
+                            'taxonomy' => 'project-year',
                             'hide_empty' => true, // Only get terms that have posts associated with them
                         ));
 
                         if (!empty($terms) && !is_wp_error($terms)) {
                             foreach ($terms as $term) {
                                 echo '<div class="checkbox">';
-                                echo '<input type="checkbox" value="' . esc_attr($term->term_id) . '" id="project-construction-' . esc_attr($term->term_id) . '" name="construction-' . esc_attr($term->term_id) . '">';
-                                echo '<label for="project-construction-' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</label>';
+                                echo '<input type="checkbox" value="' . esc_attr($term->term_id) . '" id="project-year-' . esc_attr($term->term_id) . '" name="year-' . esc_attr($term->term_id) . '">';
+                                echo '<label for="project-year-' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</label>';
                                 echo '</div>';
                             }
                         }

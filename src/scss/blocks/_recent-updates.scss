@@ -1,4 +1,28 @@
 .block-recent-updates {
+    .recent-update-project {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        text-decoration: none;
+    }
+    .recent-update-thumbnail {
+        display: block;
+        flex-shrink: 0;
+        width: 100%;
+        img {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+    .recent-update-title {
+        @apply font-sans text-sm;
+        letter-spacing: 1px;
+        > span { display: block; }
+    }
     .grid {
         @screen md {
             max-width: 1024px;

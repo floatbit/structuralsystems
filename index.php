@@ -8,7 +8,7 @@
       <?php get_template_part('parts/mobile-projects'); ?>
     </div>
 
-    <div class="payload-content hidden">
+    <div class="payload-content hidden" data-content-type="<?php echo is_singular('project') ? 'project' : (is_page() && !is_front_page() ? 'page' : ''); ?>">
       <?php if (is_singular('project')):?>
         <?php $cover_image = get_field('cover_image', get_the_ID());?>
         <?php if ($cover_image):?>
@@ -55,6 +55,7 @@
 <?php endwhile; ?>
 
 <?php get_template_part('parts/panel-page'); ?>
+<?php get_template_part('parts/panel-project'); ?>
 
 <?php get_template_part('parts/panel-explore'); ?>
 

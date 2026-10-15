@@ -1,4 +1,4 @@
-<div class="z-30 panel panel-image hidden" data-depth="2">
+<div class="z-40 panel panel-image hidden" data-depth="3">
     <button class="close absolute">&times;</button>
     <div class="container container-fluid pt-12 pb-6 h-full payload">
         <div class="flex flex-col h-full">

@@ -8,78 +8,81 @@ export default class Map {
   }
 
   setupBoxes() {
-    this.addClickListeners(document.querySelectorAll('[data-permalink]'));
+    document.addEventListener('click', event => {
+      const element = event.target.closest('[data-permalink]');
+      if (!element || element.closest('.payload-content')) return;
+      event.preventDefault();
+      const permalink = element.getAttribute('data-permalink');
+      if (permalink) this.openContent(permalink, element.getAttribute('data-content-type'));
+    });
 
     const mapElements = document.querySelectorAll('#map [data-box-id]');
     this.addMouseEnterListeners(mapElements);
     this.addMouseLeaveListeners(mapElements);
     this.addMouseMoveListeners(mapElements);
 
-    const panel = document.querySelector('.panel-page');
-    const closeButton = panel.querySelector('.close');
-    const payload = panel.querySelector('.payload');
-    const mapTooltip = document.querySelector('.map-tooltip');
-
-    closeButton.addEventListener('click', () => {
-      panel.classList.add('hidden');
-      destroyImageCarousels(payload);
-      payload.innerHTML = '';
-      history.pushState({}, '', '/'); // Reset URL to root
+    document.querySelectorAll('.panel-page, .panel-project').forEach(panel => {
+      panel.querySelector('.close').addEventListener('click', () => this.closePanel(panel));
     });
   }
 
-  addClickListeners(elements) {
-    const panel = document.querySelector('.panel-page');
-    const payload = panel.querySelector('.payload');
+  restoreLocation() {
+    const panel = document.querySelector('.panel-project:not(.hidden)') || document.querySelector('.panel-page:not(.hidden)');
+    const permalink = panel?.dataset.permalink || document.body.dataset.homeUrl || '/';
+    history.pushState({}, '', permalink);
+    if (panel?.dataset.postId) document.body.setAttribute('data-post-id', panel.dataset.postId);
+  }
 
-    elements.forEach(element => {
-      element.addEventListener('click', async (event) => {
-        event.preventDefault(); // Prevent default action for <a> tags
-        const permalink = element.getAttribute('data-permalink');
-        console.log(permalink)
-        if (permalink) {
-          panel.classList.remove('hidden');
-          panel.scrollTo(0, 0); // Scroll to the top of the panel
-          destroyImageCarousels(payload);
-          payload.innerHTML = ''; // Empty payload content
-          history.pushState({}, '', permalink); // Change the URL in the browser bar
-          try {
-            const response = await fetch(permalink);
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const mainContent = doc.querySelector('.payload-content').innerHTML;
-            destroyImageCarousels(payload);
-            payload.innerHTML = mainContent;
-            initImageCarousels(payload);
-            // Add click listeners to any new [data-permalink] elements in the loaded content
-            this.addClickListeners(payload.querySelectorAll('[data-permalink]'));
-            // add data-post-id - for tracker.js
-            const postId = doc.body.getAttribute('data-post-id');
-            if (postId) {
-              document.body.setAttribute('data-post-id', postId);
-            }
-            // Fade out cover image (keep faded — removing the class after 1s made it pop back in)
-            const coverImage = payload.querySelector('.project-cover-image');
-            if (coverImage) {
-              setTimeout(() => {
-                coverImage.classList.add('project-cover-image-fade-out');
-              }, 2000);
-            }
-          } catch (error) {
-            console.error('Error fetching or parsing HTML:', error);
-            panel.classList.add('hidden');
-            history.pushState({}, '', '/'); // Reset URL to root
-          }
-        } else {
-          console.error('No permalink found for this element');
-          panel.classList.add('hidden');
-        }
-      });
-    });
+  closePanel(panel, restore = true) {
+    panel.contentController?.abort();
+    panel.classList.add('hidden');
+    const payload = panel.querySelector('.payload');
+    destroyImageCarousels(payload);
+    payload.innerHTML = '';
+    delete panel.dataset.permalink;
+    delete panel.dataset.postId;
+    if (restore) this.restoreLocation();
+  }
+
+  showContent(panel, html, permalink, postId) {
+    const payload = panel.querySelector('.payload');
+    destroyImageCarousels(payload);
+    payload.innerHTML = html;
+    panel.dataset.permalink = permalink;
+    panel.dataset.postId = postId;
+    panel.classList.remove('hidden');
+    panel.scrollTo(0, 0);
+    initImageCarousels(payload);
+    if (postId) document.body.setAttribute('data-post-id', postId);
+    const coverImage = payload.querySelector('.project-cover-image');
+    if (coverImage) {
+      setTimeout(() => coverImage.classList.add('project-cover-image-fade-out'), 2000);
+    }
+  }
+
+  async openContent(permalink, contentType) {
+    let panel = document.querySelector(contentType === 'project' ? '.panel-project' : '.panel-page');
+    panel.contentController?.abort();
+    const controller = new AbortController();
+    panel.contentController = controller;
+    try {
+      const response = await fetch(permalink, { signal: controller.signal });
+      if (!response.ok) throw new Error('Network response was not ok');
+      const html = await response.text();
+      if (controller.signal.aborted) return;
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const source = doc.querySelector('.payload-content');
+      if (!source) throw new Error('Page content was not found');
+      // Use the returned content type for links that do not specify one.
+      const isProject = source.dataset.contentType === 'project';
+      panel = document.querySelector(isProject ? '.panel-project' : '.panel-page');
+      if (!isProject) this.closePanel(document.querySelector('.panel-project'), false);
+      this.showContent(panel, source.innerHTML, permalink, doc.body.getAttribute('data-post-id'));
+      history.pushState({}, '', permalink);
+    } catch (error) {
+      if (controller.signal.aborted) return;
+      console.error('Error fetching or parsing HTML:', error);
+    }
   }
 
   addMouseEnterListeners(elements) {
@@ -159,16 +162,10 @@ export default class Map {
   }
 
   loadFromPermalink() {
-    const elements = document.querySelectorAll('[data-permalink]');
-    const currentUrl = window.location.pathname;
-
-    elements.forEach(element => {
-      const permalink = new URL(element.getAttribute('data-permalink'), window.location.origin).pathname;
-      if (permalink === currentUrl) {
-        const event = new Event('click');
-        element.dispatchEvent(event);
-      }
-    });
+    const source = document.querySelector('.payload-content');
+    if (!source || !source.dataset.contentType) return;
+    const panel = document.querySelector(source.dataset.contentType === 'project' ? '.panel-project' : '.panel-page');
+    this.showContent(panel, source.innerHTML, window.location.href, document.body.getAttribute('data-post-id'));
   }
 
 }
