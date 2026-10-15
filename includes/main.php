@@ -74,16 +74,26 @@ function handle_search_action() {
   $args = array(
     's' => $keyword,
     'post_type' => 'project', // or any other post type
+    'posts_per_page' => -1,
   );
   $query = new WP_Query($args);
 
   if ($query->have_posts()) {
-    echo '<ol>';
+    echo '<ul class="search-projects">';
     while ($query->have_posts()) {
       $query->the_post();
-      echo '<li data-post-id="' . get_the_ID() . '"><a href="' . get_the_permalink() . '" data-post-id="' . get_the_ID() . '">' . get_the_title() . '</a></li>'; // Customize the output as needed
+      echo '<li data-post-id="' . get_the_ID() . '"><a class="search-project" href="' . esc_url(get_the_permalink()) . '" data-post-id="' . get_the_ID() . '">';
+      echo '<span class="search-project-thumbnail">' . get_the_post_thumbnail(get_the_ID(), 'full', array('alt' => '', 'sizes' => '100px', 'loading' => 'eager', 'style' => 'width:100px;height:auto;')) . '</span>';
+      echo '<span class="search-project-title">';
+      echo '<span>PROJECT ' . esc_html(get_field('box_number', get_the_ID())) . '</span>';
+      $eyebrow = get_field('eyebrow', get_the_ID());
+      if ($eyebrow) {
+        echo '<span>' . esc_html(strtoupper($eyebrow)) . '</span>';
+      }
+      echo '<span>Inspired By ' . esc_html(get_the_title()) . '</span>';
+      echo '</span></a></li>';
     }
-    echo '</ol>';
+    echo '</ul>';
   } else {
     echo '<p>No results found.</p>';
   }
@@ -245,7 +255,7 @@ function update_project_terms_field($post_id) {
     }
 
     // Define the taxonomies you want to retrieve terms from
-    $taxonomies = ['project-category', 'project-year', 'project-material', 'project-construction'];
+    $taxonomies = ['project-category', 'project-year', 'project-material', 'project-construction', 'project-architect', 'project-builder'];
 
     // Initialize an array to hold all terms
     $all_terms = [];

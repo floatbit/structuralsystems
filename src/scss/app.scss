@@ -280,6 +280,37 @@
 }
 
 .panel-search {
+  .search-summary {
+    @apply flex flex-wrap items-center gap-x-4 gap-y-2;
+  }
+  .search-loading {
+    @apply py-4;
+    img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+  .search-project {
+    @apply flex items-start gap-4 no-underline;
+  }
+  .search-project-title {
+    @apply block font-sans text-sm;
+    letter-spacing: 1px;
+    > span {
+      display: block;
+    }
+  }
+  .search-project-thumbnail {
+    @apply block shrink-0;
+    width: 100px;
+    img {
+      display: block;
+      width: 100px !important;
+      height: auto !important;
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
   label {
     @apply mb-2 block;
   }
@@ -289,10 +320,10 @@
   form {
     @apply mb-10;
   }
-  ol {
-    @apply list-decimal ml-4;
+  .search-projects {
+    @apply list-none ml-0;
     li {
-      @apply mb-2 pl-2;
+      @apply mb-8 pl-0;
     }
   }
 }
@@ -401,7 +432,8 @@ html.light-mode {
         fill: theme('colors.white');
       }
     }
-    g#Small g.favorited {
+    g#Small g.favorited,
+    g#Small g.explore-match {
       rect {
         fill: theme('colors.yellow');
         stroke: theme('colors.yellow');

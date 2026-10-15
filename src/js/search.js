@@ -12,12 +12,24 @@ export default class Search {
     const openSearchButtons = document.querySelectorAll('[data-open-search]');
     const closeSearchButton = document.querySelector('.panel-search .close');
     const searchPanel = document.querySelector('.panel-search');
+    const keywordInput = document.querySelector('#keyword');
+    let searchTimer;
+
+    if (keywordInput && searchResults) {
+      keywordInput.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        if (this.searchController) this.searchController.abort();
+        searchTimer = setTimeout(() => {
+          this.performSearch(keywordInput.value, searchResults);
+        }, 1000);
+      });
+    }
 
     if (form) {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const keyword = document.querySelector('#keyword').value;
-        this.performSearch(keyword, searchResults, searchPanel);
+        clearTimeout(searchTimer);
+        this.performSearch(keywordInput.value, searchResults);
       });
     }
 
@@ -37,6 +49,11 @@ export default class Search {
 
     if (searchResults) {
       searchResults.addEventListener('click', (event) => {
+        if (event.target.closest('[data-view-on-map]')) {
+          event.preventDefault();
+          searchPanel.classList.add('hidden');
+          return;
+        }
         const linkElement = event.target.closest('a[data-post-id]');
         if (linkElement) {
           event.preventDefault();
@@ -58,7 +75,12 @@ export default class Search {
     }
   }
 
-  performSearch(keyword, searchResults, searchPanel) {
+  performSearch(keyword, searchResults) {
+    if (this.searchController) this.searchController.abort();
+    const controller = new AbortController();
+    this.searchController = controller;
+    const loadingTemplate = document.querySelector('.search-loading-template');
+    searchResults.innerHTML = loadingTemplate ? loadingTemplate.innerHTML : '<p role="status">Searching…</p>';
     const ajaxUrl = '/wp-admin/admin-ajax.php';
     const data = new URLSearchParams();
     data.append('action', 'search_action');
@@ -66,18 +88,22 @@ export default class Search {
 
     fetch(ajaxUrl, {
       method: 'POST',
+      signal: controller.signal,
       body: data,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     })
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) throw new Error('Search request failed');
+      return response.text();
+    })
     .then(result => {
+      if (controller.signal.aborted) return;
       const parser = new DOMParser();
       const doc = parser.parseFromString(result, 'text/html');
       const liCount = doc.querySelectorAll('li').length;
-      searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>${result}`;
-      //searchResults.innerHTML = `<p>Total projects found: ${liCount}</p>`;
+      searchResults.innerHTML = `<p class="search-summary">Total projects found: ${liCount} <a href="#map" data-view-on-map>View on Map</a></p>${result}`;
 
       // Remove 'explore-match' class from all projects
       const allProjects = document.querySelectorAll('[data-content-type="project"]');
@@ -87,18 +113,14 @@ export default class Search {
       const searchedPostIds = Array.from(doc.querySelectorAll('li[data-post-id]')).map(li => li.getAttribute('data-post-id'));
 
       searchedPostIds.forEach(postId => {
-        const matchedProject = document.querySelector(`[data-content-type="project"][data-post-id="${postId}"]`);
-        if (matchedProject) {
-          matchedProject.classList.add('explore-match');
-        }
+        document.querySelectorAll(`[data-content-type="project"][data-post-id="${postId}"]`).forEach(project => {
+          project.classList.add('explore-match');
+        });
       });
 
-      // Close the search panel if there are search results
-      if (liCount > 0 && searchPanel) {
-        searchPanel.classList.add('hidden');
-      }
     })
     .catch(error => {
+      if (controller.signal.aborted) return;
       console.error('Error:', error);
       searchResults.innerHTML = '<p>There was an error processing your request.</p>';
     });

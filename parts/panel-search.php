@@ -15,7 +15,12 @@
                 </form>
             </div>
             <div class="basis-2/3">
-                <div class="search-results"></div>
+                <div class="search-results" aria-live="polite"></div>
+                <template class="search-loading-template">
+                    <div class="search-loading" role="status">
+                        <img src="<?php echo esc_url(assets_url('/dist/images/loading.gif')); ?>" alt="Searching…" width="48" height="48">
+                    </div>
+                </template>
             </div>
         </div>
     </div>
