@@ -7,6 +7,7 @@ add_action('init', function () {
     $dir = get_template_directory();
 
     register_block_type($dir . '/blocks/text');
+    register_block_type($dir . '/blocks/text_image');
     register_block_type($dir . '/blocks/images');
     register_block_type($dir . '/blocks/image-carousel');
     register_block_type($dir . '/blocks/video');
@@ -24,6 +25,7 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
         case 'project':
             $allowed_blocks = [
                 'acf/text',
+                'acf/text-image',
                 'acf/images',
                 'acf/image-carousel',
                 'acf/video',

@@ -9,11 +9,39 @@ export default class Map {
 
   setupBoxes() {
     document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (link && !link.hasAttribute('download')) {
+        try {
+          const linkUrl = new URL(link.getAttribute('href'), window.location.href);
+          if (['http:', 'https:'].includes(linkUrl.protocol) && linkUrl.origin !== window.location.origin) {
+            link.setAttribute('target', '_blank');
+            link.relList.add('noopener', 'noreferrer');
+            return;
+          }
+        } catch (_) {
+          // Leave invalid URLs to the browser.
+        }
+      }
+      if (event.defaultPrevented || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const element = event.target.closest('[data-permalink]');
       if (!element || element.closest('.payload-content')) return;
+      // A nested link owns its navigation rather than the surrounding clickable card.
+      if (link && link !== element) return;
+      if (element.hasAttribute('download')) return;
+      const target = element.getAttribute('target');
+      if (target && target.toLowerCase() !== '_self') return;
+      const permalink = link ? link.getAttribute('href') : element.getAttribute('data-permalink');
+      if (!permalink) return;
+      let url;
+      try {
+        url = new URL(permalink, window.location.href);
+      } catch (_) {
+        return;
+      }
+      if (!['http:', 'https:'].includes(url.protocol) || url.origin !== window.location.origin) return;
+      if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
       event.preventDefault();
-      const permalink = element.getAttribute('data-permalink');
-      if (permalink) this.openContent(permalink, element.getAttribute('data-content-type'));
+      this.openContent(url.href, element.getAttribute('data-content-type'));
     });
 
     const mapElements = document.querySelectorAll('#map [data-box-id]');

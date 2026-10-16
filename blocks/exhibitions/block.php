@@ -47,15 +47,11 @@ $exhibitions = get_field('exhibitions') ?: [];
         ?>
         <div class="exhibition">
             <h3>
-                <?php if ($link_url): ?><a <?php echo $link_attributes; ?>><?php endif; ?>
                     <?php echo esc_html(get_the_title($exhibition_id)); ?>
-                <?php if ($link_url): ?></a><?php endif; ?>
             </h3>
             <?php if (has_post_thumbnail($exhibition_id)): ?>
             <p>
-                <?php if ($link_url): ?><a <?php echo $link_attributes; ?>><?php endif; ?>
                     <?php echo get_the_post_thumbnail($exhibition_id, 'large'); ?>
-                <?php if ($link_url): ?></a><?php endif; ?>
             </p>
             <?php endif; ?>
             <?php if ($date): ?>

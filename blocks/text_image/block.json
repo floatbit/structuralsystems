@@ -1,0 +1,12 @@
+{
+  "name": "acf/text-image",
+  "title": "Text + Image",
+  "description": "Title, subtitle, image, description, and link.",
+  "category": "structuralsystems",
+  "keywords": ["text", "image", "text_image"],
+  "supports": { "anchor": true },
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "block.php"
+  }
+}

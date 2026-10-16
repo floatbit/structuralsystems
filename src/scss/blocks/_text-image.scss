@@ -1,0 +1,13 @@
+.block-text-image {
+    .text-image-content {
+        @apply mb-20 mt-10;
+        @screen md {
+            max-width: 1024px;
+        }
+    }
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+}
