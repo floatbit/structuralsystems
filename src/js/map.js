@@ -25,6 +25,8 @@ export default class Map {
       if (event.defaultPrevented || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const element = event.target.closest('[data-permalink]');
       if (!element || element.closest('.payload-content')) return;
+      // Panels store their current URL too, but only explicit links/cards navigate.
+      if (element.matches('.panel-page, .panel-project')) return;
       // A nested link owns its navigation rather than the surrounding clickable card.
       if (link && link !== element) return;
       if (element.hasAttribute('download')) return;
