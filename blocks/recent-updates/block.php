@@ -45,15 +45,14 @@ $projects = get_field('projects') ?: [];
                 <?php endforeach; ?>
             >
                 <span class="recent-update-thumbnail">
-                    <?php echo get_the_post_thumbnail($project_id, 'full', ['alt' => '', 'sizes' => '(min-width: 1024px) 320px, (min-width: 768px) 50vw, 100vw', 'loading' => 'eager', 'style' => 'width:100%;height:auto;']); ?>
+                    <?php get_template_part('parts/project-thumbnail', null, ['project_id' => $project_id, 'sizes' => '(min-width: 1024px) 320px, (min-width: 768px) 50vw, 100vw']); ?>
                 </span>
                 <span class="recent-update-title">
-                    <span>PROJECT <?php echo esc_html(get_field('box_number', $project_id)); ?></span>
                     <?php $eyebrow = get_field('eyebrow', $project_id); ?>
                     <?php if ($eyebrow): ?>
-                        <span><?php echo esc_html(strtoupper($eyebrow)); ?></span>
+                        <span class="project-eyebrow"><?php echo esc_html($eyebrow); ?></span>
                     <?php endif; ?>
-                    <span>Inspired By <?php echo esc_html(get_the_title($project_id)); ?></span>
+                    <span><em>Inspired By</em> <?php echo esc_html(get_the_title($project_id)); ?></span>
                 </span>
             </a>
             <?php endforeach; ?>

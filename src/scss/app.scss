@@ -268,79 +268,8 @@ html.light-mode .panel-search .loading-light { display: none; }
   }
 }
 
-.panel-explore,
-.panel-search {
-  @apply pt-12 pb-8;
-  h2 {
-    @apply mb-10 uppercase;
-  }
-  .container {
-    @apply mx-auto;
-    max-width: 1440px;
-  }
-  h3 {
-    @apply uppercase mb-2;
-  }
-  .checkboxes {
-    @apply mb-8;
-    @screen md {
-      @apply mb-10;
-    }
-  }
-  .checkbox {
-    @apply flex items-center gap-2;
-    @apply mb-2;
-  }
-}
+@import 'panel-tools';
 
-.panel-search {
-  .search-summary {
-    @apply flex flex-wrap items-center gap-x-4 gap-y-2;
-  }
-  .search-loading {
-    @apply py-4;
-    img {
-      width: 48px;
-      height: 48px;
-    }
-  }
-  .search-project {
-    @apply flex items-start gap-4 no-underline;
-  }
-  .search-project-title {
-    @apply block font-sans text-sm;
-    letter-spacing: 1px;
-    > span {
-      display: block;
-    }
-  }
-  .search-project-thumbnail {
-    @apply block shrink-0;
-    width: 100px;
-    img {
-      display: block;
-      width: 100px !important;
-      height: auto !important;
-      max-width: 100%;
-      object-fit: contain;
-    }
-  }
-  label {
-    @apply mb-2 block;
-  }
-  input {
-    @apply text-black;
-  }
-  form {
-    @apply mb-10;
-  }
-  .search-projects {
-    @apply list-none ml-0;
-    li {
-      @apply mb-8 pl-0;
-    }
-  }
-}
 .project-cover-image {
   opacity: 1;
   transition: opacity 500ms ease;
@@ -363,16 +292,22 @@ html.light-mode .panel-search .loading-light { display: none; }
 }
 
 button.close {
-  @apply fixed top-[10px] right-[20px] bg-black text-white;
-  font-size: 40px;
+  @apply fixed bg-black text-white;
+  top: 48px;
+  right: max(30px, calc((100vw - 1380px) / 2));
+  border: 1px solid #aaa;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
   line-height: 1;
-  width: 50px;
-  height: 50px;
   padding-bottom: 5px;
-  z-index: 2;
-  &:hover {
-    @apply bg-yellow text-black;
-  }
+  z-index: 50;
+  &:hover { @apply bg-yellow text-black; }
+  &:focus-visible { outline: 2px solid theme('colors.yellow'); outline-offset: 3px; }
+}
+
+@media (max-width: 767px) {
+  button.close { top: 24px; right: 20px; }
 }
 
 .btn {

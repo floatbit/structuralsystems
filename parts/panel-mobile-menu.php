@@ -1,5 +1,8 @@
 <div class="panel panel-mobile-menu hidden" data-depth="1">
-    <button class="close absolute">&times;</button>
+    <button class="close absolute" aria-label="Close menu">&times;</button>
+    <div class="container modal-brand">
+        <?php get_template_part('parts/panel-tools-header'); ?>
+    </div>
     <div class="container">
         <div class="pt-20 links">
             <div data-post-id="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">

@@ -1,3 +1,4 @@
+import { openModal, closeModal } from './modal';
 export default class MobileMenu {
 
   constructor() {
@@ -11,18 +12,18 @@ export default class MobileMenu {
     const menuLinks = panelMobileMenu.querySelectorAll('.links div');
 
     closeButton.addEventListener('click', () => {
-      panelMobileMenu.classList.add('hidden');
+      closeModal(panelMobileMenu);
     });
 
     openMobileMenuElements.forEach(element => {
       element.addEventListener('click', () => {
-        panelMobileMenu.classList.remove('hidden');
+        openModal(panelMobileMenu);
       });
     });
 
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
-        panelMobileMenu.classList.add('hidden');
+        closeModal(panelMobileMenu);
       });
     });
   }

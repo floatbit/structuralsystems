@@ -1,3 +1,4 @@
+import { openModal, closeModal } from './modal';
 import { fetchProjectSearch, publishProjectSearch } from './project-search';
 
 export default class Search {
@@ -21,6 +22,10 @@ export default class Search {
       keywordInput.addEventListener('input', () => {
         clearTimeout(searchTimer);
         if (this.searchController) this.searchController.abort();
+        if (!keywordInput.value.trim()) {
+          this.performSearch('', searchResults);
+          return;
+        }
         searchTimer = setTimeout(() => {
           this.performSearch(keywordInput.value, searchResults);
         }, 1000);
@@ -38,14 +43,14 @@ export default class Search {
     if (openSearchButtons.length > 0 && searchPanel) {
       openSearchButtons.forEach(button => {
         button.addEventListener('click', () => {
-          searchPanel.classList.remove('hidden');
+          openModal(searchPanel);
         });
       });
     }
 
     if (closeSearchButton && searchPanel) {
       closeSearchButton.addEventListener('click', () => {
-        searchPanel.classList.add('hidden');
+        closeModal(searchPanel);
       });
     }
 
@@ -53,7 +58,7 @@ export default class Search {
       searchResults.addEventListener('click', (event) => {
         if (event.target.closest('[data-view-on-map]')) {
           event.preventDefault();
-          searchPanel.classList.add('hidden');
+          closeModal(searchPanel);
           return;
         }
         const linkElement = event.target.closest('a[data-post-id]');
@@ -69,7 +74,7 @@ export default class Search {
             });
             mapElement.dispatchEvent(clickEvent);
             if (this.CLOSE_SEARCH_ON_PROJECT_OPEN) {
-              searchPanel.classList.add('hidden');
+              closeModal(searchPanel);
             }
           }
         }
@@ -79,6 +84,12 @@ export default class Search {
 
   performSearch(keyword, searchResults) {
     if (this.searchController) this.searchController.abort();
+    keyword = keyword.trim();
+    if (!keyword) {
+      searchResults.innerHTML = '';
+      publishProjectSearch('', null);
+      return;
+    }
     const controller = new AbortController();
     this.searchController = controller;
     const loadingTemplate = document.querySelector('.search-loading-template');
@@ -90,7 +101,7 @@ export default class Search {
       const doc = parser.parseFromString(result, 'text/html');
       const liCount = doc.querySelectorAll('li').length;
       const viewOnMap = liCount > 0 ? ' <a href="#map" data-view-on-map>View on Map</a>' : '';
-      searchResults.innerHTML = `<p class="search-summary">Total projects found: ${liCount}${viewOnMap}</p>${result}`;
+      searchResults.innerHTML = `<p class="search-summary"><span><span class="search-result-count">${liCount}</span> projects found</span>${viewOnMap}</p>${result}`;
 
       publishProjectSearch(keyword, postIds);
 

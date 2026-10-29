@@ -53,12 +53,8 @@
   .mobile-project-thumbnail {
     display: block;
     width: 100%;
-    img {
-      display: block;
-      width: 100% !important;
-      height: auto !important;
-    }
   }
+
   .mobile-project-text {
     display: none;
     font-family: theme('fontFamily.sans');
@@ -73,16 +69,13 @@
   .mobile-project-card.hidden { display: none !important; }
   &.is-searching .mobile-project-grid { display: none; }
 
-  &[data-view="list"], &[data-view="detail"] {
+  &[data-view="list"] {
     .mobile-project-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
     .mobile-project-text { display: block; }
   }
   &[data-view="list"] {
-    .mobile-project-card { display: flex; align-items: flex-start; gap: 1rem; }
+    .mobile-project-card { display: flex; align-items: flex-end; gap: 1rem; }
     .mobile-project-thumbnail { width: 100px; flex-shrink: 0; }
-  }
-  &[data-view="detail"] {
-    .mobile-project-text { margin-top: 1rem; }
   }
   button:focus-visible {
     outline: none;

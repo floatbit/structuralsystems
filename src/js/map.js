@@ -1,3 +1,4 @@
+import { openModal, closeModal, contentLoader } from './modal';
 import { initImageCarousels, destroyImageCarousels } from './image-carousel';
 
 export default class Map {
@@ -63,9 +64,11 @@ export default class Map {
     if (panel?.dataset.postId) document.body.setAttribute('data-post-id', panel.dataset.postId);
   }
 
-  closePanel(panel, restore = true) {
+  async closePanel(panel, restore = true) {
     panel.contentController?.abort();
-    panel.classList.add('hidden');
+    if (!await closeModal(panel)) return;
+    panel.removeAttribute('aria-busy');
+    delete panel.loadingPermalink;
     const payload = panel.querySelector('.payload');
     destroyImageCarousels(payload);
     payload.innerHTML = '';
@@ -80,7 +83,13 @@ export default class Map {
     payload.innerHTML = html;
     panel.dataset.permalink = permalink;
     panel.dataset.postId = postId;
-    panel.classList.remove('hidden');
+    panel.removeAttribute('aria-busy');
+    delete panel.loadingPermalink;
+    const wasHidden = panel.classList.contains('hidden');
+    openModal(panel);
+    if (!wasHidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      payload.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180 });
+    }
     panel.scrollTo(0, 0);
     initImageCarousels(payload);
     if (postId) document.body.setAttribute('data-post-id', postId);
@@ -92,13 +101,22 @@ export default class Map {
 
   async openContent(permalink, contentType) {
     let panel = document.querySelector(contentType === 'project' ? '.panel-project' : '.panel-page');
+    if (panel.loadingPermalink === permalink && !panel.contentController?.signal.aborted) return;
     panel.contentController?.abort();
+    panel.loadingPermalink = permalink;
+    panel.setAttribute('aria-busy', 'true');
+    const payload = panel.querySelector('.payload');
+    destroyImageCarousels(payload);
+    payload.innerHTML = contentLoader;
+    const opening = openModal(panel);
+    const requestPanel = panel;
     const controller = new AbortController();
     panel.contentController = controller;
     try {
       const response = await fetch(permalink, { signal: controller.signal });
       if (!response.ok) throw new Error('Network response was not ok');
       const html = await response.text();
+      await opening;
       if (controller.signal.aborted) return;
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const source = doc.querySelector('.payload-content');
@@ -106,11 +124,20 @@ export default class Map {
       // Use the returned content type for links that do not specify one.
       const isProject = source.dataset.contentType === 'project';
       panel = document.querySelector(isProject ? '.panel-project' : '.panel-page');
+      if (panel !== requestPanel) {
+        requestPanel.contentController = null;
+        this.closePanel(requestPanel, false);
+        panel.contentController?.abort();
+        panel.contentController = controller;
+      }
       if (!isProject) this.closePanel(document.querySelector('.panel-project'), false);
       this.showContent(panel, source.innerHTML, permalink, doc.body.getAttribute('data-post-id'));
       history.pushState({}, '', permalink);
     } catch (error) {
       if (controller.signal.aborted) return;
+      panel.removeAttribute('aria-busy');
+      delete panel.loadingPermalink;
+      panel.querySelector('.payload').innerHTML = '<p role="alert">Unable to load this content. Please close this window and try again.</p>';
       console.error('Error fetching or parsing HTML:', error);
     }
   }

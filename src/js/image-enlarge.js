@@ -1,3 +1,4 @@
+import { openModal, closeModal } from './modal';
 export default class ImageEnlarge {
 
   constructor() {
@@ -7,7 +8,7 @@ export default class ImageEnlarge {
   setupImages() {
     document.addEventListener('click', (event) => {
       const enlargeTarget = event.target.closest('[data-image-enlarge]');
-      const closeButton = event.target.closest('.close');
+      const closeButton = event.target.closest('.panel-image .close');
       
       if (enlargeTarget) {
         this.enlargeImage(enlargeTarget);
@@ -54,26 +55,20 @@ export default class ImageEnlarge {
         }
       }
 
-      panelImage.classList.remove('hidden');
+      openModal(panelImage);
     }
   }
 
   closeImage() {
     const panelImage = document.querySelector('.panel-image');
     if (panelImage) {
-      const panelImageDiv = panelImage.querySelector('.image');
-      const panelCaptionDiv = panelImage.querySelector('.caption');
-
-      if (panelImageDiv) {
-        panelImageDiv.style.backgroundImage = '';
-      }
-
-      if (panelCaptionDiv) {
-        panelCaptionDiv.innerHTML = '';
-        panelCaptionDiv.classList.add('hidden');
-      }
-
-      panelImage.classList.add('hidden');
+      closeModal(panelImage).then(closed => {
+        if (!closed) return;
+        panelImage.querySelector('.image').style.backgroundImage = '';
+        const caption = panelImage.querySelector('.caption');
+        caption.innerHTML = '';
+        caption.classList.add('hidden');
+      });
     }
   }
 }

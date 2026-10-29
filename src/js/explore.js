@@ -1,3 +1,4 @@
+import { openModal, closeModal } from './modal';
 export default class Explore {
 
   constructor() {
@@ -18,18 +19,18 @@ export default class Explore {
     });
 
     closeButton.addEventListener('click', () => {
-      panelExplore.classList.add('hidden');
+      closeModal(panelExplore);
     });
 
     submitButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent the default form submission
-      panelExplore.classList.add('hidden');
+      closeModal(panelExplore);
       this.filterProjects();
     });
 
     openExploreElements.forEach(element => {
       element.addEventListener('click', () => {
-        panelExplore.classList.remove('hidden');
+        openModal(panelExplore);
       });
     });
 
@@ -54,6 +55,12 @@ export default class Explore {
     const selectedYears = Array.from(document.querySelectorAll('.panel-explore input[name^="year"]:checked')).map(cb => cb.value);
     const selectedMaterials = Array.from(document.querySelectorAll('.panel-explore input[name^="material"]:checked')).map(cb => cb.value);
     const selectedConstructions = Array.from(document.querySelectorAll('.panel-explore input[name^="construction"]:checked')).map(cb => cb.value);
+
+    const categoryCount = document.querySelectorAll('.panel-explore input[name^="category"]').length;
+    const yearCount = document.querySelectorAll('.panel-explore input[name^="year"]').length;
+    document.querySelector('.category-selection-count').textContent = `${selectedCategories.length} of ${categoryCount}`;
+    document.querySelector('.year-selection-count').textContent = `${selectedYears.length} of ${yearCount}`;
+    document.querySelector('.explore-selection-summary').textContent = `${selectedCategories.length} ${selectedCategories.length === 1 ? 'category' : 'categories'} · ${selectedYears.length} ${selectedYears.length === 1 ? 'year' : 'years'} selected`;
 
     const mapProjects = document.querySelectorAll('.map [data-content-type="project"]:not(.big-box)');
     const mobileProjects = document.querySelectorAll('.mobile-projects [data-content-type="project"]');

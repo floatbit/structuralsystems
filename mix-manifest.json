@@ -1,10 +1,11 @@
 {
-    "/dist/app.js": "/dist/app.js?id=4d7286c1b9b506098f45f3abfe8d57a1",
+    "/dist/app.js": "/dist/app.js?id=2f214af88db14c277de867d01f02deff",
     "/dist/blocks/text.js": "/dist/blocks/text.js?id=d41d8cd98f00b204e9800998ecf8427e",
     "/dist/blocks/image-carousel.js": "/dist/blocks/image-carousel.js?id=498cadbe15632e39f93f3ee2d2f56f09",
-    "/dist/editor.css": "/dist/editor.css?id=c80b5d3b05a20863871ded03a476c9e2",
-    "/dist/app.css": "/dist/app.css?id=ddbd4b6d782368257ff3d18a9c9a442e",
+    "/dist/editor.css": "/dist/editor.css?id=22eccf6304141dde365d5d67431cb474",
+    "/dist/app.css": "/dist/app.css?id=f8b02de746dbe51f22f2ca3ab849dc65",
     "/dist/images/loading-light.gif": "/dist/images/loading-light.gif?id=02951f7b88703e6b0550a06bcf4546fa",
     "/dist/images/loading.gif": "/dist/images/loading.gif?id=6b25175c671b2665cb05a534fc7d3d62",
+    "/dist/images/logo.svg": "/dist/images/logo.svg?id=56deafa2be0b1e25bde54fb70409fdb4",
     "/dist/images/sample-image.jpg": "/dist/images/sample-image.jpg?id=51bfbe0c2d3bc8df0460c0f6f4b8d288"
 }

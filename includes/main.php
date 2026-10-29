@@ -72,9 +72,10 @@ add_action('wp_ajax_search_action', 'handle_search_action');
 add_action('wp_ajax_nopriv_search_action', 'handle_search_action');
 
 function handle_search_action() {
-  // Your search logic here
-  // Example:
-  $keyword = sanitize_text_field($_POST['keyword']);
+  $keyword = trim(sanitize_text_field(wp_unslash($_POST['keyword'] ?? '')));
+  if ($keyword === '') {
+    wp_die();
+  }
   $args = array(
     's' => $keyword,
     'post_type' => 'project', // or any other post type
@@ -87,14 +88,16 @@ function handle_search_action() {
     while ($query->have_posts()) {
       $query->the_post();
       echo '<li data-post-id="' . get_the_ID() . '"><a class="search-project" href="' . esc_url(get_the_permalink()) . '" data-post-id="' . get_the_ID() . '">';
-      echo '<span class="search-project-thumbnail">' . get_the_post_thumbnail(get_the_ID(), 'full', array('alt' => '', 'sizes' => '100px', 'loading' => 'eager', 'style' => 'width:100px;height:auto;')) . '</span>';
+      $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+      $image_ratio = $thumbnail && $thumbnail[2] > 0 ? $thumbnail[1] / $thumbnail[2] : 1;
+      echo '<span class="search-project-thumbnail"><span class="search-project-image" style="--project-image-ratio:' . esc_attr($image_ratio) . '">' . get_the_post_thumbnail(get_the_ID(), 'large', array('alt' => '', 'sizes' => '(min-width: 1024px) 20vw, 50vw', 'loading' => 'lazy'));
+      echo '<span class="search-project-number">' . esc_html(get_field('box_number', get_the_ID())) . '</span></span></span>';
       echo '<span class="search-project-title">';
-      echo '<span>PROJECT ' . esc_html(get_field('box_number', get_the_ID())) . '</span>';
       $eyebrow = get_field('eyebrow', get_the_ID());
       if ($eyebrow) {
-        echo '<span>' . esc_html(strtoupper($eyebrow)) . '</span>';
+        echo '<span class="project-eyebrow">' . esc_html($eyebrow) . '</span>';
       }
-      echo '<span>Inspired By ' . esc_html(get_the_title()) . '</span>';
+      echo '<span><em>Inspired By</em> ' . esc_html(get_the_title()) . '</span>';
       echo '</span></a></li>';
     }
     echo '</ul>';
