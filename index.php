@@ -19,7 +19,7 @@
         <?php 
           $eyebrow = get_field('eyebrow', get_the_ID());
         ?>
-        <h5 class="mb-3">Project <?php print get_field('box_number', get_the_ID());?></h5>
+        <h5 class="mb-3">Project <?php print get_field('box_number', get_the_ID());?> <?php get_template_part('parts/edit-page-link'); ?></h5>
         <h1 class="mb-3 uppercase">
           <?php if ($eyebrow):?>
             <?php echo $eyebrow;?>
@@ -39,6 +39,7 @@
         <?php else:?>
         <h1>
           <?php the_title();?>
+          <?php get_template_part('parts/edit-page-link'); ?>
         </h1>
         <?php endif;?>
         <?php the_content(); ?>

@@ -186,6 +186,10 @@ html.home-intro-active #map :is(#Small, #Big, #Buttons) rect {
   stroke-dasharray: 4;
 }
 
+html.home-intro-active #map :is(#Small, #Big) rect.intro-box-solid {
+  stroke-dasharray: 4 0;
+}
+
 .panel {
   @apply text-white fixed top-0 left-0 h-full w-full overflow-auto ;
   background-color: rgba(#000, 0.90);

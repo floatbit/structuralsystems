@@ -29,7 +29,7 @@
 .panel-mobile-menu .links { padding-top: 0; }
 @media (max-width: 767px) {
   .panel-page, .panel-project, .panel-image, .panel-mobile-menu {
-    .modal-brand { padding-top: 24px; padding-bottom: 24px; }
+    .modal-brand { padding-top: 16px; padding-bottom: 16px; }
   }
 }
 
@@ -137,7 +137,11 @@
   .panel-explore .explore-categories .checkboxes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 767px) {
-  .panel-explore, .panel-search { padding: 24px 0; }
+  .panel-explore, .panel-search {
+    padding: 16px 0;
+    .panel-tools-header { margin-bottom: 16px; }
+  }
+  .panel:not(.panel-image) > button.close { top: 16px; }
   .panel-search .panel-search-form { gap: 12px; .btn { min-width: auto; padding: 8px 12px; } }
   .panel-search .search-projects { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 12px; padding-right: 12px; }
   .panel-explore .explore-columns { grid-template-columns: minmax(0, 1fr); }
@@ -224,4 +228,19 @@ html.light-mode {
   .caption-editor-actions { display: flex; justify-content: flex-end; align-items: center; gap: 24px; }
   .btn { background: theme('colors.yellow'); }
   button:disabled { opacity: .5; cursor: wait; }
+}
+
+.panel .content-edit-link {
+  display: inline-block;
+  margin-left: 12px;
+  color: theme('colors.yellow');
+  font-family: theme('fontFamily.sans');
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  text-transform: none;
+  vertical-align: baseline;
+  text-underline-offset: 3px;
+  &:hover { color: #fff; }
 }
