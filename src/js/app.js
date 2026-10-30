@@ -1,3 +1,4 @@
+import CaptionEditor from './caption-editor'
 import $ from 'jquery'
 import Map from '@/map'
 import Explore from '@/explore'
@@ -16,6 +17,7 @@ import { initImageCarousels } from '@/image-carousel'
   new Search()
   new MobileProjects()
   new ImageEnlarge()
+  new CaptionEditor()
   new MobileMenu()
   new Tracker()
   new SwitchLightMode()

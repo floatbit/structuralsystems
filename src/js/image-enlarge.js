@@ -44,12 +44,18 @@ export default class ImageEnlarge {
         const panelCaptionDiv = panelImage.querySelector('.caption');
 
         if (panelCaptionDiv) {
+          if (captionElement.dataset.captionImageId) {
+            panelCaptionDiv.dataset.captionImageId = captionElement.dataset.captionImageId;
+          } else {
+            delete panelCaptionDiv.dataset.captionImageId;
+          }
           panelCaptionDiv.innerHTML = captionHtml;
           panelCaptionDiv.classList.remove('hidden');
         }
       } else {
         const panelCaptionDiv = panelImage.querySelector('.caption');
         if (panelCaptionDiv) {
+          delete panelCaptionDiv.dataset.captionImageId;
           panelCaptionDiv.innerHTML = '';
           panelCaptionDiv.classList.add('hidden');
         }

@@ -44,4 +44,11 @@ export async function closeModal(panel) {
   return true;
 }
 
-export const contentLoader = '<div class="content-loader" role="status"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="2" y="2" width="44" height="44" pathLength="100" /></svg><span>Loading</span></div>';
+export function contentLoader() {
+  const image = document.querySelector('.search-loading-template')?.content.querySelector('.loading-dark')?.cloneNode(true);
+  if (image) {
+    image.className = 'modal-loading-image';
+    image.alt = '';
+  }
+  return `<div class="content-loader" role="status" aria-label="Loading">${image?.outerHTML || ''}</div>`;
+}

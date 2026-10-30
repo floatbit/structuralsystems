@@ -44,11 +44,7 @@ if ( ! empty( $block['align'] ) ) {
                         <span class="ellipses">&hellip;</span>
                     <?php endif;?>
                 </p>
-                <?php if ($image_description):?>
-                    <div class="caption hidden">
-                        <?php print $image_description; ?>
-                    </div>
-                <?php endif;?>
+                <?php get_template_part('parts/image-caption', null, ['image_id' => $image['ID'], 'description' => $image_description]); ?>
             </div>
             <?php endforeach;?>
         </div>

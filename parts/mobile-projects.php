@@ -19,9 +19,9 @@ $mobile_projects = get_posts([
             </div>
         </div>
         <p class="mobile-project-status" role="status" aria-live="polite"></p>
-        <div class="mobile-project-loading" hidden>
-            <img class="loading-dark" src="<?php echo esc_url(assets_url('/dist/images/loading.gif')); ?>" alt="Searching…" width="48" height="48">
-            <img class="loading-light" src="<?php echo esc_url(assets_url('/dist/images/loading-light.gif')); ?>" alt="Searching…" width="48" height="48">
+        <div class="mobile-project-loading" role="status" aria-label="Searching" hidden>
+            <img class="loading-dark" src="<?php echo esc_url(assets_url('/dist/images/loading.gif')); ?>" alt="" width="48" height="48">
+            <img class="loading-light" src="<?php echo esc_url(assets_url('/dist/images/loading-light.gif')); ?>" alt="" width="48" height="48">
         </div>
         <div class="mobile-project-grid">
             <?php foreach ($mobile_projects as $mobile_project):

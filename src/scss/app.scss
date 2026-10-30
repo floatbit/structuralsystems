@@ -210,6 +210,14 @@ html.light-mode .panel-search .loading-light { display: none; }
   }
 }
 
+.panel-image .image-edit-link {
+  display: block;
+  width: fit-content;
+  margin: 12px auto 0;
+  font-family: theme('fontFamily.sans');
+  font-size: 14px;
+}
+
 .add-favorite {
   font-size: 20px;
   position: relative;
@@ -269,6 +277,10 @@ html.light-mode .panel-search .loading-light { display: none; }
 }
 
 @import 'panel-tools';
+
+.panel:has(.project-cover-image[data-cover-visible]) > button.close {
+  visibility: hidden;
+}
 
 .project-cover-image {
   opacity: 1;

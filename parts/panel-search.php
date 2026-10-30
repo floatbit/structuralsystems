@@ -9,9 +9,9 @@
         </form>
         <div class="search-results" aria-live="polite"></div>
         <template class="search-loading-template">
-            <div class="search-loading" role="status">
-                <img class="loading-dark" src="<?php echo esc_url(assets_url('/dist/images/loading.gif')); ?>" alt="Searching…" width="48" height="48">
-                <img class="loading-light" src="<?php echo esc_url(assets_url('/dist/images/loading-light.gif')); ?>" alt="Searching…" width="48" height="48">
+            <div class="search-loading" role="status" aria-label="Searching">
+                <img class="loading-dark" src="<?php echo esc_url(assets_url('/dist/images/loading.gif')); ?>" alt="" width="48" height="48">
+                <img class="loading-light" src="<?php echo esc_url(assets_url('/dist/images/loading-light.gif')); ?>" alt="" width="48" height="48">
             </div>
         </template>
     </div>

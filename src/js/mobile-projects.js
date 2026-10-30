@@ -71,7 +71,7 @@ export default class MobileProjects {
     this.root.classList.toggle('is-searching', loading);
     this.root.setAttribute('aria-busy', String(loading));
     this.loading.hidden = !loading;
-    if (loading) this.status.textContent = 'Searching…';
+    if (loading) this.status.textContent = '';
   }
 
   updateCount() {

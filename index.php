@@ -12,7 +12,7 @@
       <?php if (is_singular('project')):?>
         <?php $cover_image = get_field('cover_image', get_the_ID());?>
         <?php if ($cover_image):?>
-        <div class="project-cover-image fixed top-0 left-0 w-full h-full bg-black z-40">
+        <div class="project-cover-image fixed top-0 left-0 w-full h-full bg-black z-40" data-cover-visible>
             <img src="<?php print $cover_image['url'];?>" alt="<?php print $cover_image['alt'];?>" class="w-full h-full object-contain p-10">
           </div>
         <?php endif;?>

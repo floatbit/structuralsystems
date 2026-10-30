@@ -7,7 +7,7 @@
             <div class="explore-scroll">
             <div class="explore-columns">
                 <section class="explore-categories">
-                    <div class="explore-heading"><h3>Category</h3><span class="category-selection-count"></span></div>
+                    <div class="explore-heading"><h3><img src="<?php echo esc_url(assets_url('/dist/images/label-category.svg')); ?>" alt="Category" height="24"></h3><span class="category-selection-count"></span></div>
                     <div class="checkboxes">
                         <?php
                         $terms = get_terms(array(
@@ -27,7 +27,7 @@
                     </div>
                 </section>
                 <section class="explore-years">
-                    <div class="explore-heading"><h3>Model Year</h3><span class="year-selection-count"></span></div>
+                    <div class="explore-heading"><h3><img src="<?php echo esc_url(assets_url('/dist/images/label-model-year.svg')); ?>" alt="Model Year" height="24"></h3><span class="year-selection-count"></span></div>
                     <div class="checkboxes">
                         <?php
                         $terms = get_terms(array(

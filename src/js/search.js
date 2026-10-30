@@ -93,7 +93,7 @@ export default class Search {
     const controller = new AbortController();
     this.searchController = controller;
     const loadingTemplate = document.querySelector('.search-loading-template');
-    searchResults.innerHTML = loadingTemplate ? loadingTemplate.innerHTML : '<p role="status">Searching…</p>';
+    searchResults.innerHTML = loadingTemplate ? loadingTemplate.innerHTML : '<div role="status" aria-label="Searching"></div>';
     fetchProjectSearch(keyword, controller.signal)
     .then(({ html: result, postIds }) => {
       if (controller.signal.aborted) return;

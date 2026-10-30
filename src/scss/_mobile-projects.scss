@@ -69,13 +69,16 @@
   .mobile-project-card.hidden { display: none !important; }
   &.is-searching .mobile-project-grid { display: none; }
 
+  &[data-view="grid"] .search-project-number { display: none; }
+
   &[data-view="list"] {
-    .mobile-project-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .mobile-project-grid { grid-template-columns: minmax(0, 1fr); row-gap: 4rem; }
     .mobile-project-text { display: block; }
   }
   &[data-view="list"] {
-    .mobile-project-card { display: flex; align-items: flex-end; gap: 1rem; }
+    .mobile-project-card { display: flex; align-items: flex-start; gap: 1rem; }
     .mobile-project-thumbnail { width: 100px; flex-shrink: 0; }
+    .mobile-project-text { margin-top: 0; }
   }
   button:focus-visible {
     outline: none;

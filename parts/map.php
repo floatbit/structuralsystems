@@ -3968,18 +3968,19 @@
     <g id="<?php echo esc_attr($box_id); ?>" <?php echo $new_box_info['output']; ?>>
       <rect class="cls-5" x="<?php echo $bounds['x']; ?>" y="<?php echo $bounds['y']; ?>" width="<?php echo $bounds['width']; ?>" height="<?php echo $bounds['height']; ?>"/>
       <text class="cls-2" x="<?php echo $bounds['x'] + $bounds['width'] / 2; ?>" y="<?php echo $bounds['y'] + $bounds['height'] / 2; ?>" text-anchor="middle" dominant-baseline="middle" font-size="10"><?php echo esc_html($box_id); ?></text>
-      <?php if ($new_box_info['image_url']): ?>
+      <?php if ($new_box_info['image_url'] || $new_box_info['video_url']): ?>
       <foreignObject x="<?php echo $bounds['x']; ?>" y="<?php echo $bounds['y']; ?>" width="<?php echo $bounds['width']; ?>" height="<?php echo $bounds['height']; ?>">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php echo esc_url($new_box_info['image_url']); ?>'); background-size: cover; background-position: center;"></div>
+        <?php get_template_part('parts/big-box-media', null, $new_box_info); ?>
       </foreignObject>
       <?php endif; ?>
     </g>
     <?php endforeach; ?>
+    <?php $box_info = structural_systems_get_project_box_info('E', true); ?>
     <g id="E" <?php print $box_info['output'];?>>
       <rect class="cls-5" x="1155.51" y="572.76" width="179.03" height="411.48"/>
       <path class="cls-2" d="M1247.03,779.56h-2.46v3.5h2.8v1.2h-4.19v-10.11h4.01v1.2h-2.62v3.04h2.46v1.17Z"/>
       <foreignObject x="1155.51" y="572.76" width="179.03" height="411.48">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php print $box_info['image_url'];?>'); background-size: cover; background-position: center;"></div>
+        <?php get_template_part('parts/big-box-media', null, $box_info); ?>
       </foreignObject>
     </g>
     <?php
@@ -3989,7 +3990,7 @@
       <rect class="cls-5" x="1045.26" y="224.01" width="540" height="155.25"/>
       <path class="cls-2" d="M1321.72,292.8c.45-.13,1.04-.2,1.68-.2,1.12,0,1.92.27,2.5.8.81.71,1.35,2.02,1.35,4.09,0,2.24-.55,3.55-1.27,4.27-.66.72-1.64,1.06-2.87,1.06-.51,0-1.04-.04-1.38-.1v-9.92ZM1323.1,301.64c.15.03.31.03.42.03,1.18,0,2.29-.92,2.29-4.17,0-2.41-.71-3.77-2.21-3.77-.17,0-.35.02-.5.05v7.86Z"/>
       <foreignObject x="1045.26" y="224.01" width="540" height="155.25">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php print $box_info['image_url'];?>'); background-size: cover; background-position: center;"></div>
+        <?php get_template_part('parts/big-box-media', null, $box_info); ?>
       </foreignObject>
     </g>
     <?php
@@ -3999,7 +4000,7 @@
       <rect class="cls-5" x="750.51" y="437.76" width="265.5" height="265.5"/>
       <path class="cls-2" d="M885.84,570.84c-.3.15-.82.26-1.47.26-2.14,0-3.51-1.74-3.51-5.01,0-3.94,2.02-5.28,3.72-5.28.63,0,1.09.12,1.29.25l-.28,1.18c-.24-.11-.49-.21-.99-.21-1.09,0-2.29,1.03-2.29,3.94s1.08,3.89,2.31,3.89c.4,0,.79-.09,1.03-.2l.19,1.17Z"/>
       <foreignObject x="750.51" y="437.76" width="265.5" height="265.5">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php print $box_info['image_url'];?>'); background-size: cover; background-position: center;"></div>
+        <?php get_template_part('parts/big-box-media', null, $box_info); ?>
       </foreignObject>
     </g>
     <g id="B" data-post-id="32" data-permalink="<?php print get_the_permalink(32);?>" data-content-type="page">
@@ -4094,7 +4095,7 @@
       <rect class="cls-5" x="327.51" y="161.01" width="177.75" height="393.75"/>
       <path class="cls-2" d="M418.15,370.94l-.6,2.83h-1.34l2.28-10.11h1.59l2.16,10.11h-1.36l-.6-2.83h-2.12ZM420.11,369.84l-.47-2.44c-.13-.69-.27-1.57-.38-2.3h-.05c-.11.74-.26,1.65-.4,2.31l-.48,2.43h1.78Z"/>
       <foreignObject x="327.51" y="161.01" width="177.75" height="393.75">
-        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; background-image: url('<?php print $box_info['image_url'];?>'); background-size: cover; background-position: center;"></div>
+        <?php get_template_part('parts/big-box-media', null, $box_info); ?>
       </foreignObject>
     </g>
   </g>

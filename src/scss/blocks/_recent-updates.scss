@@ -17,6 +17,7 @@
         > span { display: block; }
     }
     .grid {
+        row-gap: 4rem;
         @screen md {
             max-width: 1024px;
         }

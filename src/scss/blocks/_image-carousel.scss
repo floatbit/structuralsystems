@@ -1,5 +1,5 @@
 .block-image-carousel {
-  --carousel-height: clamp(300px, 60vw, 600px);
+  --carousel-height: clamp(360px, 70vw, 750px);
   margin-bottom: 2rem;
   min-width: 0;
 
@@ -14,6 +14,7 @@
   }
 
   .image-carousel-zoom {
+    position: relative;
     display: block;
     width: 100%;
     height: 100%;
@@ -29,6 +30,10 @@
     height: 100%;
     max-width: none;
     object-fit: contain;
+  }
+
+  .ellipses {
+    @apply absolute right-[20px] bottom-[20px] h-[30px] w-[30px] bg-yellow text-black rounded-full leading-none pt-[3px] text-center;
   }
 
   .image-carousel-controls {

@@ -151,4 +151,13 @@ if ( ! empty( $block['align'] ) ) {
             <?php endif;?>
         </div>
     </div>
+    <?php $carousel_images = structural_systems_get_project_images($post_id ?: get_the_ID()); ?>
+    <?php if ($carousel_images): ?>
+    <div class="project-details-carousel mt-20 mb-24">
+        <?php get_template_part('parts/image-carousel', null, [
+            'id' => $id . '-carousel',
+            'images' => $carousel_images,
+        ]); ?>
+    </div>
+    <?php endif; ?>
 </div>

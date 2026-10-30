@@ -178,6 +178,7 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
 
   $output = '';
   $image_url = '';
+  $video_url = '';
   
   if ($post_id) {
     $post = get_post($post_id);
@@ -191,7 +192,15 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
 
       $hover_image_url = null;
       if ($is_big_box && $big_box_project_set) {
-        $image_url = $big_box_project_set['image']['url'];
+        $image_url = $big_box_project_set['image']['url'] ?? '';
+        $video = $big_box_project_set['video'] ?? '';
+        if (is_array($video)) {
+          $video_url = $video['url'] ?? '';
+        } elseif (is_numeric($video)) {
+          $video_url = wp_get_attachment_url((int) $video) ?: '';
+        } elseif (is_string($video)) {
+          $video_url = $video;
+        }
       } else {
         $image_url = get_the_post_thumbnail_url($post_id, 'full');
         $hover_image_url = $image_url;
@@ -213,6 +222,7 @@ function structural_systems_get_project_box_info($box_id = 1, $return_array = fa
     return array(
       'output' => $output,
       'image_url' => $image_url,
+      'video_url' => $video_url,
     );
   }
 

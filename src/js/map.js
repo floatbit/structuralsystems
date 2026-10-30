@@ -95,7 +95,10 @@ export default class Map {
     if (postId) document.body.setAttribute('data-post-id', postId);
     const coverImage = payload.querySelector('.project-cover-image');
     if (coverImage) {
-      setTimeout(() => coverImage.classList.add('project-cover-image-fade-out'), 2000);
+      setTimeout(() => {
+        coverImage.classList.add('project-cover-image-fade-out');
+        setTimeout(() => coverImage.removeAttribute('data-cover-visible'), 500);
+      }, 2000);
     }
   }
 
@@ -107,7 +110,7 @@ export default class Map {
     panel.setAttribute('aria-busy', 'true');
     const payload = panel.querySelector('.payload');
     destroyImageCarousels(payload);
-    payload.innerHTML = contentLoader;
+    payload.innerHTML = contentLoader();
     const opening = openModal(panel);
     const requestPanel = panel;
     const controller = new AbortController();
