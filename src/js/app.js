@@ -1,3 +1,4 @@
+import initHomeIntro from './home-intro'
 import CaptionEditor from './caption-editor'
 import $ from 'jquery'
 import Map from '@/map'
@@ -12,6 +13,7 @@ import { initImageCarousels } from '@/image-carousel'
 
 (function ($) {
   
+  initHomeIntro()
   new Map()
   new Explore()
   new Search()

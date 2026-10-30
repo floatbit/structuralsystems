@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <?php if (is_front_page()): ?>
+    <style>html.home-intro-pending #map { opacity: 0; }</style>
+    <script>
+        if (window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)').matches) {
+            document.documentElement.classList.add('home-intro-pending');
+            window.setTimeout(function () { document.documentElement.classList.remove('home-intro-pending'); }, 6000);
+        }
+    </script>
+    <?php endif; ?>
     <?php wp_head(); ?>
 </head>
 
