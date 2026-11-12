@@ -155,6 +155,10 @@ export default class Map {
         }
         // tooltip
         const tooltip = document.querySelector('.map-tooltip');
+        if (document.documentElement.matches('.home-intro-pending, .home-intro-playing')) {
+          tooltip.classList.add('hidden');
+          return;
+        }
         if (element.getAttribute('data-content-type') === 'project') {
           tooltip.classList.remove('hidden');
           if (element.getAttribute('data-hover-image-url')) {

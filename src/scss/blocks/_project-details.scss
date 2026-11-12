@@ -14,3 +14,6 @@
     }
   }
 }
+.project-details-carousel .block-image-carousel {
+  --carousel-height: clamp(260px, 40vw, 400px);
+}

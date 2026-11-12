@@ -361,6 +361,11 @@ button.close {
   }
 }
 
+html.home-intro-pending .map-tooltip,
+html.home-intro-playing .map-tooltip {
+  display: none;
+}
+
 a:hover {
   @apply text-yellow;
 }

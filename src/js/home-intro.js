@@ -26,9 +26,12 @@ export default function initHomeIntro() {
     overlay?.remove();
     root.classList.remove('home-intro-active');
     root.classList.remove('home-intro-pending');
+    root.classList.remove('home-intro-playing');
   };
   try {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return finish();
+    root.classList.add('home-intro-playing');
+    document.querySelector('.map-tooltip')?.classList.add('hidden');
     root.classList.add('home-intro-active');
     const animate = (element, frames, options) => {
       if (!element) return;
