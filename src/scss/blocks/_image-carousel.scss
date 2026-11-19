@@ -46,7 +46,7 @@
     button {
       padding: 0.5rem 0;
       cursor: pointer;
-      &:hover { color: theme('colors.yellow'); }
+      &:hover:not(:disabled):not(.swiper-button-disabled) { color: theme('colors.yellow'); }
       &:disabled, &.swiper-button-disabled {
         opacity: 0.35;
         cursor: default;

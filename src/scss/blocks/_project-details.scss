@@ -54,5 +54,11 @@
   button[data-image-previous] { left: 16px; right: auto; }
   button[data-image-next] { right: 16px; left: auto; }
   button:focus-visible { outline: 2px solid currentColor; }
+  .panel-image & button:disabled {
+    opacity: 0.35;
+    cursor: default;
+    background-color: #000;
+    color: #fff;
+  }
   &[hidden] { display: none; }
 }

@@ -322,7 +322,7 @@ button.close, .image-navigation button {
   line-height: 1;
   padding-bottom: 5px;
   z-index: 50;
-  &:hover { @apply bg-yellow text-black; }
+  &:hover:not(:disabled) { @apply bg-yellow text-black; }
   &:focus-visible { outline: 2px solid theme('colors.yellow'); outline-offset: 3px; }
 }
 

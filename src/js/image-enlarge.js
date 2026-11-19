@@ -43,7 +43,9 @@ export default class ImageEnlarge {
 
   navigate(direction) {
     if (!this.gallery?.length) return;
-    this.imageIndex = (this.imageIndex + direction + this.gallery.length) % this.gallery.length;
+    const nextIndex = this.imageIndex + direction;
+    if (nextIndex < 0 || nextIndex >= this.gallery.length) return;
+    this.imageIndex = nextIndex;
     this.enlargeImage(this.gallery[this.imageIndex], true);
   }
 
@@ -67,6 +69,8 @@ export default class ImageEnlarge {
         this.imageIndex = this.gallery.indexOf(target);
       }
       panelImage.querySelector('.image-navigation').hidden = this.gallery.length < 2;
+      panelImage.querySelector('[data-image-previous]').disabled = this.imageIndex <= 0;
+      panelImage.querySelector('[data-image-next]').disabled = this.imageIndex >= this.gallery.length - 1;
       const imgElement = target.querySelector('img');
       const captionElement = target.querySelector('.caption');
 
