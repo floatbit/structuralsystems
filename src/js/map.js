@@ -66,6 +66,13 @@ export default class Map {
 
   async closePanel(panel, restore = true) {
     panel.contentController?.abort();
+    if (restore && panel.previousViews?.length) {
+      const previous = panel.previousViews.pop();
+      this.showContent(panel, previous.html, previous.permalink, previous.postId);
+      panel.scrollTop = previous.scrollTop;
+      this.restoreLocation();
+      return;
+    }
     if (!await closeModal(panel)) return;
     panel.removeAttribute('aria-busy');
     delete panel.loadingPermalink;
@@ -74,6 +81,7 @@ export default class Map {
     payload.innerHTML = '';
     delete panel.dataset.permalink;
     delete panel.dataset.postId;
+    panel.previousViews = [];
     if (restore) this.restoreLocation();
   }
 
@@ -105,6 +113,10 @@ export default class Map {
   async openContent(permalink, contentType) {
     let panel = document.querySelector(contentType === 'project' ? '.panel-project' : '.panel-page');
     if (panel.loadingPermalink === permalink && !panel.contentController?.signal.aborted) return;
+    if (!panel.classList.contains('hidden') && panel.dataset.permalink && !panel.loadingPermalink && panel.dataset.permalink !== permalink) {
+      panel.previousViews ||= [];
+      panel.previousViews.push({ html: panel.querySelector('.payload').innerHTML, permalink: panel.dataset.permalink, postId: panel.dataset.postId, scrollTop: panel.scrollTop });
+    }
     panel.contentController?.abort();
     panel.loadingPermalink = permalink;
     panel.setAttribute('aria-busy', 'true');

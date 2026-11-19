@@ -19,11 +19,7 @@
         <?php 
           $eyebrow = get_field('eyebrow', get_the_ID());
         ?>
-        <h5 class="mb-3">Project <?php print get_field('box_number', get_the_ID());?> <?php get_template_part('parts/edit-page-link'); ?></h5>
-        <h1 class="mb-3 uppercase">
-          <?php if ($eyebrow):?>
-            <?php echo $eyebrow;?>
-          <?php endif;?>
+        <h5 class="mb-3">Project <?php print get_field('box_number', get_the_ID());?>
           <span class="add-favorite">
             <span class="starred">
               <i class="fa-solid fa-star"></i>
@@ -33,9 +29,24 @@
               <i class="fa-regular fa-star"></i>
               <span class="tooltip text-sm">Add to Favorites</span>
             </span>
-          </span>
+          </span></h5>
+        <h1 class="mb-3 uppercase">
+          <?php if ($eyebrow):?>
+            <?php echo $eyebrow;?>
+          <?php endif;?>
+
         </h1>
-        <h5 class="mb-8">Inspired By <?php the_title();?></h5>
+        <?php
+          $project_meta = ['Inspired By ' . get_the_title()];
+          foreach (['project-architect' => 'Architects', 'project-construction' => 'Year Built', 'project-location' => 'Location'] as $taxonomy => $label) {
+            $terms = get_the_terms(get_the_ID(), $taxonomy);
+            if ($terms && !is_wp_error($terms)) {
+              $project_meta[] = $label . ': ' . implode(', ', wp_list_pluck($terms, 'name'));
+            }
+          }
+        ?>
+        <h5 class="mb-8 project-top-meta"><?php echo esc_html(implode(' | ', $project_meta)); ?></h5>
+        <div class="project-edit-action"><?php get_template_part('parts/edit-page-link'); ?></div>
         <?php else:?>
         <h1>
           <?php the_title();?>

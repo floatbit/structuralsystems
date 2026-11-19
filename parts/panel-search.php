@@ -5,7 +5,7 @@
         <form action="#" role="search" class="panel-search-form">
             <label class="sr-only" for="keyword">Search by project, year, or name</label>
             <input type="search" name="keyword" value="" id="keyword" placeholder="Search by project, year, or name…">
-            <input type="submit" value="Search" class="btn btn-primary">
+            <input type="submit" value="SUBMIT" class="btn btn-primary">
         </form>
         <div class="search-results" aria-live="polite"></div>
         <template class="search-loading-template">

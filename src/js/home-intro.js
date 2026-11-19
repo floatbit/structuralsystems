@@ -35,7 +35,7 @@ export default function initHomeIntro() {
     root.classList.add('home-intro-active');
     const animate = (element, frames, options) => {
       if (!element) return;
-      const animation = element.animate(frames, { fill: 'backwards', ...options });
+      const animation = element.animate(frames, { fill: 'backwards', ...options, delay: (options.delay || 0) * 0.27, duration: options.duration * 0.27 });
       animations.push(animation);
       return animation;
     };
@@ -82,7 +82,7 @@ export default function initHomeIntro() {
       const delay = 700 + index / Math.max(1, selectedBoxes.length - 1) * 2655 + Math.random() * 90;
       const duration = 120 + Math.random() * 100;
       // Override the intro's dashed style from this box's first blink onward.
-      borderTimers.push(window.setTimeout(() => box.classList.add('intro-box-solid'), delay));
+      borderTimers.push(window.setTimeout(() => box.classList.add('intro-box-solid'), delay * 0.27));
       lastYellowReveal = Math.max(lastYellowReveal, delay + duration * 0.08);
       animate(pulse, [
         { opacity: 0, offset: 0 },
@@ -93,7 +93,7 @@ export default function initHomeIntro() {
     });
     outlineTimer = window.setTimeout(() => {
       root.classList.remove('home-intro-active');
-    }, lastYellowReveal);
+    }, lastYellowReveal * 0.27);
     map.append(overlay);
     root.classList.remove('home-intro-pending');
     // Interaction can skip the entrance immediately.

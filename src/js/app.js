@@ -24,6 +24,18 @@ import { initImageCarousels } from '@/image-carousel'
   new Tracker()
   new SwitchLightMode()
   initImageCarousels()
+  // Click the exposed black margin to return to the content underneath.
+  document.querySelectorAll('.panel').forEach(panel => {
+    panel.addEventListener('click', event => {
+      let isMargin = event.target === panel;
+      if (event.target.parentElement === panel && event.target.classList.contains('container')) {
+        const bounds = event.target.getBoundingClientRect();
+        const styles = getComputedStyle(event.target);
+        isMargin = event.clientX < bounds.left + parseFloat(styles.paddingLeft) || event.clientX > bounds.right - parseFloat(styles.paddingRight);
+      }
+      if (isMargin) panel.querySelector(':scope > .close')?.click();
+    });
+  });
   
   // Add event listener for the Escape key
   document.addEventListener('keydown', function(event) {
